@@ -1,21 +1,16 @@
-import 'styled-components';
+import "styled-components";
 
-declare module 'styled-components' {
+declare module "styled-components" {
   export interface DefaultTheme {
     colors: {
-      red: string;
-      green: string;
-      black: string;
-      white: string;
-      gray: string;
-      text: string;
-      bgWhite: string;
+      textPrimary: string;
+      textSecondary: string;
+      testAccentPrimary: string;
+      testAccentSecondary: string;
       bgPrimary: string;
       bgSecondary: string;
-      primary: string;
-      secondary: string;
-      accent: string;
-      muted: string;
+      bgAccentPrimary: string;
+      bgAccentSecondary: string;
     };
     space: number[];
     fonts: {
@@ -34,7 +29,7 @@ declare module 'styled-components' {
       medium: number;
     };
     lineHeights: {
-      body:number;
+      body: number;
       heading: number;
       text: number;
     };
