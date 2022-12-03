@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import { IProps } from "./Text";
 
-export const Text = styled.p<
-  Pick<IProps, "center"|"marginTheme" | "fs" | "fw" | "lh" | "color">
->`
+export const Text = styled.p<Pick<IProps, "center"|"marginTheme" | "fs" | "fw" | "lh" | "color">>`
   margin: ${(p) =>
     p.marginTheme
       ? `${p.theme.space[p.marginTheme[0]]}px ${

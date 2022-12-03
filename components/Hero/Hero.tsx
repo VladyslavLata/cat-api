@@ -1,14 +1,18 @@
 import { FC } from "react";
 import { HiddenTitle } from "../HiddenTitle/HiddenTitle";
 import { Text } from "../Text/Text";
+import { Navigation } from "../Navigation/Navigation";
+import { dataNavLinks } from "../../constants/dataNavLinks";
+import * as SC from "./Hero.styled";
 
 export const Hero: FC = () => {
   return (
-    <section>
-      <HiddenTitle  title="Cat API, main navigation"/>
+    <SC.Section>
+      <HiddenTitle  title="Cat finder application"/>
       <Text marginTheme={[0, 0, 3, 0]} fs="xxl" fw="medium" lh="heading">Hi intern!</Text>
       <Text marginTheme={[0, 0, 12, 0]} lh="text" color="textSecondary">Welcome to MI 2022 Front-end test</Text>
-      <Text>Lets start using The Cat API</Text>
-    </section>
+      <Text marginTheme={[0,0,7,0]} lh="text" fw="medium">Lets start using The Cat API</Text>
+      <Navigation navLinks={dataNavLinks} />
+    </SC.Section>
   )
 }

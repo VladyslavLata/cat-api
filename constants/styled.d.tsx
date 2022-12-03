@@ -11,6 +11,11 @@ declare module "styled-components" {
       bgSecondary: string;
       bgAccentPrimary: string;
       bgAccentSecondary: string;
+      bgLinkVoting: string;
+      bgLinkBreeds: string;
+      bgLinkGallery: string;
+      bgBorder: string;
+     
     };
     space: number[];
     fonts: {
@@ -34,15 +39,16 @@ declare module "styled-components" {
       text: number;
     };
     borders: {
-      // none: string;
-      // s: string;
-      // m: string;
-      // l:string;
+      none: string;
+      xs: string;
+      s: string;
+      m: string;
+      l: string;
     };
     radii: {
-      // none: string;
-      // sm: string;
-      // md: string;
+      none: string;
+      s: string;
+      m: string;
       // lg: string;
       // round: string;
     };
