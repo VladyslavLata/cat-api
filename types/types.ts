@@ -4,9 +4,13 @@ export interface IChildren {
 children: ReactNode,
 }
 
+interface img {
+  src: string;
+}
+
 export interface INavLink {
   path: string,
   bgColor: "bgLinkVoting" | "bgLinkBreeds" | "bgLinkGallery",
-  img: string,
+  img: img,
   text: string,
 }
