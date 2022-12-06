@@ -44,6 +44,7 @@ width: 138px;
     border-color: ${(p) => p.theme.colors.bgBorder};
     border-radius: ${(p) => p.theme.radii.m};
     box-shadow: ${p => p.theme.shadows.boxShadow};
+    
   }
 `;
 
