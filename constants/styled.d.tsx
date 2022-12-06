@@ -52,5 +52,8 @@ declare module "styled-components" {
       // lg: string;
       // round: string;
     };
+    shadows: {
+    boxShadow: string;
+  }
   }
 }

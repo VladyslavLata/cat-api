@@ -16,7 +16,7 @@ export const theme: DefaultTheme = {
     bgBorder: "rgba(255, 255, 255, 0.6)",
  
   },
-  space: [0, 4, 5, 10, 15, 16, 18, 20, 25, 30, 40, 50, 60, 75, 100],
+  space: [0, 4, 5, 10, 15, 16, 18, 20, 25, 30, 40, 50, 60, 75, 100, 117],
   fonts: {
     body: 'Jost, sans-serif',
   },
@@ -52,4 +52,7 @@ export const theme: DefaultTheme = {
     // lg: '16px',
     // round: '50%',
   },
+  shadows: {
+    boxShadow: "0 4px 4px rgba(0, 0, 0, 0.25)",
+  }
 };

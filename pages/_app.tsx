@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import * as SC from "../styles/App.styled";
 import type { AppProps } from "next/app";
 import { Jost } from "@next/font/google";
 import { ThemeProvider } from "styled-components";
@@ -23,7 +24,9 @@ export default function App({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         <Container>
           <AsideBar />
-          <Component {...pageProps} />
+          <SC.MainContent>
+            <Component {...pageProps} />
+          </SC.MainContent>
         </Container>
       </ThemeProvider>
     </>
