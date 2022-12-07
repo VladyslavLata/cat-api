@@ -10,23 +10,24 @@ export const List = styled.ul`
 `;
 
 export const Item = styled.li`
-width: 138px;
+  width: 138px;
 `;
 
 export const LinkTitle = styled(Text)`
-margin-top: ${p=>p.theme.space[3]}px;
-padding: ${p => `${p.theme.space[3]}px ${p.theme.space[2]}px`};
-background-color: ${p => p.theme.colors.bgSecondary};
-border-radius: ${p=>p.theme.radii.s};
-text-transform: uppercase;
-text-align: center;
-letter-spacing: 2px;
-box-shadow: ${p=>p.theme.shadows.boxShadow};
-`
-
+  margin-top: ${(p) => p.theme.space[3]}px;
+  padding: ${(p) => `${p.theme.space[3]}px ${p.theme.space[2]}px`};
+  background-color: ${(p) => p.theme.colors.bgSecondary};
+  border-radius: ${(p) => p.theme.radii.s};
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 2px;
+  box-shadow: ${(p) => p.theme.shadows.boxShadow};
+  transition: box-shadow 300ms cubic-bezier(0.215, 0.610, 0.355, 1),
+  background-color 300ms cubic-bezier(0.215, 0.610, 0.355, 1);
+`;
 
 export const Wrapp = styled.div<Pick<INavLink, "bgColor" | "img">>`
-width: 138px;
+  width: 138px;
 
   ::before {
     content: "";
@@ -43,23 +44,23 @@ width: 138px;
     border: ${(p) => p.theme.borders.l};
     border-color: ${(p) => p.theme.colors.bgBorder};
     border-radius: ${(p) => p.theme.radii.m};
-    box-shadow: ${p => p.theme.shadows.boxShadow};
-    
+    box-shadow: ${(p) => p.theme.shadows.boxShadow};
+    transition: box-shadow 300ms cubic-bezier(0.215, 0.610, 0.355, 1),
+    border-color 300ms cubic-bezier(0.215, 0.610, 0.355, 1);
   }
 `;
 
 export const NavLink = styled(Link)`
-:hover, :focus {
-   & ${LinkTitle} {
-box-shadow: none;
-background-color: ${p=>p.theme.colors.bgAccentSecondary};
+  :hover,
+  :focus {
+    & ${LinkTitle} {
+      box-shadow: none;
+      background-color: ${(p) => p.theme.colors.bgAccentSecondary};
+    }
+
+    & ${Wrapp}::before {
+      border-color: ${(p) => p.theme.colors.bgPrimary};
+      box-shadow: none;
+    }
   }
-
-   & ${Wrapp}::before {
-    border-color: ${p=>p.theme.colors.bgPrimary};
-box-shadow: none;
-   }
-}
-`
-
-
+`;
