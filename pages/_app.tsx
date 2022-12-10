@@ -7,6 +7,8 @@ import { theme } from "../constants/theme";
 import { Container } from "../components/Container/Container";
 import { AsideBar } from "../components/AsideBar/AsideBar";
 import { useMyAppMedia } from "../hooks/useMyAppMedia";
+import { useMediaQuery } from "react-responsive";
+
 
 const jost = Jost({
   weight: ["400", "500"],
@@ -15,7 +17,12 @@ const jost = Jost({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
-  const {minMediaDesktop} = useMyAppMedia();
+  // const {minMediaDesktop} = useMyAppMedia();
+  //   const isDesktopOrLaptop = useMediaQuery(
+  //    { minDeviceWidth: 1224 },
+  //    { deviceWidth: 1600 } // `device` prop
+  // )
+  // console.log(isDesktopOrLaptop);
   return (
     <>
       <style jsx global>{`
