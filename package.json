@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@artsy/fresnel": "^6.1.0",
     "@next/font": "^13.0.6",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",

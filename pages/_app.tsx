@@ -1,14 +1,13 @@
 import "../styles/globals.css";
 import * as SC from "../styles/App.styled";
 import type { AppProps } from "next/app";
+import { useRouter } from "next/router";
 import { Jost } from "@next/font/google";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../constants/theme";
-import { Container } from "../components/Container/Container";
+import { AppContainer } from "../components/AppContainer/AppContainer";
 import { AsideBar } from "../components/AsideBar/AsideBar";
-import { useMyAppMedia } from "../hooks/useMyAppMedia";
-import { useMediaQuery } from "react-responsive";
-
+import { MediaContextProvider, Media } from "../media";
 
 const jost = Jost({
   weight: ["400", "500"],
@@ -17,12 +16,7 @@ const jost = Jost({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
-  // const {minMediaDesktop} = useMyAppMedia();
-  //   const isDesktopOrLaptop = useMediaQuery(
-  //    { minDeviceWidth: 1224 },
-  //    { deviceWidth: 1600 } // `device` prop
-  // )
-  // console.log(isDesktopOrLaptop);
+  const {pathname} = useRouter();
   return (
     <>
       <style jsx global>{`
@@ -30,14 +24,16 @@ export default function App({ Component, pageProps }: AppProps) {
           font-family: ${jost.style.fontFamily};
         }
       `}</style>
+
       <ThemeProvider theme={theme}>
-        <Container>
-          {/* {minMediaDesktop && <AsideBar />}  */}
-          <AsideBar/>
-          <SC.MainContent>
-            <Component {...pageProps} />
-          </SC.MainContent>
-        </Container>
+        <MediaContextProvider disableDynamicMediaQueries>
+          <AppContainer>
+            <Media greaterThanOrEqual="l"><AsideBar /></Media>
+            <SC.MainContent currentPage={pathname}>
+              <Component {...pageProps} />
+            </SC.MainContent>
+          </AppContainer>
+        </MediaContextProvider>
       </ThemeProvider>
     </>
   );

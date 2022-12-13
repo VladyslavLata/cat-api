@@ -7,9 +7,9 @@ import * as SC from "./Header.styled";
 export const Header: FC = () => {
   return (
     <SC.Header>
-      <Link href="/">
+      <SC.LogoLink href="/">
         <Image src={logo} width={106} height={24} alt="logo" />
-      </Link>
+      </SC.LogoLink>
     </SC.Header>
   )
 }
