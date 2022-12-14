@@ -14,3 +14,14 @@ export interface INavLink {
   img: img,
   text: string,
 }
+
+export interface IPath {
+  path: string,
+  currentpath: string,
+}
+
+// export interface ICurrentPath {
+//   bgColor: "bgLinkVoting" | "bgLinkBreeds" | "bgLinkGallery",
+//   img: img,
+//   currentPath: string,
+// }

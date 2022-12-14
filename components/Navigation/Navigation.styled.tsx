@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { INavLink } from "../../types/types";
+import { INavLink, IPath } from "../../types/types";
 import Link from "next/link";
 import defaultCat from "../../public/breeds.png";
 import { Text } from "../Text/Text.styled";
@@ -25,15 +25,16 @@ export const Item = styled.li`
   }
 `;
 
-export const LinkTitle = styled(Text)`
+export const LinkTitle = styled(Text)<IPath>`
  
   padding: ${(p) => `${p.theme.space[3]}px ${p.theme.space[2]}px`};
-  background-color: ${(p) => p.theme.colors.bgSecondary};
+  color: ${p=> p.currentpath === p.path ? p.theme.colors.testAccentSecondary : p.theme.colors.testAccentPrimary};
+  background-color: ${(p) => p.currentpath === p.path ? p.theme.colors.testAccentPrimary : p.theme.colors.bgSecondary};
   border-radius: ${(p) => p.theme.radii.s};
   text-transform: uppercase;
   text-align: center;
   letter-spacing: 2px;
-  box-shadow: ${(p) => p.theme.shadows.boxShadow};
+  box-shadow: ${(p) => p.currentpath === p.path ? "none" : p.theme.shadows.boxShadow};
   transition: box-shadow 300ms cubic-bezier(0.215, 0.61, 0.355, 1),
     background-color 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
 
@@ -44,7 +45,7 @@ export const LinkTitle = styled(Text)`
     }
 `;
 
-export const Wrapp = styled.div<Pick<INavLink, "bgColor" | "img">>`
+export const Wrapp = styled.div<Pick<INavLink, "bgColor" | "img"> & IPath>`
   width: 100%;
 
   @media (min-width: 768px) {
@@ -63,26 +64,27 @@ export const Wrapp = styled.div<Pick<INavLink, "bgColor" | "img">>`
       background-position: bottom -4px left;
       background-repeat: no-repeat;
       border: ${(p) => p.theme.borders.l};
-      border-color: ${(p) => p.theme.colors.bgBorder};
+      border-color: ${(p) => p.currentpath === p.path ? p.theme.colors.bgAccentSecondary : p.theme.colors.bgBorder};
       border-radius: ${(p) => p.theme.radii.m};
-      box-shadow: ${(p) => p.theme.shadows.boxShadow};
+      box-shadow: ${(p) => p.currentpath === p.path ? "none" : p.theme.shadows.boxShadow};
       transition: box-shadow 300ms cubic-bezier(0.215, 0.61, 0.355, 1),
         border-color 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
     }
   }
 `;
 
-export const NavLink = styled(Link)`
+export const NavLink = styled(Link)<Pick<IPath, "currentpath">>`
   :hover,
   :focus {
     & ${LinkTitle} {
       box-shadow: none;
-      background-color: ${(p) => p.theme.colors.bgAccentSecondary};
+      background-color: ${(p) => p.currentpath === p.href ? "currentBackgroundColor" : p.theme.colors.bgAccentSecondary };
     }
 
     & ${Wrapp}::before {
-      border-color: ${(p) => p.theme.colors.bgPrimary};
+      border-color: ${(p) => p.currentpath === p.href ? "currentBackgroundColor" : p.theme.colors.bgPrimary};
       box-shadow: none;
     }
   }
 `;
+

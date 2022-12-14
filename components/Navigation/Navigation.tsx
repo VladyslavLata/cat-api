@@ -1,12 +1,6 @@
 import { FC } from "react";
-import Link from "next/link";
-import { Text } from "../../components/Text/Text";
-import { Box } from "../Box/Box";
-// import vote from "../../public/vote.webp";
-// import gallery from "../../public/gallery.webp";
-// import breeds from "../../public/breeds.webp";
+import { useRouter } from "next/router";
 import { INavLink } from "../../types/types";
-import { NavLink } from "../NavLink/NavLink";
 import * as SC from "./Navigation.styled";
 
 interface IProps {
@@ -14,17 +8,19 @@ interface IProps {
 }
 
 export const Navigation: FC<IProps> = ({ navLinks }) => {
+  const {pathname} = useRouter();
   return (
     <SC.List>
       {navLinks.map(({ path, bgColor, img, text }) => (
         <SC.Item key={path}>
-          <SC.NavLink href={path}>
-            <SC.Wrapp bgColor={bgColor} img={img}>
+          <SC.NavLink href={path} currentpath={pathname}>
+            <SC.Wrapp bgColor={bgColor} img={img} currentpath={pathname} path={path}>
               <SC.LinkTitle
                 fs={"s"}
                 fw={"medium"}
                 lh={"heading"}
-                color={"testAccentPrimary"}
+                currentpath={pathname}
+                path={path}
               >
                 {text}
               </SC.LinkTitle>
