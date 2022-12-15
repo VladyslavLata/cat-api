@@ -5,3 +5,7 @@ const CAT_API_KEY = "live_Sv4k5xsNdGpxtq6QAMZhiPDGUNlns90Li9QIs8b22IT6zFxHsGLJtC
 axios.defaults.baseURL = 'https://api.thecatapi.com/v1';
 axios.defaults.headers.common['x-api-key'] = CAT_API_KEY;
 
+export const getCatGallery = async () => {
+  const respons = await axios.get("/images/search", { params: { limit: "10", order: "DESC", page: "8" } });
+  return respons.data;
+}
