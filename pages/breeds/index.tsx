@@ -2,23 +2,43 @@ import { FC } from "react";
 import Image from "next/image";
 import { getCatGallery } from "../../API/catAPI";
 import { useRouter } from "next/router";
+import { GetServerSideProps } from "next";
 
-export const getStaticProps = async () => {
-  const catsData = await getCatGallery();
+export const getServerSideProps: GetServerSideProps  = async (context) => {
+
+  let paramPage = context?.query?.page
+
+  const catsData = await getCatGallery(paramPage);
+
+  //   const param = context.query;
+  // console.log(param);
 
   if (!catsData) {
     return { notFound: true}
   }
 
+  if (!paramPage) {
+    paramPage = "1"
+  }
+
   return {
-    props: {catsData}
+    props: {catsData, paramPage}
   }
 }
 
-const Breeds: FC = ({ catsData }) => {
+const Breeds: FC = ({ catsData,  paramPage}) => {
   const router = useRouter();
-  // console.log(catsData);
+
+console.log(paramPage);
+  console.log(catsData);
   // console.log(`router: ${router}`);
+  const handleChangePage = () => {
+  router.push({
+          pathname: '/breeds',
+          query: { page: `${Number(paramPage) + 1}` },
+        })
+}
+ 
   return (
     <>
       <select onChange={(e)=>console.log(e.currentTarget.value)}>
@@ -27,6 +47,7 @@ const Breeds: FC = ({ catsData }) => {
         <option value="3">3</option>
         <option value="4">4</option>
       </select>
+      <button type="button" onClick={()=>handleChangePage()}></button>
     <ul>
     {catsData.map(({ url }) => <li key={url}><Image src={ url} alt="cat" width={300} height={300} /></li> ) }
   </ul></>
