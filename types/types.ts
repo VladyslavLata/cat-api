@@ -8,18 +8,33 @@ interface img {
   src: string;
 }
 
+interface INavPath {
+  pathname: string,
+  query: {
+    page?: number,
+    limit?: number,
+    order?: "ASC" | "DESC",
+    has_breeds?: number,
+  }
+
+      
+}
+
 export interface INavLink {
-  path: string,
+  path: INavPath,
   bgColor: "bgLinkVoting" | "bgLinkBreeds" | "bgLinkGallery",
   img: img,
   text: string,
 }
 
 export interface IPath {
-  path: string,
+  path: INavPath,
   currentpath: string,
 }
 
+export interface IUrl extends IPath {
+  href: INavPath
+}
 // export interface ICurrentPath {
 //   bgColor: "bgLinkVoting" | "bgLinkBreeds" | "bgLinkGallery",
 //   img: img,

@@ -12,8 +12,8 @@ export const Navigation: FC<IProps> = ({ navLinks }) => {
   return (
     <SC.List>
       {navLinks.map(({ path, bgColor, img, text }) => (
-        <SC.Item key={path}>
-          <SC.NavLink href={path} currentpath={pathname}>
+        <SC.Item key={path.pathname}>
+          <SC.NavLink href={ path } currentpath={pathname} >
             <SC.Wrapp bgColor={bgColor} img={img} currentpath={pathname} path={path}>
               <SC.LinkTitle
                 fs={"s"}
