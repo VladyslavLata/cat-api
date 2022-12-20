@@ -1,18 +1,10 @@
 import { FC } from "react";
-import Link from "next/link";
-import Image from "next/image";
+import { IChildren } from "../../types/types";
 
-interface IProps {
-  [x: string]: {
-    id: string,
-    url: string,
-  }[]
-}
-
-export const Gallery: FC<IProps> = ({ data }) => {
+export const Gallery: FC<IChildren> = ({ children }) => {
   return (
     <ul>
-      {data.map(({ id, url }) => <li key={id}><Link href={id}><Image src={url} alt="Cat"/></Link></li>)}
+      {children}
     </ul>
   )
 }

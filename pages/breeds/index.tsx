@@ -1,35 +1,40 @@
 import { FC } from "react";
-import Image from "next/image";
 import { getCatGallery } from "../../API/catAPI";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { Button } from "../../components/Button/Button";
-
+import { Gallery } from "../../components/Gallery/Gallery";
+import { GelleryItemBreeds } from "../../components/GelleryItemBreeds/GelleryItemBreeds";
+import { IDataCat } from "../../types/types";
+import { getAllBreeds } from "../../API/catAPI";
+ 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const param = context.query;
   try {
     const catsData = await getCatGallery(param);
     return {
-    props: { catsData, param },
-  };
+      props: { catsData },
+    };
   } catch (error) {
     return { notFound: true };
- }
-
+  }
 };
 
+interface IProps {
+  catsData: IDataCat[],
+  allBreeds: any, 
+}
 
-
-const Breeds: FC = ({ catsData }) => {
+const Breeds: FC<IProps> = ({ catsData, allBreeds }) => {
   const router = useRouter();
   const param = router.query;
-
+  console.log(`ddd   ${ allBreeds }`);
   console.log(catsData);
 
-  const changePage = (value:number) => {
+  const changePage = (value: number) => {
     router.push({
       pathname: "/breeds",
-      query: {... param, page: Number(param.page)+value, }
+      query: { ...param, page: Number(param.page) + value },
     });
   };
 
@@ -43,17 +48,17 @@ const Breeds: FC = ({ catsData }) => {
         <option value="3">3</option>
         <option value="4">4</option>
       </select>
-      <Button callback={()=>changePage(1)} >+</Button>
-      <Button callback={() => changePage(-1)} disabled={btnDisabled}>-</Button>
-      <ul>
-        {catsData.map(({ url }) => (
-          <li key={url}>
-            <Image src={url} alt="cat" width={300} height={300} />
-          </li>
-        ))}
-      </ul>
+      <Button callback={() => changePage(-1)} disabled={btnDisabled}>
+        -
+      </Button>
+      <Button callback={() => changePage(1)}>+</Button>
+      <Gallery>
+        <GelleryItemBreeds dataCats={catsData} />
+      </Gallery>
     </>
   );
 };
 
+
 export default Breeds;
+

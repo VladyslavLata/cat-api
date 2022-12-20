@@ -9,3 +9,8 @@ export const getCatGallery = async (param: any) => {
   const respons = await axios.get("/images/search", { params: param });
   return respons.data;
 }
+
+export const getAllBreeds = async () => {
+  const { data } = await axios.get("/v1/breeds");
+  return data;
+}
