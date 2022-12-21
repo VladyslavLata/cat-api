@@ -34,23 +34,23 @@ export interface IUrl extends IPath {
   href: INavPath;
 }
 
-export interface IDataCat {
-    breeds: {
-      0: {
-        id: string;
-        name: string;
-        description: string;
-        temperament: string;
-        origin: string;
-        life_span: string;
-        weight: {
-          metric: string;
-        };
-      };
-    };
+export interface IBreeds {
     id: string;
-    url: string;
-  }
+    name: string;
+    description: string;
+    temperament: string;
+    origin: string;
+    life_span: string;
+    weight: {
+    metric: string;
+  };
+}
+
+export interface IDataCat {
+  breeds: IBreeds[];
+  id: string;
+  url: string;
+}
 
 // export interface ICurrentPath {
 //   bgColor: "bgLinkVoting" | "bgLinkBreeds" | "bgLinkGallery",

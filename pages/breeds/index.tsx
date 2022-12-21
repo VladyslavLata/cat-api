@@ -1,19 +1,20 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import { getCatGallery } from "../../API/catAPI";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { Button } from "../../components/Button/Button";
 import { Gallery } from "../../components/Gallery/Gallery";
 import { GelleryItemBreeds } from "../../components/GelleryItemBreeds/GelleryItemBreeds";
-import { IDataCat } from "../../types/types";
+import { Select } from "../../components/Select/Select";
+import { IDataCat, IBreeds } from "../../types/types";
 import { getAllBreeds } from "../../API/catAPI";
- 
+
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const param = context.query;
   try {
-    const catsData = await getCatGallery(param);
+    const data = await Promise.all([getCatGallery(param), getAllBreeds()]) 
     return {
-      props: { catsData },
+      props: { catsData: data[0], allBreeds: data[1],},
     };
   } catch (error) {
     return { notFound: true };
@@ -22,13 +23,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 interface IProps {
   catsData: IDataCat[],
-  allBreeds: any, 
+  allBreeds: IBreeds[], 
 }
 
 const Breeds: FC<IProps> = ({ catsData, allBreeds }) => {
   const router = useRouter();
   const param = router.query;
-  console.log(`ddd   ${ allBreeds }`);
+
+  console.log(allBreeds);
+
   console.log(catsData);
 
   const changePage = (value: number) => {
@@ -37,6 +40,14 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds }) => {
       query: { ...param, page: Number(param.page) + value },
     });
   };
+
+  const changeParam = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log("change Param");
+    router.push({
+    pathname: "/breeds",
+      query: { ...param, [e.currentTarget.name]: e.currentTarget.value},
+    });
+  }
 
   const btnDisabled = param.page === "0" ? true : false;
 
@@ -48,6 +59,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds }) => {
         <option value="3">3</option>
         <option value="4">4</option>
       </select>
+      <Select breeds={allBreeds} name={"breed_ids"} onChange={changeParam} />
       <Button callback={() => changePage(-1)} disabled={btnDisabled}>
         -
       </Button>

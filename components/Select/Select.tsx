@@ -1,13 +1,19 @@
 import { FC } from "react";
+import { IBreeds } from "../../types/types";
 
 interface IProps {
-  optionDefault: string,
+  optionValueDefault?: string,
+  optionDefault?: string,
+  breeds: IBreeds[],
+  name: string,
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>)=>void,
 }
 
-export const Select: FC<IProps> = ({ optionDefault}) => {
+export const Select: FC<IProps> = ({optionValueDefault, optionDefault, breeds, name, onChange }) => {
   return (
-    <select>
-      <option value={optionDefault}></option>
+    <select name={name} onChange={onChange}>
+      {optionValueDefault && optionDefault && <option key={optionValueDefault} value={optionValueDefault}>{optionDefault}</option>}
+      {breeds.map(breed => <option key={breed.id} value={breed.id}>{ breed.name}</option>)}
     </select>
   )
 }
