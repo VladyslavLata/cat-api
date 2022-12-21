@@ -52,6 +52,11 @@ export interface IDataCat {
   url: string;
 }
 
+export interface ISelect {
+  value: string,
+  option: string,
+}
+
 // export interface ICurrentPath {
 //   bgColor: "bgLinkVoting" | "bgLinkBreeds" | "bgLinkGallery",
 //   img: img,

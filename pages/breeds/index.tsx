@@ -6,15 +6,17 @@ import { Button } from "../../components/Button/Button";
 import { Gallery } from "../../components/Gallery/Gallery";
 import { GelleryItemBreeds } from "../../components/GelleryItemBreeds/GelleryItemBreeds";
 import { SelectBreeds } from "../../components/SelectBreeds/SelectBreeds";
+import { Select } from "../../components/Select/Select";
 import { IDataCat, IBreeds } from "../../types/types";
 import { getAllBreeds } from "../../API/catAPI";
+import { selectLimit } from "../../constants/selectDatas";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const param = context.query;
   try {
-    const data = await Promise.all([getCatGallery(param), getAllBreeds()]) 
+    const data = await Promise.all([getCatGallery(param), getAllBreeds()]);
     return {
-      props: { catsData: data[0], allBreeds: data[1],},
+      props: { catsData: data[0], allBreeds: data[1] },
     };
   } catch (error) {
     return { notFound: true };
@@ -22,43 +24,53 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 interface IProps {
-  catsData: IDataCat[],
-  allBreeds: IBreeds[], 
+  catsData: IDataCat[];
+  allBreeds: IBreeds[];
 }
 
 const Breeds: FC<IProps> = ({ catsData, allBreeds }) => {
   const router = useRouter();
-  const param = router.query;
+  const params = router.query;
 
-  console.log(allBreeds);
+  // console.log(allBreeds);
 
-  console.log(catsData);
+  // console.log(catsData);
 
   const changePage = (value: number) => {
     router.push({
       pathname: "/breeds",
-      query: { ...param, page: Number(param.page) + value },
+      query: { ...params, page: Number(params.page) + value },
     });
   };
 
   const changeParam = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    router.push({
-    pathname: "/breeds",
-      query: { ...param, [e.currentTarget.name]: e.currentTarget.value},
-    });
-  }
+    const valueParam =
+      e.currentTarget.value === "allBreeds" ? "" : e.currentTarget.value;
 
-  const btnDisabled = param.page === "0" ? true : false;
+    router.push({
+      pathname: "/breeds",
+      query: { ...params, [e.currentTarget.name]: valueParam, page: "0" },
+    });
+  };
+
+  const btnDisabled = params.page === "0" ? true : false;
 
   return (
     <>
-      <select onChange={(e) => console.log(e.currentTarget.value)}>
-        <option value="1">1</option>
-        <option value="2">3</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-      </select>
-      <SelectBreeds breeds={allBreeds} name={"breed_ids"} onChange={changeParam} queryParam={param} />
+      <SelectBreeds
+        optionValueDefault="allBreeds"
+        optionDefault="All breeds"
+        breeds={allBreeds}
+        name={"breed_ids"}
+        queryParam={params}
+        onChange={changeParam}
+      />
+      <Select
+        name={"limit"}
+        selectDatas={selectLimit}
+        queryParam={params}
+        onChange={changeParam}
+      />
       <Button callback={() => changePage(-1)} disabled={btnDisabled}>
         -
       </Button>
@@ -70,6 +82,4 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds }) => {
   );
 };
 
-
 export default Breeds;
-

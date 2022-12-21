@@ -8,10 +8,10 @@ export const dataNavLinks: INavLink[] = [
     path: {
       pathname: "/voting",
       query: {
-        page: 0,
-        limit: 10,
         order: "ASC",
         has_breeds: 1,
+        limit: 10,
+        page: 0,
       },
     },
     bgColor: "bgLinkVoting",
@@ -22,10 +22,10 @@ export const dataNavLinks: INavLink[] = [
     path: {
       pathname: "/breeds",
       query: {
-        page: 0,
-        limit: 20,
         order: "ASC",
         has_breeds: 1,
+        limit: 10,
+        page: 0,
       },
     },
     bgColor: "bgLinkBreeds",
@@ -36,10 +36,10 @@ export const dataNavLinks: INavLink[] = [
     path: {
       pathname: "/gallery",
       query: {
-        page: 0,
-        limit: 10,
         order: "ASC",
         has_breeds: 1,
+        limit: 10,
+        page: 0,
       },
     },
     bgColor: "bgLinkGallery",
