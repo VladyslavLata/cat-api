@@ -23,7 +23,7 @@ export const dataNavLinks: INavLink[] = [
       pathname: "/breeds",
       query: {
         page: 0,
-        limit: 10,
+        limit: 20,
         order: "ASC",
         has_breeds: 1,
       },

@@ -5,7 +5,7 @@ import { GetServerSideProps } from "next";
 import { Button } from "../../components/Button/Button";
 import { Gallery } from "../../components/Gallery/Gallery";
 import { GelleryItemBreeds } from "../../components/GelleryItemBreeds/GelleryItemBreeds";
-import { Select } from "../../components/Select/Select";
+import { SelectBreeds } from "../../components/SelectBreeds/SelectBreeds";
 import { IDataCat, IBreeds } from "../../types/types";
 import { getAllBreeds } from "../../API/catAPI";
 
@@ -42,7 +42,6 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds }) => {
   };
 
   const changeParam = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log("change Param");
     router.push({
     pathname: "/breeds",
       query: { ...param, [e.currentTarget.name]: e.currentTarget.value},
@@ -59,7 +58,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds }) => {
         <option value="3">3</option>
         <option value="4">4</option>
       </select>
-      <Select breeds={allBreeds} name={"breed_ids"} onChange={changeParam} />
+      <SelectBreeds breeds={allBreeds} name={"breed_ids"} onChange={changeParam} queryParam={param} />
       <Button callback={() => changePage(-1)} disabled={btnDisabled}>
         -
       </Button>
