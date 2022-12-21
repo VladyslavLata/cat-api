@@ -16,7 +16,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     const data = await Promise.all([getCatGallery(param), getAllBreeds()]);
     return {
-      props: { catsData: data[0], allBreeds: data[1] },
+      props: { catsData: data[0], allBreeds: data[1], },
     };
   } catch (error) {
     return { notFound: true };
@@ -28,9 +28,11 @@ interface IProps {
   allBreeds: IBreeds[];
 }
 
-const Breeds: FC<IProps> = ({ catsData, allBreeds }) => {
+const Breeds: FC<IProps> = ({ catsData, allBreeds}) => {
   const router = useRouter();
   const params = router.query;
+
+
 
   // console.log(allBreeds);
 
@@ -49,11 +51,9 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds }) => {
 
     router.push({
       pathname: "/breeds",
-      query: { ...params, [e.currentTarget.name]: valueParam, page: "0" },
+      query: { ...params, page: "0", [e.currentTarget.name]: valueParam },
     });
   };
-
-  const btnDisabled = params.page === "0" ? true : false;
 
   return (
     <>
@@ -71,7 +71,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds }) => {
         queryParam={params}
         onChange={changeParam}
       />
-      <Button callback={() => changePage(-1)} disabled={btnDisabled}>
+      <Button callback={() => changePage(-1)} disabled={params.page === "0"}>
         -
       </Button>
       <Button callback={() => changePage(1)}>+</Button>
