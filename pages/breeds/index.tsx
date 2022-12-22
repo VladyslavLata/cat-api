@@ -10,6 +10,7 @@ import { Select } from "../../components/Select/Select";
 import { IDataCat, IBreeds } from "../../types/types";
 import { getAllBreeds } from "../../API/catAPI";
 import { selectLimit } from "../../constants/selectDatas";
+import { TitlePage } from "../../components/TitlePage/TitlePage";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const param = context.query;
@@ -63,6 +64,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats}) => {
 
   return (
     <>
+      <TitlePage title={"breeds"} />
       <SelectBreeds
         optionValueDefault="allBreeds"
         optionDefault="All breeds"
