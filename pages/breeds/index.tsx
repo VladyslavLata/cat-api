@@ -16,7 +16,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     const data = await Promise.all([getCatGallery(param), getAllBreeds()]);
     return {
-      props: { catsData: data[0], allBreeds: data[1], },
+      props: { catsData: data[0].catsData, amountCats: data[0].amountCats , allBreeds: data[1], },
     };
   } catch (error) {
     return { notFound: true };
@@ -26,13 +26,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 interface IProps {
   catsData: IDataCat[];
   allBreeds: IBreeds[];
+  amountCats: string;
 }
 
-const Breeds: FC<IProps> = ({ catsData, allBreeds}) => {
+const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats}) => {
   const router = useRouter();
   const params = router.query;
+  const currentPage = Number(params.page);
 
-
+// console.log(amountCats);
 
   // console.log(allBreeds);
 
@@ -41,7 +43,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds}) => {
   const changePage = (value: number) => {
     router.push({
       pathname: "/breeds",
-      query: { ...params, page: Number(params.page) + value },
+      query: { ...params, page: currentPage + value },
     });
   };
 
@@ -51,9 +53,13 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds}) => {
 
     router.push({
       pathname: "/breeds",
-      query: { ...params, page: "0", [e.currentTarget.name]: valueParam },
+      query: { ...params, page: 0, [e.currentTarget.name]: valueParam },
     });
   };
+
+  const amountPage = () => {
+   return Number(amountCats) / Number(params.limit) <= currentPage + 1;
+  }
 
   return (
     <>
@@ -71,10 +77,10 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds}) => {
         queryParam={params}
         onChange={changeParam}
       />
-      <Button callback={() => changePage(-1)} disabled={params.page === "0"}>
+      <Button callback={() => changePage(-1)} disabled={currentPage === 0}>
         -
       </Button>
-      <Button callback={() => changePage(1)}>+</Button>
+      <Button callback={() => changePage(1)} disabled={amountPage()}>+</Button>
       <Gallery>
         <GelleryItemBreeds dataCats={catsData} />
       </Gallery>

@@ -8,7 +8,7 @@ axios.defaults.headers.common['x-api-key'] = CAT_API_KEY;
 export const getCatGallery = async (param: any) => {
   const respons = await axios.get("/images/search", { params: param });
   console.log(respons.headers['pagination-count']);
-  return respons.data;
+  return {catsData: respons.data, amountCats: respons.headers['pagination-count']}
 }
 
 export const getAllBreeds = async () => {
