@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { getCatGallery } from "../../API/catAPI";
+import { getCatGallery, getAllBreeds  } from "../../API/catAPI";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { Button } from "../../components/Button/Button";
@@ -8,9 +8,10 @@ import { GelleryItemBreeds } from "../../components/GelleryItemBreeds/GelleryIte
 import { SelectBreeds } from "../../components/SelectBreeds/SelectBreeds";
 import { Select } from "../../components/Select/Select";
 import { IDataCat, IBreeds } from "../../types/types";
-import { getAllBreeds } from "../../API/catAPI";
 import { selectLimit } from "../../constants/selectDatas";
 import { TitlePage } from "../../components/TitlePage/TitlePage";
+import { ButtonIcon } from "../../components/ButtonIcon/ButtonIcon";
+import arrow from "../../public/arrow.svg";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const param = context.query;
@@ -64,6 +65,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats}) => {
 
   return (
     <>
+      <ButtonIcon svg={arrow} width={20} height={20} onClick={()=>router.back()} />
       <TitlePage title={"breeds"} />
       <SelectBreeds
         optionValueDefault="allBreeds"
