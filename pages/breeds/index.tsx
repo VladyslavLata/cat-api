@@ -11,7 +11,9 @@ import { IDataCat, IBreeds } from "../../types/types";
 import { selectLimit } from "../../constants/selectDatas";
 import { TitlePage } from "../../components/TitlePage/TitlePage";
 import { ButtonIcon } from "../../components/ButtonIcon/ButtonIcon";
-import arrow from "../../public/arrow.svg";
+import Arrow from "../../public/arrow.svg";
+
+
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const param = context.query;
@@ -35,11 +37,8 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats}) => {
   const router = useRouter();
   const params = router.query;
   const currentPage = Number(params.page);
-
 // console.log(amountCats);
-
   // console.log(allBreeds);
-
   // console.log(catsData);
 
   const changePage = (value: number) => {
@@ -65,7 +64,8 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats}) => {
 
   return (
     <>
-      <ButtonIcon svg={arrow} width={20} height={20} onClick={()=>router.back()} />
+      {/* <Arrow width={20 } height={20} fill={"red"} /> */}
+      <ButtonIcon svg={Arrow} width={20} height={20} onClick={()=>router.back()} />
       <TitlePage title={"breeds"} />
       <SelectBreeds
         optionValueDefault="allBreeds"
@@ -81,10 +81,10 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats}) => {
         queryParam={params}
         onChange={changeParam}
       />
-      <Button callback={() => changePage(-1)} disabled={currentPage === 0}>
+      <Button onClick={() => changePage(-1)} disabled={currentPage === 0}>
         -
       </Button>
-      <Button callback={() => changePage(1)} disabled={amountPage()}>+</Button>
+      <Button onClick={() => changePage(1)} disabled={amountPage()}>+</Button>
       <Gallery>
         <GelleryItemBreeds dataCats={catsData} />
       </Gallery>

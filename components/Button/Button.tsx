@@ -3,12 +3,12 @@ import { Bundle } from "typescript";
 
 interface IProps {
   children: ReactNode,
-  callback: () => void,
+  onClick: () => void,
   disabled?: boolean,
 }
 
-export const Button: FC<IProps> = ({ callback, children, disabled = false }) => {
+export const Button: FC<IProps> = ({ onClick, children, disabled = false }) => {
   return (
-    <button type="button" disabled={disabled} onClick={callback}>{children}</button>
+    <button type="button" disabled={disabled} onClick={onClick}>{children}</button>
   )
 }
