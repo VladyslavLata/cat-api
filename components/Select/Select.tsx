@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { ParsedUrlQuery } from "querystring";
 import { ISelect } from "../../types/types";
+import * as SC from "./Select.styled";
 
 interface IProps {
   label?: string;
@@ -8,6 +9,7 @@ interface IProps {
   name: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   queryParam: ParsedUrlQuery;
+  primary?: boolean,
 }
 
 export const Select: FC<IProps> = ({
@@ -16,13 +18,15 @@ export const Select: FC<IProps> = ({
   name,
   onChange,
   queryParam,
+  primary,
 }) => {
   return (
     <>
       {label && <label htmlFor={name}>{label}</label>}
-      <select
+      <SC.Select
         id={name}
         name={name}
+        primary={primary}
         onChange={onChange}
         defaultValue={queryParam[name]}
       >
@@ -31,7 +35,7 @@ export const Select: FC<IProps> = ({
             {selectData.option}
           </option>
         ))}
-      </select>
+      </SC.Select>
     </>
   );
 };

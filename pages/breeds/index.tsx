@@ -11,7 +11,10 @@ import { IDataCat, IBreeds } from "../../types/types";
 import { selectLimit } from "../../constants/selectDatas";
 import { CurrentPage } from "../../components/CurrentPage/CurrentPage";
 import { ButtonIcon } from "../../components/ButtonIcon/ButtonIcon";
+import { Container } from "../../components/Container/Container";
 import Arrow from "../../public/arrow.svg";
+import { Box } from "../../components/Box/Box";
+import * as SC from "../../styles/Breeds.styled"; 
 
 
 
@@ -65,9 +68,11 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats}) => {
 
   return (
     <>
+      <Container>
+        <SC.OptionWrapp><Box display="inline-flex" gridGap="10px">
       <ButtonIcon svg={Arrow} width={20} height={20} onClick={()=>router.back()} />
-      <CurrentPage title={"breeds"}/>
-    
+      <CurrentPage title={"breeds"}/></Box>
+    <SC.SelectWrapp>
       <SelectBreeds
         optionValueDefault="allBreeds"
         optionDefault="All breeds"
@@ -75,20 +80,22 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats}) => {
         name={"breed_ids"}
         queryParam={params}
         onChange={changeParam}
-      />
+            /></SC.SelectWrapp>
+          <SC.SelectWrapp>
       <Select
         name={"limit"}
         selectDatas={selectLimit}
         queryParam={params}
         onChange={changeParam}
-      />
+      /></SC.SelectWrapp></SC.OptionWrapp>
       <Button onClick={() => changePage(-1)} disabled={currentPage === 0}>
         -
       </Button>
       <Button onClick={() => changePage(1)} disabled={amountPage()}>+</Button>
       <Gallery>
         <GelleryItemBreeds dataCats={catsData} />
-      </Gallery>
+        </Gallery>
+      </Container>
     </>
   );
 };
