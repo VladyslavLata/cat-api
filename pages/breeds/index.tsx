@@ -15,6 +15,7 @@ import Arrow from "../../public/arrow.svg";
 
 
 
+
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const param = context.query;
   try {
@@ -64,9 +65,9 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats}) => {
 
   return (
     <>
-      {/* <Arrow width={20 } height={20} fill={"red"} /> */}
       <ButtonIcon svg={Arrow} width={20} height={20} onClick={()=>router.back()} />
       <TitlePage title={"breeds"} />
+    
       <SelectBreeds
         optionValueDefault="allBreeds"
         optionDefault="All breeds"
