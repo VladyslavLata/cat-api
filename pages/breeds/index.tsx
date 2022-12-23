@@ -9,7 +9,7 @@ import { SelectBreeds } from "../../components/SelectBreeds/SelectBreeds";
 import { Select } from "../../components/Select/Select";
 import { IDataCat, IBreeds } from "../../types/types";
 import { selectLimit } from "../../constants/selectDatas";
-import { TitlePage } from "../../components/TitlePage/TitlePage";
+import { CurrentPage } from "../../components/CurrentPage/CurrentPage";
 import { ButtonIcon } from "../../components/ButtonIcon/ButtonIcon";
 import Arrow from "../../public/arrow.svg";
 
@@ -66,7 +66,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats}) => {
   return (
     <>
       <ButtonIcon svg={Arrow} width={20} height={20} onClick={()=>router.back()} />
-      <TitlePage title={"breeds"} />
+      <CurrentPage title={"breeds"}/>
     
       <SelectBreeds
         optionValueDefault="allBreeds"
