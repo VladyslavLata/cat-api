@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { Button } from "../../components/Button/Button";
 import { Gallery } from "../../components/Gallery/Gallery";
-import { GelleryItemBreeds } from "../../components/GelleryItemBreeds/GelleryItemBreeds";
 import { SelectBreeds } from "../../components/SelectBreeds/SelectBreeds";
 import { Select } from "../../components/Select/Select";
 import { IDataCat, IBreeds } from "../../types/types";
@@ -45,6 +44,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
   // console.log(amountCats);
   // console.log(allBreeds);
   // console.log(catsData);
+  console.log(catsData);
 
   const changePage = (value: number) => {
     router.push({
@@ -66,6 +66,8 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
   const amountPage = () => {
     return Number(amountCats) / Number(params.limit) <= currentPage + 1;
   };
+
+
 
   return (
     <>
@@ -105,9 +107,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
         <Button onClick={() => changePage(1)} disabled={amountPage()}>
           +
         </Button>
-        <Gallery>
-          <GelleryItemBreeds dataCats={catsData} />
-        </Gallery>
+        <Gallery dataCats={catsData}/>
       </Container>
     </>
   );

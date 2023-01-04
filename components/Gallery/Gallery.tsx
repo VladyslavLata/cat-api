@@ -1,10 +1,19 @@
 import { FC } from "react";
-import { IChildren } from "../../types/types";
+import { IDataCat } from "../../types/types";
+import { GalleryItemBreeds } from "../GalleryItemBreeds/GalleryItemBreeds";
 
-export const Gallery: FC<IChildren> = ({ children }) => {
+interface IProps {
+  dataCats: IDataCat[];
+}
+
+export const Gallery: FC<IProps> = ({ dataCats }) => {
   return (
     <ul>
-      {children}
+      {dataCats.map((dataCat) => (
+        <li key={dataCat.id}>
+          <GalleryItemBreeds dataCats={dataCat} />
+        </li>
+      ))}
     </ul>
-  )
-}
+  );
+};
