@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { IDataCat } from "../../types/types";
 import { GalleryItemBreeds } from "../GalleryItemBreeds/GalleryItemBreeds";
+import * as SC from "./Gallery.styled";
 
 interface IProps {
   dataCats: IDataCat[];
@@ -8,12 +9,12 @@ interface IProps {
 
 export const Gallery: FC<IProps> = ({ dataCats }) => {
   return (
-    <ul>
+    <SC.List>
       {dataCats.map((dataCat) => (
-        <li key={dataCat.id}>
-          <GalleryItemBreeds dataCats={dataCat} />
-        </li>
+        <SC.Item key={dataCat.id}>
+          <GalleryItemBreeds  dataCats={dataCat} />
+        </SC.Item>
       ))}
-    </ul>
+    </SC.List>
   );
 };

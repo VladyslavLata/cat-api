@@ -9,6 +9,7 @@ export const theme: DefaultTheme = {
     bgPrimary: "#F8F8F7",
     bgSecondary: '#FFFFFF',
     bgAccentPrimary: "#FF868E",
+    bgAccentPrimaryTransparent:"rgba(255, 134, 142, .6)",
     bgAccentSecondary: "#FBE0DC",
     bgLinkVoting: "#B4B7FF",
     bgLinkBreeds: "#97EAB9",

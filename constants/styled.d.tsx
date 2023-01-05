@@ -10,6 +10,7 @@ declare module "styled-components" {
       bgPrimary: string;
       bgSecondary: string;
       bgAccentPrimary: string;
+      bgAccentPrimaryTransparent: string;
       bgAccentSecondary: string;
       bgLinkVoting: string;
       bgLinkBreeds: string;
