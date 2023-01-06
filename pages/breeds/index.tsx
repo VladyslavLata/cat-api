@@ -43,9 +43,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
   const router = useRouter();
   const params = router.query;
   const currentPage = Number(params.page);
-  // console.log(amountCats);
-  // console.log(allBreeds);
-  // console.log(catsData);
+  
   console.log(catsData);
 
   const changePage = (value: number) => {
