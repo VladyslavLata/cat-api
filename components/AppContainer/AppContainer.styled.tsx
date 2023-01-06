@@ -3,7 +3,7 @@ import bgHome from "../../public/homeBgImg.png";
 
 export const AppContainer = styled.div<{currentPage: string}>`
   width: 100%;
-  padding: ${(p) => p.theme.space[9]}px;
+  padding: ${(p) => p.theme.space[7]}px;
   margin-right: auto;
   margin-left: auto;
 
@@ -12,6 +12,7 @@ export const AppContainer = styled.div<{currentPage: string}>`
   }
 
   @media (min-width: 768px) {
+      padding: ${(p) => p.theme.space[9]}px;
     width: 768px;
   }
 

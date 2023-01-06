@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Container = styled.div`
   padding: ${(p) => p.theme.space[7]}px;
   width: 100%;
- 
   margin-right: auto;
   margin-left: auto;
   background-color: ${p => p.theme.colors.bgSecondary};
