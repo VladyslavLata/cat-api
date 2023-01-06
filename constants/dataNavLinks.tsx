@@ -2,6 +2,9 @@ import { INavLink } from "../types/types";
 import bgVote from "../public/Vote.png";
 import bgBreeds from "../public/breeds.png";
 import bgGallery from "../public/gallery.png";
+import Like from "../public/like.svg";
+import Favorite from "../public/fav.svg";
+import Dislike from "../public/dislike.svg";
 
 export const dataNavLinks: INavLink[] = [
   {
@@ -47,3 +50,20 @@ export const dataNavLinks: INavLink[] = [
     text: "gallery",
   },
 ];
+
+
+export const dataFavoriteLink = [
+  {
+    link: "/likes",
+    svg: Like,
+  },
+    {
+    link: "/favorites",
+    svg: Favorite,
+  },
+      {
+    link: "/dislike",
+    svg: Dislike,
+  }
+]
+
