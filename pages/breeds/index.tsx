@@ -11,6 +11,7 @@ import { selectLimit } from "../../constants/selectDatas";
 import { CurrentPage } from "../../components/CurrentPage/CurrentPage";
 import { ButtonIcon } from "../../components/ButtonIcon/ButtonIcon";
 import { Container } from "../../components/Container/Container";
+import { ButtonGalleryWrapp } from "../../components/ButtonGalleryWrapp/ButtonGalleryWrapp";
 import { BackButtonWrapp } from "../../components/BackButtonWrapp/BackButtonWrapp";
 import Arrow from "../../public/arrow.svg";
 import * as SC from "../../styles/Breeds.styled";
@@ -67,8 +68,6 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
     return Number(amountCats) / Number(params.limit) <= currentPage + 1;
   };
 
-
-
   return (
     <>
       <Container>
@@ -101,13 +100,15 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
             />
           </SC.SelectWrapp>
         </SC.OptionWrapp>
-        <Button onClick={() => changePage(-1)} disabled={currentPage === 0}>
-          -
-        </Button>
-        <Button onClick={() => changePage(1)} disabled={amountPage()}>
-          +
-        </Button>
-        <Gallery dataCats={catsData}/>
+        <Gallery dataCats={catsData} />
+        <ButtonGalleryWrapp>
+          <Button btn={"main"}  onClick={() => changePage(-1)} disabled={currentPage === 0}>
+            prev
+          </Button>
+          <Button btn={"main"} onClick={() => changePage(1)} disabled={amountPage()}>
+            next
+          </Button>
+        </ButtonGalleryWrapp>
       </Container>
     </>
   );
