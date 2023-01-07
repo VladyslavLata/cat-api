@@ -17,3 +17,8 @@ export const getAllBreeds = async () => {
   const respons = await axios.get("/breeds");
   return respons.data;
 }
+
+export const getBreedInfo = async (param: ParsedUrlQuery) => {
+  const respons = await axios.get("/images/search", { params: param });
+  return respons.data;
+}

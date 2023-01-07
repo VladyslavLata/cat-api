@@ -12,7 +12,7 @@ export const Gallery: FC<IProps> = ({ dataCats }) => {
     <SC.List>
       {dataCats.map((dataCat) => (
         <SC.Item key={dataCat.id}>
-          <GalleryItemBreeds  dataCats={dataCat} />
+          <GalleryItemBreeds  dataCat={dataCat} />
         </SC.Item>
       ))}
     </SC.List>
