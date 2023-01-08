@@ -9,6 +9,7 @@ import { CurrentPage } from "../../components/CurrentPage/CurrentPage";
 import { ButtonIcon } from "../../components/ButtonIcon/ButtonIcon";
 import { FavoriteCatNavigation } from "../../components/FavoriteCatNavigation/FavoriteCatNavigation";
 import { InfoBreedBox } from "../../components/InfoBreedBox/InfoBreedBox";
+import { CarouselBreedsImg } from "../../components/CarouselBreedsImg/CarouselBreedsImg";
 import { IDataCat } from "../../types/types";
 import Arrow from "../../public/arrow.svg";
 
@@ -50,6 +51,7 @@ const BreedsInfo: FC<IProps> = ({ breedInfo }) => {
             <CurrentPage title={"breeds"} />
           </BackButtonWrapp>
         </OptionWrapp>
+        <CarouselBreedsImg dataCats={breedInfo}/>
         <InfoBreedBox info={breedInfo[0].breeds[0]} />
       </Container>
     </>
