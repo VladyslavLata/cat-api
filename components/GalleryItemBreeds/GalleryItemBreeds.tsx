@@ -16,7 +16,7 @@ export const GalleryItemBreeds: FC<IProps> = ({
             pathname: '/breeds/info',
       query: {
         breed_ids: breedID,
-        limit: "4",
+        limit: "7",
       }
           }}>
       <SC.Overlay>

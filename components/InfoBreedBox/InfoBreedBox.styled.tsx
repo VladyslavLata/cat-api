@@ -1,9 +1,9 @@
 import styled from "styled-components";
 // import { Param } from "../InfoParamBreed/InfoParamBreed.styled";
 
-export const InfoBreedWrapp = styled.div`
+export const InfoBreedWrapp = styled.fieldset`
   position: relative;
-  margin-top: ${(p) => p.theme.space[11]}px;
+  margin: ${(p) => `${p.theme.space[8]}px ${p.theme.space[0]}px ${p.theme.space[0]}px`};
   padding: ${p=>p.theme.space[7]}px;
   border: ${(p) => p.theme.borders.s};
   border-radius: ${(p) => p.theme.radii.m};
@@ -16,12 +16,9 @@ export const InfoBreedWrapp = styled.div`
   }
 `;
 
-export const BreedName = styled.h2`
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -55%);
+export const BreedName = styled.legend`
   padding: ${(p) => `0 ${p.theme.space[10]}px`};
+  text-align:center;
   font-size: ${(p) => p.theme.fontSizes.m};
   font-weight: ${(p) => p.theme.fontWeights.medium};
   line-height: ${(p) => p.theme.lineHeights.text};  

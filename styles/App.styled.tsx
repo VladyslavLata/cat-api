@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { backgroundColor } from "styled-system";
 
 export const MainContent = styled.main<{currentPage:string}>`
   @media screen and (min-width: 1440px) {
@@ -18,3 +19,4 @@ export const MainContent = styled.main<{currentPage:string}>`
     }
   }
 `;
+

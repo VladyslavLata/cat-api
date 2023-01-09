@@ -51,7 +51,7 @@ const BreedsInfo: FC<IProps> = ({ breedInfo }) => {
             <CurrentPage title={"breeds"} />
           </BackButtonWrapp>
         </OptionWrapp>
-        <CarouselBreedsImg dataCats={breedInfo}/>
+        <CarouselBreedsImg dataCats={breedInfo} />
         <InfoBreedBox info={breedInfo[0].breeds[0]} />
       </Container>
     </>

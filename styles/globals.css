@@ -54,7 +54,24 @@ svg {
   display: block;
 }
 
+body .carousel.carousel-slider {
+  overflow: visible;
+}
 
+    body .carousel .control-dots {
+    position: absolute;
+    bottom: 0;
+    left:50%;
+    transform: translate(-50% , 50%);
+    display: inline-flex;
+    gap: 5px;
+    width: auto;
+    margin: 0;
+    padding: 10px;
+    background-color: #fff;
+    border-radius:  20px;
+  
+  }
 
 @media (prefers-color-scheme: dark) {
   html {
