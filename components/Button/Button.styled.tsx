@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
 export const Btn = styled.button<{ btn: "main" | "seccond" }>`
-  padding: ${(p) => `${p.theme.space[3]}px ${p.theme.space[9]}px`};
+  display: flex;
+  gap: ${(p) => p.theme.space[3]}px;
+  justify-content: center;
+  align-items: center;
+  padding: ${(p) => `${p.theme.space[3]}px ${p.theme.space[8]}px`};
   font-size: ${(p) => p.theme.fontSizes.s};
   font-weight: ${(p) => p.theme.fontWeights.medium};
   line-height: ${(p) => p.theme.lineHeights.heading};

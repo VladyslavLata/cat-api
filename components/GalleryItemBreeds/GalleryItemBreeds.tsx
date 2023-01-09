@@ -1,7 +1,9 @@
 import { FC } from "react";
 // import Link from "next/link";
 import { IDataCat } from "../../types/types";
+import { Overlay } from "../Overlay/Overlay";
 import * as SC from "./GalleryItemBreeds.styled";
+
 
 interface IProps {
   dataCat: IDataCat;
@@ -19,9 +21,9 @@ export const GalleryItemBreeds: FC<IProps> = ({
         limit: "7",
       }
           }}>
-      <SC.Overlay>
+      <Overlay>
         <SC.BreedsName>{breeds[0].name}</SC.BreedsName>
-      </SC.Overlay>
+      </Overlay>
       <SC.Img
         src={url}
         alt={breeds[0].name}

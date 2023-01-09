@@ -107,14 +107,14 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
             onClick={() => changePage(-1)}
             disabled={currentPage === 0}
           >
-            prev
+            <Arrow width={16} height={16} fill={"currentColor"} />prev
           </Button>
           <Button
             btn={"main"}
             onClick={() => changePage(1)}
             disabled={amountPage()}
           >
-            next
+            next<SC.RotateArrow/>
           </Button>
         </ButtonGalleryWrapp>
       </Container>

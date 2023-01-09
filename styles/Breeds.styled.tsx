@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Arrow from "../public/arrow.svg";
 
 export const OptionWrapp = styled.div`
   margin-bottom: ${(p) => p.theme.space[7]}px;
@@ -17,3 +18,10 @@ export const SelectWrapp = styled.div`
     width: 50%;
   }
 `;
+
+export const RotateArrow = styled(Arrow)`
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  transform: rotate(180deg);
+`

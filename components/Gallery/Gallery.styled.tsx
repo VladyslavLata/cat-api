@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Overlay } from "../GalleryItemBreeds/GalleryItemBreeds.styled";
 
 export const List = styled.ul`
   display: grid;
@@ -19,7 +18,7 @@ export const List = styled.ul`
 export const Item = styled.li`
   position: relative;
   border-radius: ${(p) => p.theme.radii.m};
-  /* overflow: hidden; */
+  overflow: hidden;
 
   @media screen and (min-width: 768px) {
     &:nth-child(10n + 1),
@@ -31,12 +30,4 @@ export const Item = styled.li`
     &:nth-child(10n + 9) {
       grid-area: span 2 / span 2;
     }
-  }
-
-  /* &:focus-within,
-  :hover {
-    ${Overlay} {
-      opacity: 1;
-    }
-  } */
-`;
+  }`
