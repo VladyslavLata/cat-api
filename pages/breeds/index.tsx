@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { getCatGallery, getAllBreeds } from "../../API/catAPI";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
-import { Button } from "../../components/Button/Button";
+// import { Button } from "../../components/Button/Button";
 import { Gallery } from "../../components/Gallery/Gallery";
 import { SelectBreeds } from "../../components/SelectBreeds/SelectBreeds";
 import { Select } from "../../components/Select/Select";
@@ -11,11 +11,15 @@ import { selectLimit } from "../../constants/selectDatas";
 import { CurrentPage } from "../../components/CurrentPage/CurrentPage";
 import { ButtonIcon } from "../../components/ButtonIcon/ButtonIcon";
 import { Container } from "../../components/Container/Container";
-import { ButtonGalleryWrapp } from "../../components/ButtonGalleryWrapp/ButtonGalleryWrapp";
+import { ButtonsChangePages } from "../../components/ButtonsChangePages/ButtonsChangePages";
+// import { ButtonGalleryWrapp } from "../../components/ButtonGalleryWrapp/ButtonGalleryWrapp";
 import { BackButtonWrapp } from "../../components/BackButtonWrapp/BackButtonWrapp";
 import { FavoriteCatNavigation } from "../../components/FavoriteCatNavigation/FavoriteCatNavigation";
 import Arrow from "../../public/arrow.svg";
 import * as SC from "../../styles/Breeds.styled";
+import  UseStore from "../../Store/Store";
+
+
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const param = context.query;
@@ -40,11 +44,16 @@ interface IProps {
 }
 
 const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
+
   const router = useRouter();
   const params = router.query;
   const currentPage = Number(params.page);
-  
-  console.log(catsData);
+
+  const chengeSelectsValue = UseStore((state) => state.changeSelectsValue);
+  const state = UseStore((state) => state.selectsValue);
+  console.log(state);
+  // console.log(catsData);
+  console.log(params);
 
   const changePage = (value: number) => {
     router.push({
@@ -56,7 +65,9 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
   const changeParam = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const valueParam =
       e.currentTarget.value === "allBreeds" ? "" : e.currentTarget.value;
-
+    
+    // chengeSelectsValue(e.currentTarget.name, e.currentTarget.value)
+  
     router.push({
       pathname: "/breeds",
       query: { ...params, page: 0, [e.currentTarget.name]: valueParam },
@@ -100,8 +111,9 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
             />
           </SC.SelectWrapp>
         </SC.OptionWrapp>
-        <Gallery dataCats={catsData} />
-        <ButtonGalleryWrapp>
+        <Gallery dataCats={catsData} />   
+        <ButtonsChangePages changePage={changePage} currentPage={currentPage} amountPage={amountPage()} />
+        {/* <ButtonGalleryWrapp>
           <Button
             btn={"main"}
             onClick={() => changePage(-1)}
@@ -116,7 +128,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
           >
             next<SC.RotateArrow/>
           </Button>
-        </ButtonGalleryWrapp>
+        </ButtonGalleryWrapp> */}
       </Container>
     </>
   );

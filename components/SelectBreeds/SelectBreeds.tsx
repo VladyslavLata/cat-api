@@ -14,10 +14,11 @@ interface IProps {
   primary?: boolean,
 }
 
-export const SelectBreeds: FC<IProps> = ({optionValueDefault, optionDefault, primary, label, breeds, name, onChange, queryParam }) => {
+export const SelectBreeds: FC<IProps> = ({ optionValueDefault, optionDefault, primary, label, breeds, name, onChange, queryParam }) => {
+  const defaultValue = queryParam[name]? queryParam[name]: optionValueDefault
   return (<>
     {label && <label htmlFor={name}>{label}</label>} 
-    <SC.Select id={name} primary={primary} name={name} onChange={onChange} defaultValue={queryParam[name]} >
+    <SC.Select id={name} primary={primary} name={name} onChange={onChange} value={defaultValue} >
       {optionValueDefault && optionDefault && <option key={optionValueDefault} value={optionValueDefault}>{optionDefault}</option>}
       {breeds.map(breed => <option key={breed.id}  value={breed.id}>{breed.name}</option>
       )}  

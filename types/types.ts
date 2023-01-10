@@ -62,3 +62,9 @@ export interface ISelect {
 //   img: img,
 //   currentPath: string,
 // }
+
+export interface ISelectsValue{
+  limit: string,
+  breed_ids: string,
+  order: string,
+  mime_types: string,}
