@@ -17,7 +17,7 @@ import { BackButtonWrapp } from "../../components/BackButtonWrapp/BackButtonWrap
 import { FavoriteCatNavigation } from "../../components/FavoriteCatNavigation/FavoriteCatNavigation";
 import Arrow from "../../public/arrow.svg";
 import * as SC from "../../styles/Breeds.styled";
-import  UseStore from "../../Store/Store";
+import useStoreCat from "../../Store/Store";
 
 
 
@@ -49,8 +49,8 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
   const params = router.query;
   const currentPage = Number(params.page);
 
-  const chengeSelectsValue = UseStore((state) => state.changeSelectsValue);
-  const state = UseStore((state) => state.selectsValue);
+  const chengeSelectsValue = useStoreCat((state) => state.changeSelectsValue);
+  const state = useStoreCat((state) => state.selectsValue);
   console.log(state);
   // console.log(catsData);
   console.log(params);
@@ -66,7 +66,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
     const valueParam =
       e.currentTarget.value === "allBreeds" ? "" : e.currentTarget.value;
     
-    // chengeSelectsValue(e.currentTarget.name, e.currentTarget.value)
+    chengeSelectsValue(e.currentTarget.name, e.currentTarget.value)
   
     router.push({
       pathname: "/breeds",
@@ -108,6 +108,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
               selectDatas={selectLimit}
               queryParam={params}
               onChange={changeParam}
+              // value={state.limit}
             />
           </SC.SelectWrapp>
         </SC.OptionWrapp>

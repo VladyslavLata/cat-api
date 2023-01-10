@@ -9,10 +9,10 @@ interface IStore {
   changeSelectsValue: (nameSelect: string, valueSelect: string) => void,
 }
 
- const UseStore = create<IStore>((set) => ({
+ const useStoreCat = create<IStore>((set) => ({
   selectsValue: defaultSelectsValue,
   changeSelectsValue: (nameSelect, valueSelect) =>
     set((state) => ({ selectsValue: { ...state.selectsValue, [nameSelect]: valueSelect } })),
  }));
 
-export default UseStore;
+export default useStoreCat;

@@ -3,15 +3,16 @@ import { ParsedUrlQuery } from "querystring";
 import { ISelect } from "../../types/types";
 import * as SC from "./Select.styled";
 // import { UseStore } from "../../Store/Store";
+import useStoreCat from "../../Store/Store";
 
 interface IProps {
   label?: string;
   selectDatas: ISelect[];
-  name: string;
+  name: "limit" | "breed_ids" | "order" | "mime_types";
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   queryParam: ParsedUrlQuery;
-    // queryParam: string;
-  primary?: boolean,
+  // value: string;
+  primary?: boolean;
 }
 
 export const Select: FC<IProps> = ({
@@ -21,9 +22,9 @@ export const Select: FC<IProps> = ({
   onChange,
   queryParam,
   primary,
+  // value,
 }) => {
-
-// const state = UseStore((state)=>state.selectsValue)
+  const state = useStoreCat((state) => state.selectsValue);
 
   return (
     <>
@@ -34,8 +35,8 @@ export const Select: FC<IProps> = ({
         primary={primary}
         onChange={onChange}
         // defaultValue={queryParam[name]}
-        value={queryParam[name]}
-          // value={state.limit}
+        value={state[`${name}`]}
+        // value={state.limit}
       >
         {selectDatas.map((selectData) => (
           <option key={selectData.value} value={selectData.value}>
