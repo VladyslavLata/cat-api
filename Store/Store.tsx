@@ -7,12 +7,14 @@ import { ISelectsValue } from "../types/types";
 interface IStore {
   selectsValue: ISelectsValue,
   changeSelectsValue: (nameSelect: string, valueSelect: string) => void,
+  changeAllSelectsValue : (selectsValue: ISelectsValue)=>void,
 }
 
- const useStoreCat = create<IStore>((set) => ({
+ export const useStore = create<IStore>((set) => ({
   selectsValue: defaultSelectsValue,
   changeSelectsValue: (nameSelect, valueSelect) =>
-    set((state) => ({ selectsValue: { ...state.selectsValue, [nameSelect]: valueSelect } })),
+     set((state) => ({ selectsValue: { ...state.selectsValue, [nameSelect]: valueSelect } })),
+    changeAllSelectsValue: (selectsValue) =>
+    set(() => ({ selectsValue: { ...selectsValue } })),
  }));
 
-export default useStoreCat;

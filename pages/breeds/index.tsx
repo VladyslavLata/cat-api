@@ -17,7 +17,7 @@ import { BackButtonWrapp } from "../../components/BackButtonWrapp/BackButtonWrap
 import { FavoriteCatNavigation } from "../../components/FavoriteCatNavigation/FavoriteCatNavigation";
 import Arrow from "../../public/arrow.svg";
 import * as SC from "../../styles/Breeds.styled";
-import useStoreCat from "../../Store/Store";
+import { useStore } from "../../Store/Store";
 
 
 
@@ -49,8 +49,8 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
   const params = router.query;
   const currentPage = Number(params.page);
 
-  const chengeSelectsValue = useStoreCat((state) => state.changeSelectsValue);
-  const state = useStoreCat((state) => state.selectsValue);
+  const chengeSelectsValue = useStore((state) => state.changeSelectsValue);
+  const state = useStore((state) => state.selectsValue);
   console.log(state);
   // console.log(catsData);
   console.log(params);
@@ -106,7 +106,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
             <Select
               name={"limit"}
               selectDatas={selectLimit}
-              queryParam={params}
+              // queryParam={params}
               onChange={changeParam}
               // value={state.limit}
             />

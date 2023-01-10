@@ -1,16 +1,16 @@
 import { FC } from "react";
-import { ParsedUrlQuery } from "querystring";
+// import { ParsedUrlQuery } from "querystring";
 import { ISelect } from "../../types/types";
 import * as SC from "./Select.styled";
 // import { UseStore } from "../../Store/Store";
-import useStoreCat from "../../Store/Store";
+import { useStore } from "../../Store/Store";
 
 interface IProps {
   label?: string;
   selectDatas: ISelect[];
   name: "limit" | "breed_ids" | "order" | "mime_types";
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  queryParam: ParsedUrlQuery;
+  // queryParam: ParsedUrlQuery;
   // value: string;
   primary?: boolean;
 }
@@ -20,11 +20,11 @@ export const Select: FC<IProps> = ({
   label,
   name,
   onChange,
-  queryParam,
+  // queryParam,
   primary,
   // value,
 }) => {
-  const state = useStoreCat((state) => state.selectsValue);
+  const state = useStore((state) => state.selectsValue);
 
   return (
     <>
