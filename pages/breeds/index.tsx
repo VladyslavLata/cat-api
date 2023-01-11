@@ -19,8 +19,6 @@ import Arrow from "../../public/arrow.svg";
 import * as SC from "../../styles/Breeds.styled";
 import { useStore } from "../../Store/Store";
 
-
-
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const param = context.query;
   try {
@@ -44,14 +42,14 @@ interface IProps {
 }
 
 const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
-
   const router = useRouter();
   const params = router.query;
   const currentPage = Number(params.page);
 
   const chengeSelectsValue = useStore((state) => state.changeSelectsValue);
-  const state = useStore((state) => state.selectsValue);
-  console.log(state);
+
+  // const state = useStore((state) => state.selectsValue);
+  // console.log(state);
   // console.log(catsData);
   console.log(params);
 
@@ -65,13 +63,13 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
   const changeParam = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const valueParam =
       e.currentTarget.value === "allBreeds" ? "" : e.currentTarget.value;
-    
-    chengeSelectsValue(e.currentTarget.name, e.currentTarget.value)
-  
+
     router.push({
       pathname: "/breeds",
       query: { ...params, page: 0, [e.currentTarget.name]: valueParam },
     });
+
+    chengeSelectsValue(e.currentTarget.name, e.currentTarget.value);
   };
 
   const amountPage = () => {
@@ -98,7 +96,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
               optionDefault="All breeds"
               breeds={allBreeds}
               name={"breed_ids"}
-              queryParam={params}
+              // queryParam={params}
               onChange={changeParam}
             />
           </SC.SelectWrapp>
@@ -112,8 +110,12 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
             />
           </SC.SelectWrapp>
         </SC.OptionWrapp>
-        <Gallery dataCats={catsData} />   
-        <ButtonsChangePages changePage={changePage} currentPage={currentPage} amountPage={amountPage()} />
+        <Gallery dataCats={catsData} />
+        <ButtonsChangePages
+          changePage={changePage}
+          currentPage={currentPage}
+          amountPage={amountPage()}
+        />
         {/* <ButtonGalleryWrapp>
           <Button
             btn={"main"}

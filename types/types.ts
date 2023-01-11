@@ -11,10 +11,11 @@ interface img {
 interface INavPath {
   pathname: string;
   query: {
-    page?: number;
+    page?: string;
     limit?: number;
-    order?: "ASC" | "DESC";
+    order?: "ASC" | "DESC" | "RANDOM";
     has_breeds?: number;
+    mime_types?: string;
   };
 }
 
@@ -47,7 +48,7 @@ export interface IBreeds {
 }
 
 export interface IDataCat {
-  breeds: IBreeds[];
+  breeds: IBreeds[] | [];
   id: string;
   url: string;
 }
