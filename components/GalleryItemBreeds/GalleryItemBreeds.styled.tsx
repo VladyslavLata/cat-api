@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
-import { Overlay } from "../Overlay/Overlay.styled";
 
 // export const Overlay = styled.div`
 //   position: absolute;
@@ -29,12 +28,6 @@ export const LinkBreedsInfo = styled(Link)`
   border-radius: ${(p) => p.theme.radii.m};
   overflow: hidden;
 
-  &:focus,
-  :hover {
-    ${Overlay} {
-      opacity: 1;
-    }
-  }
 `;
 
 export const BreedsName = styled.p`

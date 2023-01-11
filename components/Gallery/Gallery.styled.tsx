@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Overlay } from "../Overlay/Overlay.styled";
 
 export const List = styled.ul`
   display: grid;
@@ -30,4 +31,12 @@ export const Item = styled.li`
     &:nth-child(10n + 9) {
       grid-area: span 2 / span 2;
     }
-  }`
+
+    &:focus,
+    :hover {
+      ${Overlay} {
+        opacity: 1;
+      }
+    }
+  }
+`;
