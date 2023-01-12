@@ -1,6 +1,6 @@
 // import { ParsedUrlQuery } from "querystring";
 import { FC } from "react";
-import { IBreeds } from "../../types/types";
+import { IBreeds, ICateory } from "../../types/types";
 import { useStore } from "../../Store/Store";
 import * as SC from "../Select/Select.styled";
 
@@ -9,22 +9,22 @@ interface IProps {
   optionValueDefault?: string,
   optionDefault?: string,
   label?:string,
-  breeds: IBreeds[],
-  name: string,
+  datas: IBreeds[] | ICateory[],
+  name: "category_ids" | "breed_ids"
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void,
   // queryParam: ParsedUrlQuery,
   primary?: boolean,
 }
 
-export const SelectBreeds: FC<IProps> = ({ optionValueDefault, optionDefault, primary, label, breeds, name, onChange}) => {
+export const SelectWithDynamicParams: FC<IProps> = ({ optionValueDefault, optionDefault, primary, label, datas, name, onChange}) => {
   
   const store = useStore((state) => state.selectsValue);
   // const defaultValue = queryParam[name]? queryParam[name]: optionValueDefault
   return (<>
     {label && <label htmlFor={name}>{label}</label>} 
-    <SC.Select id={name} primary={primary} name={name} onChange={onChange} value={store.breed_ids} >
+    <SC.Select id={name} primary={primary} name={name} onChange={onChange} value={store[`${name}`]} >
       {optionValueDefault && optionDefault && <option key={optionValueDefault} value={optionValueDefault}>{optionDefault}</option>}
-      {breeds.map(breed => <option key={breed.id}  value={breed.id}>{breed.name}</option>
+      {datas.map(data => <option key={data.id}  value={data.id}>{data.name}</option>
       )}  
     </SC.Select>
   </>

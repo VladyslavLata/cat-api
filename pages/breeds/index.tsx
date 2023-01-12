@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 // import { Button } from "../../components/Button/Button";
 import { Gallery } from "../../components/Gallery/Gallery";
-import { SelectBreeds } from "../../components/SelectBreeds/SelectBreeds";
+import { SelectWithDynamicParams } from "../../components/SelectWithDynamicParams/SelectWithDynamicParams";
 import { Select } from "../../components/Select/Select";
 import { IDataCat, IBreeds } from "../../types/types";
 import { selectLimit } from "../../constants/selectDatas";
@@ -91,10 +91,10 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
             <CurrentPage title={"breeds"} />
           </BackButtonWrapp>
           <SC.SelectWrapp>
-            <SelectBreeds
+            <SelectWithDynamicParams
               optionValueDefault="allBreeds"
               optionDefault="All breeds"
-              breeds={allBreeds}
+              datas={allBreeds}
               name={"breed_ids"}
               // queryParam={params}
               onChange={changeParam}
@@ -116,22 +116,6 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
           currentPage={currentPage}
           amountPage={amountPage()}
         />
-        {/* <ButtonGalleryWrapp>
-          <Button
-            btn={"main"}
-            onClick={() => changePage(-1)}
-            disabled={currentPage === 0}
-          >
-            <Arrow width={16} height={16} fill={"currentColor"} />prev
-          </Button>
-          <Button
-            btn={"main"}
-            onClick={() => changePage(1)}
-            disabled={amountPage()}
-          >
-            next<SC.RotateArrow/>
-          </Button>
-        </ButtonGalleryWrapp> */}
       </Container>
     </>
   );

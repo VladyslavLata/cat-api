@@ -1,28 +1,34 @@
 import { FC } from "react";
 import { Select } from "../Select/Select";
-import { SelectBreeds } from "../SelectBreeds/SelectBreeds";
-import { IBreeds } from "../../types/types";
+import { SelectWithDynamicParams } from "../SelectWithDynamicParams/SelectWithDynamicParams";
+import { ICateory } from "../../types/types";
+import { dataSelects } from "../../constants/selectDatas";
 
 interface IProps {
-  breeds: IBreeds[];
+  categories: ICateory[];
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-export const GalleryOptionPanel: FC<IProps> = ({ breeds, onChange }) => {
+export const GalleryOptionPanel: FC<IProps> = ({ categories, onChange }) => {
   return (
     <div>
       <ul>
         <li>
-          <SelectBreeds
-            optionValueDefault={"allBreeds"}
+          <SelectWithDynamicParams
+            optionValueDefault={"allCategories"}
             optionDefault={"None"}
             primary
-            label={"breed"}
-            breeds={breeds}
-            name={"breed_ids"}
+            label={"categories"}
+            datas={categories}
+            name={"category_ids"}
             onChange={onChange}
           />
         </li>
+        {dataSelects.map(({ name, label, dataOptions }) => (
+          <li key={name}>
+            <Select selectDatas={dataOptions} name={name} label={label} primary onChange={onChange} />
+          </li>
+        ))}
       </ul>
     </div>
   );

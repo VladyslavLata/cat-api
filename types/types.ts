@@ -16,6 +16,7 @@ interface INavPath {
     order?: "ASC" | "DESC" | "RANDOM";
     has_breeds?: number;
     mime_types?: string;
+    category_ids?: string;
   };
 }
 
@@ -47,6 +48,11 @@ export interface IBreeds {
   };
 }
 
+export interface ICateory {
+  id: number,
+  name: string,
+}
+
 export interface IDataCat {
   breeds: IBreeds[] | [];
   id: string;
@@ -68,4 +74,12 @@ export interface ISelectsValue{
   limit: string,
   breed_ids: string,
   order: string,
-  mime_types: string,}
+  mime_types: string,
+  category_ids: string | number,
+}
+
+export interface IDataSelect {
+  name: "limit" | "breed_ids" | "order" | "mime_types";
+  label: string,
+  dataOptions: ISelect[],
+}
