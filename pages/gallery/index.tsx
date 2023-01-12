@@ -7,10 +7,10 @@ import { Container } from "../../components/Container/Container";
 import { BackButtonWrapp } from "../../components/BackButtonWrapp/BackButtonWrapp";
 import { ButtonIcon } from "../../components/ButtonIcon/ButtonIcon";
 import { CurrentPage } from "../../components/CurrentPage/CurrentPage";
-
+import { ButtonsChangePages } from "../../components/ButtonsChangePages/ButtonsChangePages";
 import { Gallery } from "../../components/Gallery/Gallery";
 import { GalleryOptionPanel } from "../../components/GalleryOptionPanel/GalleryOptionPanel";
-import { IBreeds, IDataCat, ICateory } from "../../types/types";
+import { IDataCat, ICateory } from "../../types/types";
 import { useStore } from "../../Store/Store";
 import Arrow from "../../public/arrow.svg";
 import Upload from "../../public/upload.svg";
@@ -20,13 +20,12 @@ import * as SC from "../../styles/Gallery.styled";
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const param = context.query;
   try {
-    const data = await Promise.all([getCatGallery(param), getAllBreeds(), getCategories()]);
+    const data = await Promise.all([getCatGallery(param), getCategories()]);
     return {
       props: {
         catsData: data[0].catsData,
-        amountCats: data[0].amountCats ? data[0].amountCats : "null",
-        allBreeds: data[1],
-        categoties: data[2],
+        amountCats: data[0].amountCats ? data[0].amountCats : null,
+        categoties: data[1],
       },
     };
   } catch (error) {
@@ -36,12 +35,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 interface IProps {
   catsData: IDataCat[];
-  allBreeds: IBreeds[];
   amountCats: string;
   categoties: ICateory[];
 }
 
-const GalleryPage: FC<IProps> = ({catsData, allBreeds, amountCats, categoties}) => {
+const GalleryPage: FC<IProps> = ({catsData, amountCats, categoties}) => {
 
   // console.log(`catsData ${catsData}`);
  
@@ -66,6 +64,17 @@ const GalleryPage: FC<IProps> = ({catsData, allBreeds, amountCats, categoties}) 
     chengeSelectsValue(e.currentTarget.name, e.currentTarget.value);
   };
 
+    const changePage = (value: number) => {
+    router.push({
+      pathname: "/gallery",
+      query: { ...params, page: currentPage + value  },
+    });
+  };
+
+  const amountPage = () => {
+    return Number(amountCats) / Number(params.limit) <= currentPage + 1;
+  };
+
   return (
     <>
     <FavoriteCatNavigation />
@@ -83,7 +92,12 @@ const GalleryPage: FC<IProps> = ({catsData, allBreeds, amountCats, categoties}) 
           <SC.UploadBtn btn={"main"} onClick={()=>console.log("5u")}><Upload width={16} height={16} fill={"currentColor"} />upload</SC.UploadBtn>
         </SC.Wrapp>
         <GalleryOptionPanel categories={categoties} onChange={changeParam} />
-          <Gallery dataCats={catsData} />
+        <Gallery dataCats={catsData} />
+         {amountCats && <ButtonsChangePages
+          changePage={changePage}
+          currentPage={currentPage}
+          lastPage={amountPage()}
+        />}
         </Container>
  </> )
 }

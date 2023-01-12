@@ -40,7 +40,6 @@ export const dataNavLinks: INavLink[] = [
       pathname: "/gallery",
       query: {
         order: "RANDOM",
-        // has_breeds: 1,
         limit: 10,
         mime_types: "jpg,png",
         category_ids: "",

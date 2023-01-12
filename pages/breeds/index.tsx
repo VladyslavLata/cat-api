@@ -114,7 +114,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
         <ButtonsChangePages
           changePage={changePage}
           currentPage={currentPage}
-          amountPage={amountPage()}
+          lastPage={amountPage()}
         />
       </Container>
     </>

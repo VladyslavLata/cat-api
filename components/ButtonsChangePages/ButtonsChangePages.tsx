@@ -7,10 +7,10 @@ import * as SC from "./ButtonsChangePages.styled";
 interface IProps {
   changePage: (page: number) => void,
   currentPage: number,
-  amountPage: boolean,
+  lastPage: boolean,
 }
 
-export const ButtonsChangePages:FC<IProps> = ({ changePage, currentPage, amountPage }) => {
+export const ButtonsChangePages:FC<IProps> = ({ changePage, currentPage, lastPage }) => {
   // const { query } = useRouter();
   // const currentPage = query.page !== "" ? Number(query.page) : "";
   // if (currentPage === "") {
@@ -29,7 +29,7 @@ export const ButtonsChangePages:FC<IProps> = ({ changePage, currentPage, amountP
       <Button
         btn={"main"}
         onClick={() => changePage(1)}
-        disabled={amountPage}
+        disabled={lastPage}
       >
         next
         <SC.RotateArrow />
