@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { useEffect } from "react";
 import { getCatGallery, getAllBreeds } from "../../API/catAPI";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
@@ -45,19 +46,42 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
   const router = useRouter();
   const params = router.query;
   const currentPage = Number(params.page);
+  //  console.log(params);
+  const { changeSelectsValue, changeAllSelectsValue, selectsValue } =
+    useStore();
 
-  const chengeSelectsValue = useStore((state) => state.changeSelectsValue);
+  // console.log(router);
+  useEffect(() => {
+    const handleRouteChange = () => {
+      changeAllSelectsValue({
+        ...selectsValue,
+        limit: `${params.limit ? params.limit : "10" }`,
+        breed_ids: `${params.breed_ids ? params.breed_ids : "allBreeds" }`,
+      });
+      console.log("1");
+    };
 
+    router.events.on("routeChangeComplete", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [changeAllSelectsValue, params, router.events, selectsValue]);
   // const state = useStore((state) => state.selectsValue);
   // console.log(state);
   // console.log(catsData);
-  console.log(params);
+  // console.log(params);
 
   const changePage = (value: number) => {
     router.push({
       pathname: "/breeds",
       query: { ...params, page: currentPage + value },
     });
+  };
+
+  const onBackPage = () => {
+    router.back();
+    // console.log(selectsValue);
   };
 
   const changeParam = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -69,7 +93,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
       query: { ...params, page: 0, [e.currentTarget.name]: valueParam },
     });
 
-    chengeSelectsValue(e.currentTarget.name, e.currentTarget.value);
+    changeSelectsValue(e.currentTarget.name, e.currentTarget.value);
   };
 
   const amountPage = () => {
@@ -86,7 +110,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
               svg={Arrow}
               width={20}
               height={20}
-              onClick={() => router.back()}
+              onClick={onBackPage}
             />
             <CurrentPage title={"breeds"} />
           </BackButtonWrapp>
