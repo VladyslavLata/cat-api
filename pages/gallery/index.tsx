@@ -1,7 +1,7 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
-import { getAllBreeds, getCatGallery, getCategories } from "../../API/catAPI";
+import { getCatGallery, getCategories } from "../../API/catAPI";
 import { FavoriteCatNavigation } from "../../components/FavoriteCatNavigation/FavoriteCatNavigation";
 import { Container } from "../../components/Container/Container";
 import { BackButtonWrapp } from "../../components/BackButtonWrapp/BackButtonWrapp";
@@ -50,7 +50,27 @@ const GalleryPage: FC<IProps> = ({catsData, amountCats, categoties}) => {
   const params = router.query;
   const currentPage = Number(params.page);
 
-  const chengeSelectsValue = useStore((state) => state.changeSelectsValue);
+   const { changeSelectsValue, changeAllSelectsValue, selectsValue } =
+    useStore();
+
+    useEffect(() => {
+    const handleRouteChange = () => {
+      changeAllSelectsValue({
+        ...selectsValue,
+        limit: `${params.limit ? params.limit : "10" }`,
+        category_ids: `${params.category_ids}`,
+        order: `${params.order ? params.order : "RANDOM"}`,
+        mime_types: `${params.mime_types ? params.mime_types : "jpg,png"}`,
+      });
+      console.log(selectsValue);
+    };
+
+    router.events.on("routeChangeComplete", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [changeAllSelectsValue, params, router.events, selectsValue]);
 
     const changeParam = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const valueParam =
@@ -61,7 +81,7 @@ const GalleryPage: FC<IProps> = ({catsData, amountCats, categoties}) => {
       query: { ...params, page: 0, [e.currentTarget.name]: valueParam },
     });
 
-    chengeSelectsValue(e.currentTarget.name, e.currentTarget.value);
+    changeSelectsValue(e.currentTarget.name, e.currentTarget.value);
   };
 
     const changePage = (value: number) => {

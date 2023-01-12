@@ -1,5 +1,4 @@
-import React, { FC } from "react";
-import { useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import { getCatGallery, getAllBreeds } from "../../API/catAPI";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
@@ -58,7 +57,6 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
         limit: `${params.limit ? params.limit : "10" }`,
         breed_ids: `${params.breed_ids ? params.breed_ids : "allBreeds" }`,
       });
-      console.log("1");
     };
 
     router.events.on("routeChangeComplete", handleRouteChange);
@@ -77,11 +75,6 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
       pathname: "/breeds",
       query: { ...params, page: currentPage + value },
     });
-  };
-
-  const onBackPage = () => {
-    router.back();
-    // console.log(selectsValue);
   };
 
   const changeParam = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -110,7 +103,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
               svg={Arrow}
               width={20}
               height={20}
-              onClick={onBackPage}
+              onClick={()=>  router.back()}
             />
             <CurrentPage title={"breeds"} />
           </BackButtonWrapp>
