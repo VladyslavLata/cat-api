@@ -12,7 +12,7 @@ export const defaultSelectsValue = {
   breed_ids: "allBreeds",
   order: "ASC",
   mime_types: "jpg,png",
-  category_ids: "",
+  category_ids: "allCategories",
 };
 
 export const dataSelects: IDataSelect[]  = [

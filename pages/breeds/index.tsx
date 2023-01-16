@@ -2,6 +2,8 @@ import React, { FC, useEffect } from "react";
 import { getCatGallery, getAllBreeds } from "../../API/catAPI";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
+import queryString from "query-string";
+import { useChangeSelectsValue } from "../../hooks/useChangeSelectsValue";
 // import { Button } from "../../components/Button/Button";
 import { Gallery } from "../../components/Gallery/Gallery";
 import { SelectWithDynamicParams } from "../../components/SelectWithDynamicParams/SelectWithDynamicParams";
@@ -48,23 +50,51 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
   //  console.log(params);
   const { changeSelectsValue, changeAllSelectsValue, selectsValue } =
     useStore();
+  const { changeBreedsSelectsValue } = useChangeSelectsValue();
+
+  useEffect(() => {
+    changeAllSelectsValue({
+    ...selectsValue, limit: `${params.limit}`, breed_ids: `${params?.breed_ids ? params.breed_ids : "allBreeds"}`
+  })
+},[])
 
   // console.log(router);
   useEffect(() => {
-    const handleRouteChange = () => {
-      changeAllSelectsValue({
-        ...selectsValue,
-        limit: `${params.limit ? params.limit : "10" }`,
-        breed_ids: `${params.breed_ids ? params.breed_ids : "allBreeds" }`,
-      });
+    const handleRouteChange = (url: string) => {
+      //   const {query} = queryString.parseUrl(url);
+      //   console.log(query);
+
+      //   changeAllSelectsValue({
+      //     ...selectsValue,
+      //     limit: `${query.limit ? query.limit : "10" }`,
+      //     breed_ids: `${query?.breed_ids ? query.breed_ids : "allBreeds" }`,
+      //   });
+      // };
+      changeBreedsSelectsValue(url);
     };
 
-    router.events.on("routeChangeComplete", handleRouteChange);
+const handleRouteChangeError = (
+      error: { cancelled: boolean },
+      url: string
+    ) => {
+      if (error.cancelled) {
+        changeBreedsSelectsValue(url);
+      }
+    };
+
+    router.events.on("routeChangeStart", handleRouteChange);
+    router.events.on("routeChangeError", handleRouteChangeError);
 
     return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
+      router.events.off("routeChangeStart", handleRouteChange);
+      router.events.off("routeChangeError", handleRouteChangeError);
     };
-  }, [changeAllSelectsValue, params, router.events, selectsValue]);
+  }, [
+    changeAllSelectsValue,
+    changeBreedsSelectsValue,
+    router.events,
+    selectsValue,
+  ]);
   // const state = useStore((state) => state.selectsValue);
   // console.log(state);
   // console.log(catsData);
@@ -86,7 +116,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
       query: { ...params, page: 0, [e.currentTarget.name]: valueParam },
     });
 
-    changeSelectsValue(e.currentTarget.name, e.currentTarget.value);
+    // changeSelectsValue(e.currentTarget.name, e.currentTarget.value);
   };
 
   const amountPage = () => {
@@ -103,7 +133,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
               svg={Arrow}
               width={20}
               height={20}
-              onClick={()=>  router.back()}
+              onClick={() => router.back()}
             />
             <CurrentPage title={"breeds"} />
           </BackButtonWrapp>

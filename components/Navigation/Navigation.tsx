@@ -18,10 +18,10 @@ export const Navigation: FC<IProps> = ({ navLinks }) => {
       return
     } else
     if (path === "/breeds") {
-      changeAllDefaulValueSelect({...defaultSelectsValue});
+      // changeAllDefaulValueSelect({...defaultSelectsValue});
     } else
     if (path === "/gallery") {
-        changeAllDefaulValueSelect({...defaultSelectsValue, order: "RANDOM"});
+        // changeAllDefaulValueSelect({...defaultSelectsValue, order: "RANDOM"});
     }
   }
 

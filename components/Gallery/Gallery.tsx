@@ -12,7 +12,7 @@ interface IProps {
 export const Gallery: FC<IProps> = ({ dataCats }) => {
   
   const { pathname } = useRouter();
-  console.log(pathname);
+  // console.log(pathname);
   return (
     <SC.List>
       {dataCats.map((dataCat) => (
