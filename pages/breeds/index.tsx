@@ -51,11 +51,21 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
   const { changeSelectsValue, changeAllSelectsValue, selectsValue } =
     useStore();
   const { changeBreedsSelectsValue } = useChangeSelectsValue();
-
+ 
   useEffect(() => {
-    changeAllSelectsValue({
-    ...selectsValue, limit: `${params.limit}`, breed_ids: `${params?.breed_ids ? params.breed_ids : "allBreeds"}`
-  })
+//    let countRender = 0;
+//     if (countRender === 1) {
+// return 
+
+//     }
+    changeBreedsSelectsValue(router.asPath);
+  
+    // countRender = countRender +  1;
+    // console.log(countRender);
+  //   changeAllSelectsValue({
+  //   ...selectsValue, limit: `${params.limit}`, breed_ids: `${params?.breed_ids ? params.breed_ids : "allBreeds"}`
+  // })
+
 },[])
 
   // console.log(router);
