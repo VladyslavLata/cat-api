@@ -1,8 +1,9 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useRef } from "react";
 import { getCatGallery, getAllBreeds } from "../../API/catAPI";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import queryString from "query-string";
+import { useUbdateStateSelectsValue } from "../../hooks/useUbdateStateSelectsValue";
 import { useChangeSelectsValue } from "../../hooks/useChangeSelectsValue";
 // import { Button } from "../../components/Button/Button";
 import { Gallery } from "../../components/Gallery/Gallery";
@@ -52,59 +53,45 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
     useStore();
   const { changeBreedsSelectsValue } = useChangeSelectsValue();
  
-  useEffect(() => {
-//    let countRender = 0;
-//     if (countRender === 1) {
-// return 
+  const firstChangeSelectsState = useRef(changeBreedsSelectsValue);
+  const stringPath = useRef(router.asPath);
 
-//     }
-    changeBreedsSelectsValue(router.asPath);
-  
-    // countRender = countRender +  1;
-    // console.log(countRender);
-  //   changeAllSelectsValue({
-  //   ...selectsValue, limit: `${params.limit}`, breed_ids: `${params?.breed_ids ? params.breed_ids : "allBreeds"}`
-  // })
 
-},[])
+  useUbdateStateSelectsValue(firstChangeSelectsState.current, changeBreedsSelectsValue, stringPath.current);
+//   useEffect(() => {
+//     firstChangeSelectsState.current(stringPath.current);
+// },[])
 
-  // console.log(router);
-  useEffect(() => {
-    const handleRouteChange = (url: string) => {
-      //   const {query} = queryString.parseUrl(url);
-      //   console.log(query);
+//   // console.log(router);
+//   useEffect(() => {
+//     const handleRouteChange = (url: string) => {
+//       changeBreedsSelectsValue(url);
+//     };
 
-      //   changeAllSelectsValue({
-      //     ...selectsValue,
-      //     limit: `${query.limit ? query.limit : "10" }`,
-      //     breed_ids: `${query?.breed_ids ? query.breed_ids : "allBreeds" }`,
-      //   });
-      // };
-      changeBreedsSelectsValue(url);
-    };
+// const handleRouteChangeError = (
+//       error: { cancelled: boolean },
+//       url: string
+//     ) => {
+//       if (error.cancelled) {
+//         changeBreedsSelectsValue(url);
+//       }
+//     };
 
-const handleRouteChangeError = (
-      error: { cancelled: boolean },
-      url: string
-    ) => {
-      if (error.cancelled) {
-        changeBreedsSelectsValue(url);
-      }
-    };
+//     router.events.on("routeChangeStart", handleRouteChange);
+//     router.events.on("routeChangeError", handleRouteChangeError);
 
-    router.events.on("routeChangeStart", handleRouteChange);
-    router.events.on("routeChangeError", handleRouteChangeError);
+//     return () => {
+//       router.events.off("routeChangeStart", handleRouteChange);
+//       router.events.off("routeChangeError", handleRouteChangeError);
+//     };
+//   }, [
+//     changeAllSelectsValue,
+//     changeBreedsSelectsValue,
+//     router.events,
+//     selectsValue,
+//   ]);
 
-    return () => {
-      router.events.off("routeChangeStart", handleRouteChange);
-      router.events.off("routeChangeError", handleRouteChangeError);
-    };
-  }, [
-    changeAllSelectsValue,
-    changeBreedsSelectsValue,
-    router.events,
-    selectsValue,
-  ]);
+
   // const state = useStore((state) => state.selectsValue);
   // console.log(state);
   // console.log(catsData);
