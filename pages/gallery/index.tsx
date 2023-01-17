@@ -13,6 +13,7 @@ import { Gallery } from "../../components/Gallery/Gallery";
 import { GalleryOptionPanel } from "../../components/GalleryOptionPanel/GalleryOptionPanel";
 import { IDataCat, ICateory } from "../../types/types";
 import { useStore } from "../../Store/Store";
+import { useUbdateStateSelectsValue } from "../../hooks/useUbdateStateSelectsValue";
 import { useChangeSelectsValue } from "../../hooks/useChangeSelectsValue";
 import Arrow from "../../public/arrow.svg";
 import Upload from "../../public/upload.svg";
@@ -58,37 +59,39 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
   const firstChangeSelectsState = useRef(changeGallerySelectsValue);
   const stringPath = useRef(router.asPath);
 
-  useEffect(() => {
-    firstChangeSelectsState.current(stringPath.current)
-  }, []);
+  useUbdateStateSelectsValue(firstChangeSelectsState.current, stringPath.current);
 
-  useEffect(() => {
-    const handleRouteChange = (url: string) => {
-      changeGallerySelectsValue(url);
-    };
+  // useEffect(() => {
+  //   firstChangeSelectsState.current(stringPath.current)
+  // }, []);
 
-    const handleRouteChangeError = (
-      error: { cancelled: boolean },
-      url: string
-    ) => {
-      if (error.cancelled) {
-        changeGallerySelectsValue(url);
-      }
-    };
+  // useEffect(() => {
+  //   const handleRouteChange = (url: string) => {
+  //     changeGallerySelectsValue(url);
+  //   };
 
-    router.events.on("routeChangeStart", handleRouteChange);
-    router.events.on("routeChangeError", handleRouteChangeError);
+  //   const handleRouteChangeError = (
+  //     error: { cancelled: boolean },
+  //     url: string
+  //   ) => {
+  //     if (error.cancelled) {
+  //       changeGallerySelectsValue(url);
+  //     }
+  //   };
 
-    return () => {
-      router.events.off("routeChangeStart", handleRouteChange);
-      router.events.off("routeChangeError", handleRouteChangeError);
-    };
-  }, [
-    changeAllSelectsValue,
-    changeGallerySelectsValue,
-    router.events,
-    selectsValue,
-  ]);
+  //   router.events.on("routeChangeStart", handleRouteChange);
+  //   router.events.on("routeChangeError", handleRouteChangeError);
+
+  //   return () => {
+  //     router.events.off("routeChangeStart", handleRouteChange);
+  //     router.events.off("routeChangeError", handleRouteChangeError);
+  //   };
+  // }, [
+  //   changeAllSelectsValue,
+  //   changeGallerySelectsValue,
+  //   router.events,
+  //   selectsValue,
+  // ]);
 
   const changeParam = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const valueParam =

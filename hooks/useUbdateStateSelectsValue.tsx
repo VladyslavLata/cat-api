@@ -1,14 +1,15 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 
-
-export const useUbdateStateSelectsValue = (onChangeFirstStateSelectsValue: (path:string) => void ,onChangeStateSelectsValue: (path:string) => void, path: string ) => {
+export const useUbdateStateSelectsValue = (
+  onChangeStateSelectsValue: (path: string) => void,
+  path: string
+) => {
   const router = useRouter();
 
-
-   useEffect(() => {
-    onChangeFirstStateSelectsValue(path)
-  }, [onChangeFirstStateSelectsValue, path]);
+  useEffect(() => {
+    onChangeStateSelectsValue(path);
+  }, [onChangeStateSelectsValue, path]);
 
   useEffect(() => {
     const handleRouteChange = (url: string) => {
@@ -32,5 +33,4 @@ export const useUbdateStateSelectsValue = (onChangeFirstStateSelectsValue: (path
       router.events.off("routeChangeError", handleRouteChangeError);
     };
   }, [onChangeStateSelectsValue, router.events]);
-
-}
+};

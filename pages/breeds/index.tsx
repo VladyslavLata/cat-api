@@ -57,7 +57,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
   const stringPath = useRef(router.asPath);
 
 
-  useUbdateStateSelectsValue(firstChangeSelectsState.current, changeBreedsSelectsValue, stringPath.current);
+  useUbdateStateSelectsValue(firstChangeSelectsState.current, stringPath.current);
 //   useEffect(() => {
 //     firstChangeSelectsState.current(stringPath.current);
 // },[])
