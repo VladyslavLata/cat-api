@@ -1,7 +1,7 @@
 import { FC, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
-import queryString from "query-string";
+// import queryString from "query-string";
 import { getCatGallery, getCategories } from "../../API/catAPI";
 import { FavoriteCatNavigation } from "../../components/FavoriteCatNavigation/FavoriteCatNavigation";
 import { Container } from "../../components/Container/Container";
@@ -12,7 +12,7 @@ import { ButtonsChangePages } from "../../components/ButtonsChangePages/ButtonsC
 import { Gallery } from "../../components/Gallery/Gallery";
 import { GalleryOptionPanel } from "../../components/GalleryOptionPanel/GalleryOptionPanel";
 import { IDataCat, ICateory } from "../../types/types";
-import { useStore } from "../../Store/Store";
+// import { useStore } from "../../Store/Store";
 import { useUbdateStateSelectsValue } from "../../hooks/useUbdateStateSelectsValue";
 import { useChangeSelectsValue } from "../../hooks/useChangeSelectsValue";
 import Arrow from "../../public/arrow.svg";
@@ -50,16 +50,16 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
   const params = router.query;
   const currentPage = Number(params.page);
 
-  const { changeSelectsValue, changeAllSelectsValue, selectsValue } =
-    useStore();
+  // const { changeSelectsValue, changeAllSelectsValue, selectsValue } =
+  //   useStore();
 
   const { changeGallerySelectsValue } = useChangeSelectsValue();
 
  
-  const firstChangeSelectsState = useRef(changeGallerySelectsValue);
-  const stringPath = useRef(router.asPath);
+  // const firstChangeSelectsState = useRef(changeGallerySelectsValue);
+  // const stringPath = useRef(router.asPath);
 
-  useUbdateStateSelectsValue(firstChangeSelectsState.current, stringPath.current);
+  useUbdateStateSelectsValue(changeGallerySelectsValue);
 
   // useEffect(() => {
   //   firstChangeSelectsState.current(stringPath.current)

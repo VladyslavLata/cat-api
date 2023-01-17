@@ -2,7 +2,7 @@ import React, { FC, useEffect, useRef } from "react";
 import { getCatGallery, getAllBreeds } from "../../API/catAPI";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
-import queryString from "query-string";
+// import queryString from "query-string";
 import { useUbdateStateSelectsValue } from "../../hooks/useUbdateStateSelectsValue";
 import { useChangeSelectsValue } from "../../hooks/useChangeSelectsValue";
 // import { Button } from "../../components/Button/Button";
@@ -49,15 +49,15 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
   const params = router.query;
   const currentPage = Number(params.page);
   //  console.log(params);
-  const { changeSelectsValue, changeAllSelectsValue, selectsValue } =
-    useStore();
+  // const { changeSelectsValue, changeAllSelectsValue, selectsValue } =
+  //   useStore();
   const { changeBreedsSelectsValue } = useChangeSelectsValue();
  
-  const firstChangeSelectsState = useRef(changeBreedsSelectsValue);
-  const stringPath = useRef(router.asPath);
+  // const firstChangeSelectsState = useRef(changeBreedsSelectsValue);
+  // const stringPath = useRef(router.asPath);
 
 
-  useUbdateStateSelectsValue(firstChangeSelectsState.current, stringPath.current);
+  useUbdateStateSelectsValue(changeBreedsSelectsValue);
 //   useEffect(() => {
 //     firstChangeSelectsState.current(stringPath.current);
 // },[])

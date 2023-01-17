@@ -2,14 +2,15 @@ import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 
 export const useUbdateStateSelectsValue = (
-  onChangeStateSelectsValue: (path: string) => void,
-  path: string
+  onChangeStateSelectsValue: (path: string) => void
 ) => {
   const router = useRouter();
+  const firstPathString = useRef(router.asPath);
+  const onFirstChangeStateSelectsValue = useRef(onChangeStateSelectsValue)
 
   useEffect(() => {
-    onChangeStateSelectsValue(path);
-  }, [onChangeStateSelectsValue, path]);
+    onFirstChangeStateSelectsValue.current(firstPathString.current);
+  }, []);
 
   useEffect(() => {
     const handleRouteChange = (url: string) => {
