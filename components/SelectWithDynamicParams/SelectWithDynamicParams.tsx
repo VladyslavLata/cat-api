@@ -21,7 +21,7 @@ export const SelectWithDynamicParams: FC<IProps> = ({ optionValueDefault, option
   const store = useStore((state) => state.selectsValue);
   // const defaultValue = queryParam[name]? queryParam[name]: optionValueDefault
   return (<>
-    {label && <label htmlFor={name}>{label}</label>} 
+    {label && <SC.Label htmlFor={name}>{label}</SC.Label>} 
     <SC.Select id={name} primary={primary} name={name} onChange={onChange} value={store[`${name}`]} >
       {optionValueDefault && optionDefault && <option key={optionValueDefault} value={optionValueDefault}>{optionDefault}</option>}
       {datas.map(data => <option key={data.id}  value={data.id}>{data.name}</option>

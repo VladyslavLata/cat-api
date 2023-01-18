@@ -1,19 +1,24 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import { Select } from "../Select/Select";
 import { SelectWithDynamicParams } from "../SelectWithDynamicParams/SelectWithDynamicParams";
 import { ICateory } from "../../types/types";
 import { dataSelects } from "../../constants/selectDatas";
+// import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
+import Update from "../../public/update.svg";
+import * as SC from "./GalleryOptionPanel.styled";
+
 
 interface IProps {
   categories: ICateory[];
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onClickBtn: () => void;
 }
 
-export const GalleryOptionPanel: FC<IProps> = ({ categories, onChange }) => {
+export const GalleryOptionPanel: FC<IProps> = ({ categories, onChange, onClickBtn }) => {
   return (
-    <div>
-      <ul>
-        <li>
+    <SC.OptionBox>
+      <SC.SelectsList>
+        <SC.SelectItem>
           <SelectWithDynamicParams
             optionValueDefault={"allCategories"}
             optionDefault={"None"}
@@ -23,13 +28,26 @@ export const GalleryOptionPanel: FC<IProps> = ({ categories, onChange }) => {
             name={"category_ids"}
             onChange={onChange}
           />
-        </li>
+        </SC.SelectItem>
         {dataSelects.map(({ name, label, dataOptions }) => (
-          <li key={name}>
-            <Select selectDatas={dataOptions} name={name} label={label} primary onChange={onChange} />
-          </li>
+          <SC.SelectItem key={name}>
+            <Select
+              selectDatas={dataOptions}
+              name={name}
+              label={label}
+              primary
+              onChange={onChange}
+            />
+          </SC.SelectItem>
         ))}
-      </ul>
-    </div>
+      </SC.SelectsList>
+     <SC.UpdateBtn
+        svg={Update}
+        primary
+        width={20}
+        height={20}
+        onClick={onClickBtn}
+      />
+    </SC.OptionBox> 
   );
 };

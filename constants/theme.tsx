@@ -39,6 +39,7 @@ export const theme: DefaultTheme = {
     body: 1.5,
     heading: 1.32,
     text: 1.45,
+    label: 1.8,
   },
   borders: {
     none: 'none',

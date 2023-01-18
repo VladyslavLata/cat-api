@@ -20,3 +20,11 @@ export const Select = styled.select<{ primary: boolean | undefined }>`
 
 `
 
+export const Label = styled.label`
+padding-left: ${p=>p.theme.space[3]}px;
+  font-size: ${p => p.theme.fontSizes.xs};
+  font-weight: ${p => p.theme.fontWeights.medium};
+  line-height: 1.8;
+  text-transform: uppercase;
+  color: ${p=>p.theme.colors.textSecondary};
+`

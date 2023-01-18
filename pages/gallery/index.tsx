@@ -2,6 +2,7 @@ import { FC, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 // import queryString from "query-string";
+
 import { getCatGallery, getCategories } from "../../API/catAPI";
 import { FavoriteCatNavigation } from "../../components/FavoriteCatNavigation/FavoriteCatNavigation";
 import { Container } from "../../components/Container/Container";
@@ -12,7 +13,7 @@ import { ButtonsChangePages } from "../../components/ButtonsChangePages/ButtonsC
 import { Gallery } from "../../components/Gallery/Gallery";
 import { GalleryOptionPanel } from "../../components/GalleryOptionPanel/GalleryOptionPanel";
 import { IDataCat, ICateory } from "../../types/types";
-// import { useStore } from "../../Store/Store";
+import { useStore } from "../../Store/Store";
 import { useUbdateStateSelectsValue } from "../../hooks/useUbdateStateSelectsValue";
 import { useChangeSelectsValue } from "../../hooks/useChangeSelectsValue";
 import Arrow from "../../public/arrow.svg";
@@ -50,12 +51,11 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
   const params = router.query;
   const currentPage = Number(params.page);
 
-  // const { changeSelectsValue, changeAllSelectsValue, selectsValue } =
-  //   useStore();
+  console.log(router);
+  // const {selectsValue} = useStore();
 
   const { changeGallerySelectsValue } = useChangeSelectsValue();
 
- 
   // const firstChangeSelectsState = useRef(changeGallerySelectsValue);
   // const stringPath = useRef(router.asPath);
 
@@ -116,6 +116,17 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
     return Number(amountCats) / Number(params.limit) <= currentPage + 1;
   };
 
+  //   const disabledRefreshBtn = () => {
+  //   return catsData.length >= Number(selectsValue.limit)
+  // }
+
+  const reloadPage = () => {
+    router.replace({
+      pathname: router.pathname,
+      query: params,
+    });
+  };
+
   return (
     <>
       <FavoriteCatNavigation />
@@ -135,7 +146,15 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
             upload
           </SC.UploadBtn>
         </SC.Wrapp>
-        <GalleryOptionPanel categories={categoties} onChange={changeParam} />
+        <GalleryOptionPanel
+          categories={categoties}
+          onChange={changeParam}
+          onClickBtn={reloadPage}
+        />
+        {/* <SC.BtnTest  svg={Arrow}
+              width={20}
+              height={20}
+              onClick={() => console.log("d")}/> */}
         <Gallery dataCats={catsData} />
         {amountCats && (
           <ButtonsChangePages

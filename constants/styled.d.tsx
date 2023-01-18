@@ -39,6 +39,7 @@ declare module "styled-components" {
       body: number;
       heading: number;
       text: number;
+      label: number;
     };
     borders: {
       none: string;

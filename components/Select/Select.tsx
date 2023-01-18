@@ -28,7 +28,7 @@ export const Select: FC<IProps> = ({
 
   return (
     <>
-      {label && <label htmlFor={name}>{label}</label>}
+      {label && <SC.Label htmlFor={name}>{label}</SC.Label>}
       <SC.Select
         id={name}
         name={name}
