@@ -17,6 +17,7 @@ import { IDataCat, ICateory } from "../../types/types";
 import { useStore } from "../../Store/Store";
 import { useUbdateStateSelectsValue } from "../../hooks/useUbdateStateSelectsValue";
 import { useChangeSelectsValue } from "../../hooks/useChangeSelectsValue";
+import { dataNavLinks } from "../../constants/dataNavLinks";
 import Arrow from "../../public/arrow.svg";
 import Upload from "../../public/upload.svg";
 import * as SC from "../../styles/Gallery.styled";
@@ -52,7 +53,8 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
   const params = router.query;
   const currentPage = Number(params.page);
 
-  console.log(router);
+  const startedURL = useRef(router.asPath);
+  // console.log(router);
   // const {selectsValue} = useStore();
 
   const { changeGallerySelectsValue } = useChangeSelectsValue();
@@ -121,7 +123,15 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
   //   return catsData.length >= Number(selectsValue.limit)
   // }
 
-  const reloadPage = () => {
+  const resetSelects = () => {
+    if (startedURL.current === router.asPath) {
+      router.replace(dataNavLinks[2].path);
+    } else {
+      router.push(dataNavLinks[2].path);
+    }
+  };
+
+  const reloadCats = () => {
     router.replace({
       pathname: router.pathname,
       query: params,
@@ -150,7 +160,7 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
         <GalleryOptionPanel
           categories={categoties}
           onChange={changeParam}
-          onClickBtn={reloadPage}
+          onClickBtn={resetSelects}
         />
         {/* <SC.BtnTest  svg={Arrow}
               width={20}
@@ -164,7 +174,12 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
             lastPage={amountPage()}
           />
         )}
-{params.order === "RANDOM" && <SC.BtnLoadMore btn={"main"} onClick={reloadPage}>Load more</SC.BtnLoadMore>}
+        {params.order === "RANDOM" &&
+          catsData.length >= Number(params.limit) && (
+            <SC.BtnLoadMore btn={"main"} onClick={reloadCats}>
+              load another cats
+            </SC.BtnLoadMore>
+          )}
       </Container>
     </>
   );
