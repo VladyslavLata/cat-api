@@ -6,10 +6,11 @@ interface IProps {
   onClick: () => void,
   disabled?: boolean,
   btn: "main" | "seccond", 
+  className?: string,
 }
 
-export const Button: FC<IProps> = ({ onClick, children, btn, disabled = false }) => {
+export const Button: FC<IProps> = ({ onClick, className, children, btn, disabled = false }) => {
   return (
-    <SC.Btn type="button" btn={btn} disabled={disabled} onClick={onClick}>{children}</SC.Btn>
+    <SC.Btn className={className} type="button" btn={btn} disabled={disabled} onClick={onClick}>{children}</SC.Btn>
   )
 }

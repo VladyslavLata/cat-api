@@ -8,6 +8,7 @@ import { FavoriteCatNavigation } from "../../components/FavoriteCatNavigation/Fa
 import { Container } from "../../components/Container/Container";
 import { BackButtonWrapp } from "../../components/BackButtonWrapp/BackButtonWrapp";
 import { ButtonIcon } from "../../components/ButtonIcon/ButtonIcon";
+import { Button } from "../../components/Button/Button";
 import { CurrentPage } from "../../components/CurrentPage/CurrentPage";
 import { ButtonsChangePages } from "../../components/ButtonsChangePages/ButtonsChangePages";
 import { Gallery } from "../../components/Gallery/Gallery";
@@ -163,6 +164,7 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
             lastPage={amountPage()}
           />
         )}
+{params.order === "RANDOM" && <SC.BtnLoadMore btn={"main"} onClick={reloadPage}>Load more</SC.BtnLoadMore>}
       </Container>
     </>
   );

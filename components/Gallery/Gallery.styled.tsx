@@ -8,6 +8,7 @@ export const List = styled.ul`
   grid-template-columns: repeat(1, 1fr);
   grid-auto-rows: 206px;
   grid-auto-flow: dense;
+  margin-bottom: ${p=>p.theme.space[7]}px;
 
   @media screen and (min-width: 768px) {
     grid-gap: 20px;

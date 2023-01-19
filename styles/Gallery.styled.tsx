@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Btn } from "../components/Button/Button.styled";
-import { ButtonIcon } from "../components/ButtonIcon/ButtonIcon";
-import { BtnIcon } from "../components/ButtonIcon/ButtonIcon.styled";
+import { Button } from "../components/Button/Button";
 
 export const UploadBtn = styled(Btn)`
   @media (max-width: 767px) {
@@ -16,8 +15,7 @@ export const Wrapp = styled.div`
   }
 `;
 
-// export const BtnTest = styled(ButtonIcon)`
-// & svg {
-//   fill: blue;
-// }
-// `;
+export const BtnLoadMore = styled(Button)`
+margin-left: auto;
+margin-right: auto;
+`
