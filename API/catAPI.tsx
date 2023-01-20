@@ -41,6 +41,3 @@ export const getFavouritesCats = async () => {
   const respons = await axios.get("/favourites");
   return respons.data;
 }
-
-
-
