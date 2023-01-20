@@ -33,7 +33,7 @@ export const Item = styled.li`
       grid-area: span 2 / span 2;
     }
 
-    &:focus,
+    &:focus-within,
     :hover {
       ${Overlay} {
         opacity: 1;

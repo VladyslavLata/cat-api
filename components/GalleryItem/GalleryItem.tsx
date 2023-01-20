@@ -1,7 +1,8 @@
 import { FC, useState } from "react";
 // import Link from "next/link";
 import { IDataCat } from "../../types/types";
-import { addFovouriteCat, removeFavouriteCat, getFavouritesCats } from "../../API/catAPI";
+import { addFovouriteCat, removeFavouriteCat } from "../../API/catAPI";
+import { Loader } from "../Loader/Loader";
 import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
 import * as SC from "./GalleryItem.styled";
 import FavouriteIcon from "../../public/fav.svg";
@@ -12,31 +13,26 @@ interface IProps {
 }
 
 export const GalleryItem: FC<IProps> = ({ dataCat: { url, breeds, id } }) => {
-  const [favourite, setFavourite] = useState(false);
+  const [favouriteId, setFavouriteId] = useState<null | number>(null);
   const [status, setStatus] = useState("idle");
-
-  const toggleFavourite = () => {
-    setFavourite(!favourite);
-  };
 
   const onAddFavouriteCat = async () => {
     try {
       setStatus("pending");
-      if (favourite) {
-        await removeFavouriteCat(id);
+      if (favouriteId) {
+        await removeFavouriteCat(favouriteId);
+        setFavouriteId(null);
       } else {
-        await addFovouriteCat(id);
+        const respons = await addFovouriteCat(id);
+        setFavouriteId(respons.id);
       }
-      const dd = await getFavouritesCats();
-      console.log(dd);
       setStatus("fulfilled");
-      toggleFavourite();
     } catch (error) {
       setStatus("rejected");
     }
   };
 
-  const currentIcon = favourite ? FavouriteFillIcon : FavouriteIcon;
+  const currentIcon = favouriteId ? FavouriteFillIcon : FavouriteIcon;
 
   return (
     <>
@@ -48,7 +44,9 @@ export const GalleryItem: FC<IProps> = ({ dataCat: { url, breeds, id } }) => {
           width={20}
           height={20}
           onClick={onAddFavouriteCat}
-        />
+        >
+          <Loader size={35} visible={status === "pending"} />
+        </ButtonIcon>
       </SC.OverlayGalleryItem>
       <SC.Img
         src={url}

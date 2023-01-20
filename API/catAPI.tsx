@@ -29,10 +29,11 @@ export const getCategories = async () => {
 }
 
 export const addFovouriteCat = async (id:string) => {
-  await axios.post("/favourites", {image_id: id})
+  const respons = await axios.post("/favourites", { image_id: id });
+  return respons.data;
 }
 
-export const removeFavouriteCat = async (id: string) => {
+export const removeFavouriteCat = async (id: number) => {
   await axios.delete(`/favourites/${id}`);
 }
 
@@ -40,3 +41,6 @@ export const getFavouritesCats = async () => {
   const respons = await axios.get("/favourites");
   return respons.data;
 }
+
+
+

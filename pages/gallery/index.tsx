@@ -54,7 +54,7 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
   const currentPage = Number(params.page);
 
 
-  // console.log(router);
+  console.log(catsData);
   // const {selectsValue} = useStore();
 
 
