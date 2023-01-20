@@ -27,3 +27,16 @@ export const getCategories = async () => {
   const respons = await axios.get("/categories");
   return respons.data;
 }
+
+export const addFovouriteCat = async (id:string) => {
+  await axios.post("/favourites", {image_id: id})
+}
+
+export const removeFavouriteCat = async (id: string) => {
+  await axios.delete(`/favourites/${id}`);
+}
+
+export const getFavouritesCats = async () => {
+  const respons = await axios.get("/favourites");
+  return respons.data;
+}

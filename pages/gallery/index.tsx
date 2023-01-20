@@ -53,9 +53,10 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
   const params = router.query;
   const currentPage = Number(params.page);
 
-  const startedURL = useRef(router.asPath);
+
   // console.log(router);
   // const {selectsValue} = useStore();
+
 
   const { changeGallerySelectsValue } = useChangeSelectsValue();
 
@@ -63,38 +64,6 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
   // const stringPath = useRef(router.asPath);
 
   useUbdateStateSelectsValue(changeGallerySelectsValue);
-
-  // useEffect(() => {
-  //   firstChangeSelectsState.current(stringPath.current)
-  // }, []);
-
-  // useEffect(() => {
-  //   const handleRouteChange = (url: string) => {
-  //     changeGallerySelectsValue(url);
-  //   };
-
-  //   const handleRouteChangeError = (
-  //     error: { cancelled: boolean },
-  //     url: string
-  //   ) => {
-  //     if (error.cancelled) {
-  //       changeGallerySelectsValue(url);
-  //     }
-  //   };
-
-  //   router.events.on("routeChangeStart", handleRouteChange);
-  //   router.events.on("routeChangeError", handleRouteChangeError);
-
-  //   return () => {
-  //     router.events.off("routeChangeStart", handleRouteChange);
-  //     router.events.off("routeChangeError", handleRouteChangeError);
-  //   };
-  // }, [
-  //   changeAllSelectsValue,
-  //   changeGallerySelectsValue,
-  //   router.events,
-  //   selectsValue,
-  // ]);
 
   const changeParam = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const valueParam =
@@ -124,11 +93,13 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
   // }
 
   const resetSelects = () => {
-    if (startedURL.current === router.asPath) {
-      router.replace(dataNavLinks[2].path);
-    } else {
-      router.push(dataNavLinks[2].path);
-    }
+    // if (startedURL.current === router.asPath) {
+    //   router.replace(dataNavLinks[2].path);
+    // } else {
+    //   router.push(dataNavLinks[2].path);
+    // }
+
+    router.push(dataNavLinks[2].path);
   };
 
   const reloadCats = () => {
@@ -162,10 +133,6 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
           onChange={changeParam}
           onClickBtn={resetSelects}
         />
-        {/* <SC.BtnTest  svg={Arrow}
-              width={20}
-              height={20}
-              onClick={() => console.log("d")}/> */}
         <Gallery dataCats={catsData} />
         {amountCats && (
           <ButtonsChangePages
