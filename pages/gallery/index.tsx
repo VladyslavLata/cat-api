@@ -1,14 +1,11 @@
-import { FC, useEffect, useRef } from "react";
+import { FC } from "react";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
-// import queryString from "query-string";
-
 import { getCatGallery, getCategories } from "../../API/catAPI";
 import { FavoriteCatNavigation } from "../../components/FavoriteCatNavigation/FavoriteCatNavigation";
 import { Container } from "../../components/Container/Container";
 import { BackButtonWrapp } from "../../components/BackButtonWrapp/BackButtonWrapp";
 import { ButtonIcon } from "../../components/ButtonIcon/ButtonIcon";
-import { Button } from "../../components/Button/Button";
 import { CurrentPage } from "../../components/CurrentPage/CurrentPage";
 import { ButtonsChangePages } from "../../components/ButtonsChangePages/ButtonsChangePages";
 import { Gallery } from "../../components/Gallery/Gallery";
@@ -59,9 +56,6 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
 
 
   const { changeGallerySelectsValue } = useChangeSelectsValue();
-
-  // const firstChangeSelectsState = useRef(changeGallerySelectsValue);
-  // const stringPath = useRef(router.asPath);
 
   useUbdateStateSelectsValue(changeGallerySelectsValue);
 

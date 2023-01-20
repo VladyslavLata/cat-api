@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-// import Link from "next/link";
 import { IDataCat } from "../../types/types";
 import { addFovouriteCat, removeFavouriteCat } from "../../API/catAPI";
 import { Loader } from "../Loader/Loader";
