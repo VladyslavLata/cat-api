@@ -46,7 +46,6 @@ export const Modal: React.FC<IProps> = ({ show, onClose, children }) => {
 
   const modalContent = show ? (
     <SC.Backdrop onClick={closeModalClickBackdrop}>
-      <SC.ModalContainer>
         <SC.ModalBox>
           {children}
           <SC.ButtonCloseModal
@@ -57,7 +56,6 @@ export const Modal: React.FC<IProps> = ({ show, onClose, children }) => {
             onClick={onClose}
           />
         </SC.ModalBox>
-      </SC.ModalContainer>
     </SC.Backdrop>
   ) : null;
 
