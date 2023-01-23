@@ -9,12 +9,28 @@ body {
     
     
 }
+/* 
+html {
+  overflow-y: scroll;
+} */
+/* 
+html {
+  width: 100vw;
+  overflow-x: hidden;
+} */
+
+
+
 
 body { 
+    width: 100vw;
   position: relative;
   z-index: -2;
   line-height: 1.5;
+ overflow-x: hidden;
 }
+
+
 
 a {
   color: inherit;

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { getCatGallery, getCategories } from "../../API/catAPI";
@@ -9,6 +9,7 @@ import { ButtonIcon } from "../../components/ButtonIcon/ButtonIcon";
 import { CurrentPage } from "../../components/CurrentPage/CurrentPage";
 import { ButtonsChangePages } from "../../components/ButtonsChangePages/ButtonsChangePages";
 import { Gallery } from "../../components/Gallery/Gallery";
+import { Modal } from "../../components/Modal/Modal";
 import { GalleryOptionPanel } from "../../components/GalleryOptionPanel/GalleryOptionPanel";
 import { IDataCat, ICateory } from "../../types/types";
 import { useStore } from "../../Store/Store";
@@ -18,6 +19,7 @@ import { dataNavLinks } from "../../constants/dataNavLinks";
 import Arrow from "../../public/arrow.svg";
 import Upload from "../../public/upload.svg";
 import * as SC from "../../styles/Gallery.styled";
+import { HiddenTitle } from "../../components/HiddenTitle/HiddenTitle";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const param = context.query;
@@ -42,6 +44,14 @@ interface IProps {
 }
 
 const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
+  const [showModal, setShowModal] = useState(false);
+
+  // useEffect(() => {
+  //   if (showModal) {
+  //      document.body.style.overflow =  "hidden" 
+  //    } else {document.body.style.overflow = "unset" }
+  // }, [showModal ]);
+  
   // console.log(`catsData ${catsData}`);
 
   // console.log(`amountCats ${amountCats}`);
@@ -51,7 +61,7 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
   const currentPage = Number(params.page);
 
 
-  console.log(catsData);
+  // console.log(catsData);
   // const {selectsValue} = useStore();
 
 
@@ -103,10 +113,15 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
     });
   };
 
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  
+  }
+
   return (
     <>
-      <FavoriteCatNavigation />
-      <Container>
+      <SC.GalleryFavoriteCatNavigation visibleModal={showModal}/>
+      <SC.GalleryContainer visibleModal={showModal}>
         <SC.Wrapp>
           <BackButtonWrapp>
             <ButtonIcon
@@ -117,7 +132,7 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
             />
             <CurrentPage title={"gallery"} />
           </BackButtonWrapp>
-          <SC.UploadBtn btn={"main"} onClick={() => console.log("5u")}>
+          <SC.UploadBtn btn={"main"} onClick={toggleModal}>
             <Upload width={16} height={16} fill={"currentColor"} />
             upload
           </SC.UploadBtn>
@@ -141,7 +156,10 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
               load another cats
             </SC.BtnLoadMore>
           )}
-      </Container>
+      </SC.GalleryContainer>
+      <Modal show={showModal} onClose={toggleModal}>
+        
+      </Modal>
     </>
   );
 };

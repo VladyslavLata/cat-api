@@ -4,11 +4,15 @@ import { FavoriteLink } from "../FavoriteLink/FavoriteLink";
 import { dataFavoriteLink } from "../../constants/dataNavLinks";
 import * as SC from "./FavoriteCatNavigation.styled";
 
-export const FavoriteCatNavigation: FC = () => {
+interface IProps {
+  className?: string,
+}
+
+export const FavoriteCatNavigation: FC<IProps> = ({className}) => {
   const { pathname } = useRouter();
   
   return (
-    <SC.NavWrapp>
+    <SC.NavWrapp className={className}>
       {dataFavoriteLink.map(({link, svg}) => <SC.NavItem key={link} linkName={link} pathName={pathname}><FavoriteLink linkTo={link} svg={svg}/></SC.NavItem>)}
     </SC.NavWrapp>
   )
