@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Close from "../../public/close.svg";
 import * as SC from "./Modal.styled";
 
-
 interface IProps {
   show: boolean;
   onClose: () => void;
@@ -17,13 +16,12 @@ export const Modal: React.FC<IProps> = ({ show, onClose, children }) => {
     setIsBrowser(true);
   }, []);
 
-
-    useEffect(() => {
+  useEffect(() => {
     if (show) {
-      document.body.style["overflowY"] = 'hidden';
+      document.body.style["overflowY"] = "hidden";
     }
     return () => {
-      document.body.style["overflowY"] = 'unset';
+      document.body.style["overflowY"] = "unset";
     };
   }, [show]);
 
@@ -46,16 +44,16 @@ export const Modal: React.FC<IProps> = ({ show, onClose, children }) => {
 
   const modalContent = show ? (
     <SC.Backdrop onClick={closeModalClickBackdrop}>
-        <SC.ModalBox>
-          {children}
-          <SC.ButtonCloseModal
-            svg={Close}
-            width={17}
-            height={17}
-            primary
-            onClick={onClose}
-          />
-        </SC.ModalBox>
+      <SC.ModalBox>
+        <SC.ButtonCloseModal
+          svg={Close}
+          width={17}
+          height={17}
+          primary
+          onClick={onClose}
+        />
+        {children}
+      </SC.ModalBox>
     </SC.Backdrop>
   ) : null;
 

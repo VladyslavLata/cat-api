@@ -11,7 +11,7 @@ export const Backdrop = styled.div`
   background-color: rgba(29, 29, 29, 0.6);
 
   /* body & {
-    overflow: hidden;
+    overflow: scroll;
   } */
 `;
 
@@ -20,6 +20,7 @@ export const ModalBox = styled.div`
   padding: ${(p) => p.theme.space[7]}px;
   background-color: ${(p) => p.theme.colors.bgPrimary};
   margin-left: auto;
+  overflow: auto;
 
   @media (max-width: 767px) {
     height: 100%;

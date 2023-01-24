@@ -1,36 +1,20 @@
-
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    background-color: #F8F8F7;
-    
-    
+  background-color: #f8f8f7;
 }
-/* 
-html {
-  overflow-y: scroll;
-} */
-/* 
-html {
+
+
+body {
   width: 100vw;
-  overflow-x: hidden;
-} */
-
-
-
-
-body { 
-    width: 100vw;
   position: relative;
   z-index: -2;
   line-height: 1.5;
- overflow-x: hidden;
+  overflow-x: hidden;
 }
-
-
 
 a {
   color: inherit;
@@ -65,7 +49,7 @@ ol {
   list-style: none;
 }
 
-img, 
+img,
 svg {
   display: block;
 }
@@ -74,20 +58,19 @@ body .carousel.carousel-slider {
   overflow: visible;
 }
 
-    body .carousel .control-dots {
-    position: absolute;
-    bottom: 0;
-    left:50%;
-    transform: translate(-50% , 50%);
-    display: inline-flex;
-    gap: 5px;
-    width: auto;
-    margin: 0;
-    padding: 10px;
-    background-color: #fff;
-    border-radius:  20px;
-  
-  }
+body .carousel .control-dots {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  display: inline-flex;
+  gap: 5px;
+  width: auto;
+  margin: 0;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 20px;
+}
 
 @media (prefers-color-scheme: dark) {
   html {

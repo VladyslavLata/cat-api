@@ -10,6 +10,7 @@ import { CurrentPage } from "../../components/CurrentPage/CurrentPage";
 import { ButtonsChangePages } from "../../components/ButtonsChangePages/ButtonsChangePages";
 import { Gallery } from "../../components/Gallery/Gallery";
 import { Modal } from "../../components/Modal/Modal";
+import { ModalUploadInterface } from "../../components/ModalUploadInterface/ModalUploadInterface";
 import { GalleryOptionPanel } from "../../components/GalleryOptionPanel/GalleryOptionPanel";
 import { IDataCat, ICateory } from "../../types/types";
 import { useStore } from "../../Store/Store";
@@ -158,7 +159,7 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
           )}
       </SC.GalleryContainer>
       <Modal show={showModal} onClose={toggleModal}>
-        
+        <ModalUploadInterface/>
       </Modal>
     </>
   );
