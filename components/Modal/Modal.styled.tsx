@@ -22,6 +22,7 @@ export const ModalBox = styled.div`
   margin-left: auto;
   overflow: auto;
 
+
   @media (max-width: 767px) {
     height: 100%;
   }

@@ -45,6 +45,7 @@ export const theme: DefaultTheme = {
     none: 'none',
     xs: '1px solid',
     s: '2px solid',
+    sDashed: '2px dashed',
     m: '3px solid',
     l: "4px solid",
   },

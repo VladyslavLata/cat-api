@@ -44,6 +44,7 @@ declare module "styled-components" {
     borders: {
       none: string;
       xs: string;
+      sDashed: string;
       s: string;
       m: string;
       l: string;
