@@ -3,10 +3,12 @@ import * as SC from "./Button.styled";
 
 interface IProps {
   children: ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
   disabled?: boolean;
   btn: "main" | "seccond";
   className?: string;
+  type?: "button" | "submit";
+  form?: string;
 }
 
 export const Button: FC<IProps> = ({
@@ -14,13 +16,16 @@ export const Button: FC<IProps> = ({
   className,
   children,
   btn,
+  form,
+  type = "button",
   disabled = false,
 }) => {
   return (
     <SC.Btn
       className={className}
-      type="button"
+      type={type}
       btn={btn}
+      form={form}
       disabled={disabled}
       onClick={onClick}
     >

@@ -15,15 +15,17 @@ export const Linck = styled.a`
   color: ${p=>p.theme.colors.testAccentPrimary};
 `
 
-export const PreviewBoxWrapp = styled.div`
+export const Form = styled.form`
   width:300px;
   height: 200px;
+  padding: 20px;
   border: 1px solid red;
 `
 
 export const PreviewBox = styled.div`
   width: 100%;
   height: 100%;
+  border: 1px solid blue;
 `
 
 export const PreviewBoxBtn = styled.button`
@@ -31,7 +33,7 @@ export const PreviewBoxBtn = styled.button`
 `
 
 export const InputUpload = styled.input`
-  display: none;
+  /* display: none; */
 `
 
 export const UploadBtn = styled(Button)`
