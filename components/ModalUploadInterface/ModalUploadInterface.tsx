@@ -1,4 +1,4 @@
-import { FC, FormEvent, useState } from "react";
+import { DragEvent, FC, FormEvent, MouseEvent, useState } from "react";
 import { Text } from "../Text/Text.styled";
 import Image from "next/image";
 import * as SC from "./ModalUploadInterface.styled";
@@ -17,6 +17,28 @@ export const ModalUploadInterface: FC = () => {
     e.preventDefault();
 
     e.currentTarget.reset();
+  };
+
+  const omDragOverForm = (e: DragEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
+  const onDropImg = (e: DragEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files;
+    const type = file["0"].type;
+    console.log(file);
+    if (
+      file.length &&
+      (type === "image/png" || type === "image/jpeg")
+    ) {
+      const input = document.getElementById(
+        "input-upload"
+      )! as HTMLInputElement;
+      input.files = file;
+      setFileName(file[0].name);
+      setImage(URL.createObjectURL(file[0]));
+    }
   };
 
   const onChangeInputValue = (e: FormEvent<HTMLInputElement>) => {
@@ -49,6 +71,8 @@ export const ModalUploadInterface: FC = () => {
         id="uploadImg"
         onClick={onClickFormSelectImg}
         onSubmit={submitForm}
+        onDragOver={omDragOverForm}
+        onDrop={onDropImg}
       >
         <SC.PreviewBox img={image}>
           {image === "" && (

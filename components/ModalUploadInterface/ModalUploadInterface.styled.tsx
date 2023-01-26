@@ -36,6 +36,7 @@ export const Form = styled.form`
   background-color: ${(p) => p.theme.colors.bgSecondary};
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='20' ry='20' stroke='rgba(251, 224, 220, 1)' stroke-width='2' stroke-dasharray='10%2c 10' stroke-dashoffset='0' stroke-linecap='butt'/%3e%3c/svg%3e");
   border-radius: ${(p) => p.theme.radii.m};
+  cursor: pointer;
 
   @media (min-width: 768px) {
     height: 350px;
@@ -88,7 +89,7 @@ export const PreviewTextAccent = styled.span`
 // `;
 
 export const InputUpload = styled.input`
-  display: none;
+  /* display: none; */
 `;
 
 export const UploadBtn = styled(Button)`
