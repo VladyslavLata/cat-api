@@ -1,6 +1,6 @@
-import { DragEvent, FC, FormEvent, MouseEvent, useState } from "react";
+import { DragEvent, FC, FormEvent, useState } from "react";
 import { Text } from "../Text/Text.styled";
-import Image from "next/image";
+import { uploadCatImage } from "../../API/catAPI";
 import * as SC from "./ModalUploadInterface.styled";
 
 const noFileName = "No file selected";
@@ -8,15 +8,32 @@ const noFileName = "No file selected";
 export const ModalUploadInterface: FC = () => {
   const [image, setImage] = useState("");
   const [fileName, setFileName] = useState(noFileName);
+  const [status, setStatus] = useState("idle");
 
   const onClickFormSelectImg = () => {
     document.getElementById("input-upload")!.click();
   };
 
-  const submitForm = (e: FormEvent<HTMLFormElement>) => {
+  const submitForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    e.currentTarget.reset();
+    console.log(e);
+    // const formData = new FormData();
+    // formData.append("file", image)
+    // let l = [];
+    // formData.forEach((e) => l.push(e));
+    // console.log(formData);
+   
+try {
+  setStatus("pending");
+  // const catUpload = await uploadCatImage(e.target[0].value);
+    const catUpload = await uploadCatImage(image);
+  console.log(catUpload);
+  e.currentTarget.reset();
+  setStatus("fulfilled")
+} catch (error) {
+  setStatus("rejected")
+}
+    
   };
 
   const omDragOverForm = (e: DragEvent<HTMLFormElement>) => {
@@ -28,15 +45,12 @@ export const ModalUploadInterface: FC = () => {
     const file = e.dataTransfer.files;
     const type = file["0"].type;
     console.log(file);
-    if (
-      file.length &&
-      (type === "image/png" || type === "image/jpeg")
-    ) {
+    if (file.length && (type === "image/png" || type === "image/jpeg")) {
       const input = document.getElementById(
         "input-upload"
       )! as HTMLInputElement;
       input.files = file;
-      setFileName(file[0].name);
+      setFileName(`Image File Name: ${file[0].name}`);
       setImage(URL.createObjectURL(file[0]));
     }
   };
@@ -45,11 +59,11 @@ export const ModalUploadInterface: FC = () => {
     console.log(e);
 
     const target = e.target as HTMLInputElement;
-    const files = target.files;
+    const file = target.files;
 
-    if (files) {
-      setFileName(files[0].name);
-      setImage(URL.createObjectURL(files[0]));
+    if (file) {
+      setFileName(`Image File Name: ${file[0].name}`);
+      setImage(URL.createObjectURL(file[0]));
     }
   };
 
@@ -57,7 +71,7 @@ export const ModalUploadInterface: FC = () => {
     <SC.Wrapp>
       <SC.Title>Upload a .jpg or .png Cat Image</SC.Title>
       <Text center="center" color="textSecondary">
-        Any uploads must comply with the
+        Any uploads must comply with the&nbsp;
         <SC.Linck
           href="https://thecatapi.com/privacy"
           target="_blank"
@@ -65,7 +79,7 @@ export const ModalUploadInterface: FC = () => {
         >
           upload guidelines
         </SC.Linck>
-        or face deletion.
+        &nbsp;or face deletion.
       </Text>
       <SC.Form
         id="uploadImg"
@@ -96,9 +110,11 @@ export const ModalUploadInterface: FC = () => {
       <Text center="center" color="textSecondary">
         {fileName}
       </Text>
-      <SC.UploadBtn form="uploadImg" type="submit" btn="seccond">
-        upload photo
-      </SC.UploadBtn>
+      {image !== "" && (
+        <SC.UploadBtn form="uploadImg" type="submit" btn="seccond" disabled={status==="pending"}>
+          upload photo
+        </SC.UploadBtn>
+      )}
     </SC.Wrapp>
   );
 };

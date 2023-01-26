@@ -7,6 +7,9 @@ const CAT_API_KEY = "live_183pPOLZ0OGHbYCapJSCCPb9hi7Z47z9fXbSEuadBnv6yVR3qwa40g
 
 axios.defaults.baseURL = 'https://api.thecatapi.com/v1';
 axios.defaults.headers.common['x-api-key'] = CAT_API_KEY;
+//  headers: {'X-Requested-With': 'XMLHttpRequest'},
+// axios.defaults.headers.post["Origin"] = null;
+axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
 
 export const getCatGallery = async (param: ParsedUrlQuery) => {
   const respons = await axios.get("/images/search", { params: param });
@@ -39,5 +42,13 @@ export const removeFavouriteCat = async (id: number) => {
 
 export const getFavouritesCats = async () => {
   const respons = await axios.get("/favourites");
+  return respons.data;
+}
+
+
+export const uploadCatImage = async (imgPath: string) => {
+  const respons = await axios.post("/images/upload", {
+    data: { file: imgPath }
+});
   return respons.data;
 }
