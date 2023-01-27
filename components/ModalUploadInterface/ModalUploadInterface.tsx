@@ -6,9 +6,12 @@ import * as SC from "./ModalUploadInterface.styled";
 const noFileName = "No file selected";
 
 export const ModalUploadInterface: FC = () => {
-  const [image, setImage] = useState("");
+  // const [image, setImage] = useState("");
+  const [fileCat, setFileCat] = useState<null | File>(null);
   const [fileName, setFileName] = useState(noFileName);
   const [status, setStatus] = useState("idle");
+
+  // console.log(image);
 
   const onClickFormSelectImg = () => {
     document.getElementById("input-upload")!.click();
@@ -17,23 +20,20 @@ export const ModalUploadInterface: FC = () => {
   const submitForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(e);
-    // const formData = new FormData();
-    // formData.append("file", image)
-    // let l = [];
-    // formData.forEach((e) => l.push(e));
-    // console.log(formData);
-   
-try {
-  setStatus("pending");
-  // const catUpload = await uploadCatImage(e.target[0].value);
-    const catUpload = await uploadCatImage(image);
-  console.log(catUpload);
-  e.currentTarget.reset();
-  setStatus("fulfilled")
-} catch (error) {
-  setStatus("rejected")
-}
-    
+    if (!fileCat) {
+      return;
+    }
+    try {
+      setStatus("pending");
+      const catUpload = await uploadCatImage(fileCat);
+      console.log(catUpload);
+      e.currentTarget.reset();
+      setFileCat(null);
+      setFileName(noFileName);
+      setStatus("fulfilled");
+    } catch (error) {
+      setStatus("rejected");
+    }
   };
 
   const omDragOverForm = (e: DragEvent<HTMLFormElement>) => {
@@ -51,7 +51,8 @@ try {
       )! as HTMLInputElement;
       input.files = file;
       setFileName(`Image File Name: ${file[0].name}`);
-      setImage(URL.createObjectURL(file[0]));
+      // setImage(URL.createObjectURL(file[0]));
+      setFileCat(file[0]);
     }
   };
 
@@ -63,9 +64,13 @@ try {
 
     if (file) {
       setFileName(`Image File Name: ${file[0].name}`);
-      setImage(URL.createObjectURL(file[0]));
+      // setImage(URL.createObjectURL(file[0]));
+      // console.log(file);
+      setFileCat(file[0]);
     }
   };
+
+  const imageCatURL = fileCat ? URL.createObjectURL(fileCat) : "";
 
   return (
     <SC.Wrapp>
@@ -88,8 +93,8 @@ try {
         onDragOver={omDragOverForm}
         onDrop={onDropImg}
       >
-        <SC.PreviewBox img={image}>
-          {image === "" && (
+        <SC.PreviewBox img={imageCatURL}>
+          {imageCatURL === "" && (
             <SC.PreviewTextWrapp>
               <Text center="center" color="textSecondary">
                 <SC.PreviewTextAccent>Drag here</SC.PreviewTextAccent> your file
@@ -98,7 +103,9 @@ try {
               </Text>
             </SC.PreviewTextWrapp>
           )}
-          {image !== "" && <SC.PreviewImg src={image} fill alt={fileName} />}
+          {imageCatURL !== "" && (
+            <SC.PreviewImg src={imageCatURL} fill alt={fileName} />
+          )}
         </SC.PreviewBox>
         <SC.InputUpload
           id="input-upload"
@@ -110,8 +117,13 @@ try {
       <Text center="center" color="textSecondary">
         {fileName}
       </Text>
-      {image !== "" && (
-        <SC.UploadBtn form="uploadImg" type="submit" btn="seccond" disabled={status==="pending"}>
+      {imageCatURL !== "" && (
+        <SC.UploadBtn
+          form="uploadImg"
+          type="submit"
+          btn="seccond"
+          disabled={status === "pending"}
+        >
           upload photo
         </SC.UploadBtn>
       )}
