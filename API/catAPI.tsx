@@ -11,7 +11,7 @@ axios.defaults.baseURL = "https://api.thecatapi.com/v1";
 axios.defaults.headers.common["x-api-key"] = CAT_API_KEY;
 //  headers: {'X-Requested-With': 'XMLHttpRequest'},
 // axios.defaults.headers.post["Origin"] = null;
-axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
+// axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
 // axios.defaults.headers.post['x-api-key'] = CAT_API_KEY;
 
 export const getCatGallery = async (param: ParsedUrlQuery) => {
@@ -51,7 +51,7 @@ export const getFavouritesCats = async () => {
   return respons.data;
 };
 
-export const uploadCatImage = async (fileCat: File )  => {
-  const respons = await axios.post("/images/upload", { file: fileCat });
+export const uploadCatImage = async (fileCat: File) => {
+  const respons = await axios({ url: "/images/upload", method: "POST", data: { file: fileCat }, headers: {'Content-Type': 'multipart/form-data'},});
   return respons.data;
 };

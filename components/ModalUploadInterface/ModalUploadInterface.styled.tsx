@@ -103,4 +103,9 @@ export const UploadBtn = styled(Button)`
     margin-left: auto;
     margin-right: auto;
   }
+
+  &:disabled {
+    background-color: ${p => p.theme.colors.bgAccentPrimaryTransparent};
+    color: ${p=>p.theme.colors.testAccentSecondary};
+  }
 `;

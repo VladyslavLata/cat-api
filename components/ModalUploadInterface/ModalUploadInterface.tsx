@@ -8,32 +8,38 @@ const noFileName = "No file selected";
 export const ModalUploadInterface: FC = () => {
   // const [image, setImage] = useState("");
   const [fileCat, setFileCat] = useState<null | File>(null);
-  const [fileName, setFileName] = useState(noFileName);
+  // const [fileName, setFileName] = useState(noFileName);
   const [status, setStatus] = useState("idle");
 
-  // console.log(image);
+  const input = () => {
+    return document.getElementById("input-upload")! as HTMLInputElement;
+  };
+
+  // console.log(fileCat);
+  // console.log(status);
 
   const onClickFormSelectImg = () => {
-    document.getElementById("input-upload")!.click();
+    input().click();
   };
 
   const submitForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(e);
+    const form = e.target as HTMLFormElement; 
+
     if (!fileCat) {
       return;
     }
+
     try {
       setStatus("pending");
-      const catUpload = await uploadCatImage(fileCat);
-      console.log(catUpload);
-      e.currentTarget.reset();
+      const catUpload =  await uploadCatImage(fileCat);
       setFileCat(null);
-      setFileName(noFileName);
+      // setFileName(noFileName);
       setStatus("fulfilled");
+      form.reset();
     } catch (error) {
       setStatus("rejected");
-    }
+    } 
   };
 
   const omDragOverForm = (e: DragEvent<HTMLFormElement>) => {
@@ -46,11 +52,8 @@ export const ModalUploadInterface: FC = () => {
     const type = file["0"].type;
     console.log(file);
     if (file.length && (type === "image/png" || type === "image/jpeg")) {
-      const input = document.getElementById(
-        "input-upload"
-      )! as HTMLInputElement;
-      input.files = file;
-      setFileName(`Image File Name: ${file[0].name}`);
+      input().files = file;
+      // setFileName(`Image File Name: ${file[0].name}`);
       // setImage(URL.createObjectURL(file[0]));
       setFileCat(file[0]);
     }
@@ -58,19 +61,18 @@ export const ModalUploadInterface: FC = () => {
 
   const onChangeInputValue = (e: FormEvent<HTMLInputElement>) => {
     console.log(e);
-
     const target = e.target as HTMLInputElement;
     const file = target.files;
 
-    if (file) {
-      setFileName(`Image File Name: ${file[0].name}`);
+    if (file && file.length) {
+      // setFileName(`Image File Name: ${file[0].name}`);
       // setImage(URL.createObjectURL(file[0]));
-      // console.log(file);
       setFileCat(file[0]);
-    }
+    } 
   };
 
   const imageCatURL = fileCat ? URL.createObjectURL(fileCat) : "";
+  const imageName = fileCat ? `Image File Name: ${fileCat.name}` : noFileName;
 
   return (
     <SC.Wrapp>
@@ -104,7 +106,7 @@ export const ModalUploadInterface: FC = () => {
             </SC.PreviewTextWrapp>
           )}
           {imageCatURL !== "" && (
-            <SC.PreviewImg src={imageCatURL} fill alt={fileName} />
+            <SC.PreviewImg src={imageCatURL} fill alt={imageName} />
           )}
         </SC.PreviewBox>
         <SC.InputUpload
@@ -115,7 +117,7 @@ export const ModalUploadInterface: FC = () => {
         />
       </SC.Form>
       <Text center="center" color="textSecondary">
-        {fileName}
+        {imageName}
       </Text>
       {imageCatURL !== "" && (
         <SC.UploadBtn
