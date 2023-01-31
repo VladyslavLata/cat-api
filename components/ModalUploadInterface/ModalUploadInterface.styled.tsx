@@ -27,13 +27,17 @@ export const Linck = styled.a`
   color: ${(p) => p.theme.colors.testAccentPrimary};
 `;
 
-export const Form = styled.form<{uploadStatus: boolean | null}>`
+export const Form = styled.form<{ uploadStatus: boolean | null }>`
+  position: relative;
   width: 100%;
   height: 170px;
   padding: ${(p) => `${p.theme.space[3]}px ${p.theme.space[7]}px`};
   margin-top: ${(p) => p.theme.space[7]}px;
   margin-bottom: ${(p) => p.theme.space[3]}px;
-  background-color: ${(p) => p.uploadStatus === false ? p.theme.colors.bgAccentSecondary : p.theme.colors.bgSecondary};
+  background-color: ${(p) =>
+    p.uploadStatus === false
+      ? p.theme.colors.bgAccentPrimary
+      : p.theme.colors.bgSecondary};
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='20' ry='20' stroke='rgba(251, 224, 220, 1)' stroke-width='2' stroke-dasharray='10%2c 10' stroke-dashoffset='0' stroke-linecap='butt'/%3e%3c/svg%3e");
   border-radius: ${(p) => p.theme.radii.m};
   cursor: pointer;
@@ -51,28 +55,27 @@ export const Form = styled.form<{uploadStatus: boolean | null}>`
   }
 `;
 
-export const PreviewBox = styled.div<{img:string}>`
-position: relative;
+export const PreviewBox = styled.div<{ img: string }>`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
   height: 100%;
-  background-image: url(${p => p.img === "" ? bgPreviewImgMobile.src : "none"});
+  background-image: url(${(p) => p.img === "" ? bgPreviewImgMobile.src : "none"});
   background-repeat: no-repeat;
   background-position: center;
-  /* border: 1px solid blue; */
   border-radius: ${(p) => p.theme.radii.s};
 
   @media (min-width: 768px) {
-    background-image: url(${p => p.img === "" ? bgPreviewImg.src : "none"});
+    background-image: url(${(p) => p.img === "" ? bgPreviewImg.src : "none"});
   }
 `;
 
 export const PreviewImg = styled(Image)`
-object-fit: scale-down;
-`
+  object-fit: scale-down;
+`;
 
 export const PreviewTextWrapp = styled.div`
   @media (max-width: 767px) {
@@ -96,7 +99,7 @@ export const UploadBtn = styled(Button)`
   margin-top: ${(p) => p.theme.space[7]}px;
 
   @media (max-width: 767px) {
-      width: 100%;
+    width: 100%;
   }
 
   @media (min-width: 768px) {
@@ -105,7 +108,7 @@ export const UploadBtn = styled(Button)`
   }
 
   &:disabled {
-    background-color: ${p => p.theme.colors.bgAccentPrimaryTransparent};
-    color: ${p=>p.theme.colors.testAccentSecondary};
+    background-color: ${(p) => p.theme.colors.bgAccentPrimaryTransparent};
+    color: ${(p) => p.theme.colors.testAccentSecondary};
   }
 `;

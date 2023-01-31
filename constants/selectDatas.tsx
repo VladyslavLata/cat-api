@@ -15,7 +15,7 @@ export const defaultSelectsValue = {
   category_ids: "allCategories",
 };
 
-export const dataSelects: IDataSelect[]  = [
+export const dataSelects: IDataSelect[] = [
   {
     name: "mime_types",
     label: "Type",
@@ -40,3 +40,4 @@ export const dataSelects: IDataSelect[]  = [
     dataOptions: selectLimit,
   },
 ];
+

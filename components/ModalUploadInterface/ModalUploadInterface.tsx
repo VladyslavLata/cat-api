@@ -2,6 +2,7 @@ import { DragEvent, FC, FormEvent, useState } from "react";
 import { Text } from "../Text/Text.styled";
 import { MessageUploadImg } from "../MessageUploadImg/MessageUploadImg";
 import { uploadCatImage } from "../../API/catAPI";
+import { Loader } from "../Loader/Loader";
 import * as SC from "./ModalUploadInterface.styled";
 
 const noFileName = "No file selected";
@@ -83,6 +84,7 @@ export const ModalUploadInterface: FC = () => {
 
   const imageCatURL = fileCat ? URL.createObjectURL(fileCat) : "";
   const imageName = fileCat ? `Image File Name: ${fileCat.name}` : noFileName;
+  const pending = status === "pending";
 
   return (
     <SC.Wrapp>
@@ -105,6 +107,7 @@ export const ModalUploadInterface: FC = () => {
         onDragOver={omDragOverForm}
         onDrop={onDropImg}
         uploadStatus={uploadStatus}
+     
       >
         <SC.PreviewBox img={imageCatURL}>
           {imageCatURL === "" && (
@@ -126,6 +129,7 @@ export const ModalUploadInterface: FC = () => {
           accept="image/png, image/jpeg"
           onChange={onChangeInputValue}
         />
+        <Loader size={50} visible={pending} />
       </SC.Form>
       <Text center="center" color="textSecondary">
         {imageName}
@@ -135,7 +139,7 @@ export const ModalUploadInterface: FC = () => {
           form="uploadImg"
           type="submit"
           btn="seccond"
-          disabled={status === "pending"}
+          disabled={pending}
         >
           upload photo
         </SC.UploadBtn>
