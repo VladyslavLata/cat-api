@@ -1,5 +1,6 @@
 import { DragEvent, FC, FormEvent, useState } from "react";
 import { Text } from "../Text/Text.styled";
+import { MessageUploadImg } from "../MessageUploadImg/MessageUploadImg";
 import { uploadCatImage } from "../../API/catAPI";
 import * as SC from "./ModalUploadInterface.styled";
 
@@ -9,6 +10,7 @@ export const ModalUploadInterface: FC = () => {
   // const [image, setImage] = useState("");
   const [fileCat, setFileCat] = useState<null | File>(null);
   // const [fileName, setFileName] = useState(noFileName);
+  const [uploadStatus, setUploadStatus] = useState<boolean | null>(null);
   const [status, setStatus] = useState("idle");
 
   const input = () => {
@@ -32,13 +34,19 @@ export const ModalUploadInterface: FC = () => {
 
     try {
       setStatus("pending");
-      const catUpload =  await uploadCatImage(fileCat);
+      if (uploadStatus === false) {
+        setUploadStatus(null);
+      }
+      const catUpload = await uploadCatImage(fileCat);
+      console.log(catUpload);
       setFileCat(null);
       // setFileName(noFileName);
       setStatus("fulfilled");
+      setUploadStatus(true);
       form.reset();
     } catch (error) {
       setStatus("rejected");
+      setUploadStatus(false);
     } 
   };
 
@@ -56,6 +64,7 @@ export const ModalUploadInterface: FC = () => {
       // setFileName(`Image File Name: ${file[0].name}`);
       // setImage(URL.createObjectURL(file[0]));
       setFileCat(file[0]);
+      setUploadStatus(null);
     }
   };
 
@@ -68,6 +77,7 @@ export const ModalUploadInterface: FC = () => {
       // setFileName(`Image File Name: ${file[0].name}`);
       // setImage(URL.createObjectURL(file[0]));
       setFileCat(file[0]);
+      setUploadStatus(null);
     } 
   };
 
@@ -129,6 +139,7 @@ export const ModalUploadInterface: FC = () => {
           upload photo
         </SC.UploadBtn>
       )}
+      {uploadStatus !== null && <MessageUploadImg uploadStatus={uploadStatus} />}
     </SC.Wrapp>
   );
 };

@@ -14,6 +14,7 @@ declare module "styled-components" {
       bgAccentSecondary: string;
       bgLinkVoting: string;
       bgLinkBreeds: string;
+      bgGreen: string;
       bgLinkGallery: string;
       bgBorder: string;
      

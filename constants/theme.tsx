@@ -13,6 +13,7 @@ export const theme: DefaultTheme = {
     bgAccentSecondary: "#FBE0DC",
     bgLinkVoting: "#B4B7FF",
     bgLinkBreeds: "#97EAB9",
+    bgGreen: "#97EAB9",
     bgLinkGallery: "#FFD280",
     bgBorder: "rgba(255, 255, 255, 0.6)",
  

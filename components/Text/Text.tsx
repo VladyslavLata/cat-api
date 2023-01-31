@@ -5,7 +5,7 @@ export interface IProps {
   center?:string,
   tag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span",
   marginTheme?: [number, number, number, number],
-  fs?: "xs" | "s" | "m" | "l"|  "xl" | "xxl",
+  fs?: "xs" | "s" | "m" | "sm" | "l"|  "xl" | "xxl",
   fw?: "normal" | "medium",
   lh?: "body"| "heading"| "text",
   color?: "textPrimary" | "textSecondary" | "testAccentPrimary" | "testAccentSecondary"
