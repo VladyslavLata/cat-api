@@ -104,6 +104,7 @@ export const ModalUploadInterface: FC = () => {
         onSubmit={submitForm}
         onDragOver={omDragOverForm}
         onDrop={onDropImg}
+        uploadStatus={uploadStatus}
       >
         <SC.PreviewBox img={imageCatURL}>
           {imageCatURL === "" && (

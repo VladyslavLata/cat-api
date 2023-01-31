@@ -10,14 +10,15 @@ interface IProps {
 
 export const MessageUploadImg: FC<IProps> = ({ uploadStatus }) => {
   const Icon = uploadStatus ? SuccessIcon : ErrorIcon;
-  const message =
-    uploadStatus
+  const message = uploadStatus
     ? "Thanks for the Upload - Cat found!"
     : "No Cat found - try a different one";
   return (
     <SC.messageWrapp upload={uploadStatus}>
       <Icon width={20} height={20} fill="currentColor" />
-      <Text fs="sm" color="textSecondary">{message}</Text>
+      <Text fs="sm" color="textSecondary">
+        {message}
+      </Text>
     </SC.messageWrapp>
   );
 };

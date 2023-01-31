@@ -27,13 +27,13 @@ export const Linck = styled.a`
   color: ${(p) => p.theme.colors.testAccentPrimary};
 `;
 
-export const Form = styled.form`
+export const Form = styled.form<{uploadStatus: boolean | null}>`
   width: 100%;
   height: 170px;
   padding: ${(p) => `${p.theme.space[3]}px ${p.theme.space[7]}px`};
   margin-top: ${(p) => p.theme.space[7]}px;
   margin-bottom: ${(p) => p.theme.space[3]}px;
-  background-color: ${(p) => p.theme.colors.bgSecondary};
+  background-color: ${(p) => p.uploadStatus === false ? p.theme.colors.bgAccentSecondary : p.theme.colors.bgSecondary};
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='20' ry='20' stroke='rgba(251, 224, 220, 1)' stroke-width='2' stroke-dasharray='10%2c 10' stroke-dashoffset='0' stroke-linecap='butt'/%3e%3c/svg%3e");
   border-radius: ${(p) => p.theme.radii.m};
   cursor: pointer;
@@ -62,7 +62,7 @@ position: relative;
   background-image: url(${p => p.img === "" ? bgPreviewImgMobile.src : "none"});
   background-repeat: no-repeat;
   background-position: center;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   border-radius: ${(p) => p.theme.radii.s};
 
   @media (min-width: 768px) {
@@ -89,7 +89,7 @@ export const PreviewTextAccent = styled.span`
 // `;
 
 export const InputUpload = styled.input`
-  /* display: none; */
+  display: none;
 `;
 
 export const UploadBtn = styled(Button)`
