@@ -11,10 +11,8 @@ export const dataNavLinks: INavLink[] = [
     path: {
       pathname: "/voting",
       query: {
-        order: "ASC",
-        has_breeds: 1,
-        limit: 10,
-        page: "0",
+        order: "RANDOM",
+        limit: 1,
       },
     },
     bgColor: "bgLinkVoting",

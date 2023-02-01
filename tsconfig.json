@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/Hero", "next.config.js", "components/Container", "components/GAA"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/Hero", "next.config.js", "components/Container", "components/GAA", "components/BackPagePanel"],
   "exclude": ["node_modules"]
 }

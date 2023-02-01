@@ -5,19 +5,15 @@ import { GetServerSideProps } from "next";
 import { useUbdateStateSelectsValue } from "../../hooks/useUbdateStateSelectsValue";
 import { useChangeSelectsValue } from "../../hooks/useChangeSelectsValue";
 import { Gallery } from "../../components/Gallery/Gallery";
+import { BackPagePanel } from "../../components/BackPagePanel/BackPagePanel";
 import { SelectWithDynamicParams } from "../../components/SelectWithDynamicParams/SelectWithDynamicParams";
 import { Select } from "../../components/Select/Select";
 import { IDataCat, IBreeds } from "../../types/types";
 import { selectLimit } from "../../constants/selectDatas";
-import { CurrentPage } from "../../components/CurrentPage/CurrentPage";
-import { ButtonIcon } from "../../components/ButtonIcon/ButtonIcon";
 import { Container } from "../../components/Container/Container";
 import { ButtonsChangePages } from "../../components/ButtonsChangePages/ButtonsChangePages";
-import { BackButtonWrapp } from "../../components/BackButtonWrapp/BackButtonWrapp";
 import { FavoriteCatNavigation } from "../../components/FavoriteCatNavigation/FavoriteCatNavigation";
-import Arrow from "../../public/arrow.svg";
 import * as SC from "../../styles/Breeds.styled";
-import { useStore } from "../../Store/Store";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const param = context.query;
@@ -45,54 +41,10 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
   const router = useRouter();
   const params = router.query;
   const currentPage = Number(params.page);
-  //  console.log(params);
-  // const { changeSelectsValue, changeAllSelectsValue, selectsValue } =
-  //   useStore();
+
   const { changeBreedsSelectsValue } = useChangeSelectsValue();
  
-  // const firstChangeSelectsState = useRef(changeBreedsSelectsValue);
-  // const stringPath = useRef(router.asPath);
-
-
   useUbdateStateSelectsValue(changeBreedsSelectsValue);
-//   useEffect(() => {
-//     firstChangeSelectsState.current(stringPath.current);
-// },[])
-
-//   // console.log(router);
-//   useEffect(() => {
-//     const handleRouteChange = (url: string) => {
-//       changeBreedsSelectsValue(url);
-//     };
-
-// const handleRouteChangeError = (
-//       error: { cancelled: boolean },
-//       url: string
-//     ) => {
-//       if (error.cancelled) {
-//         changeBreedsSelectsValue(url);
-//       }
-//     };
-
-//     router.events.on("routeChangeStart", handleRouteChange);
-//     router.events.on("routeChangeError", handleRouteChangeError);
-
-//     return () => {
-//       router.events.off("routeChangeStart", handleRouteChange);
-//       router.events.off("routeChangeError", handleRouteChangeError);
-//     };
-//   }, [
-//     changeAllSelectsValue,
-//     changeBreedsSelectsValue,
-//     router.events,
-//     selectsValue,
-//   ]);
-
-
-  // const state = useStore((state) => state.selectsValue);
-  // console.log(state);
-  // console.log(catsData);
-  // console.log(params);
 
   const changePage = (value: number) => {
     router.push({
@@ -122,15 +74,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
       <FavoriteCatNavigation />
       <Container>
         <SC.OptionWrapp>
-          <BackButtonWrapp>
-            <ButtonIcon
-              svg={Arrow}
-              width={20}
-              height={20}
-              onClick={() => router.back()}
-            />
-            <CurrentPage title={"breeds"} />
-          </BackButtonWrapp>
+          <BackPagePanel page="breeds"/>
           <SC.SelectWrapp>
             <SelectWithDynamicParams
               optionValueDefault="allBreeds"
