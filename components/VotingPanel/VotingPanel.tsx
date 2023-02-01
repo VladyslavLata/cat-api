@@ -14,7 +14,9 @@ export const VotingPanel: FC<IProps> = ({ catData: {url, id} }) => {
   return (
     <Box position="relative" marginTop={7}>
     <SC.ImgWrapp>
-      <SC.Img src={url} alt={`image cat ID: ${id}`} fill />
+      <SC.Img src={url} alt={`image cat ID: ${id}`} fill priority sizes="(max-width: 375px) 90vw,
+        (min-width: 376px) 295px, (min-width: 768px) 670px
+              (mai-width: 1440px) 640px" />
       </SC.ImgWrapp>
       <VotingBtnsPanel id={id} />
     </Box>
