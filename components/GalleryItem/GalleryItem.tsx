@@ -1,43 +1,46 @@
 import { FC, useState } from "react";
 import { IDataCat } from "../../types/types";
-import { addFovouriteCat, removeFavouriteCat } from "../../API/catAPI";
+import { useFavoriteCat } from "../../hooks/useFavoriteCat";
+// import { addFovouriteCat, removeFavouriteCat } from "../../API/catAPI";
 import { Loader } from "../Loader/Loader";
 import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
 import * as SC from "./GalleryItem.styled";
-import FavouriteIcon from "../../public/fav.svg";
-import FavouriteFillIcon from "../../public/favColor.svg";
+// import FavouriteIcon from "../../public/fav.svg";
+// import FavouriteFillIcon from "../../public/favColor.svg";
 
 interface IProps {
   dataCat: IDataCat;
 }
 
 export const GalleryItem: FC<IProps> = ({ dataCat: { url, breeds, id } }) => {
-  const [favouriteId, setFavouriteId] = useState<null | number>(null);
-  const [status, setStatus] = useState("idle");
 
-  const onAddFavouriteCat = async () => {
-    try {
-      setStatus("pending");
-      if (favouriteId) {
-        await removeFavouriteCat(favouriteId);
-        setFavouriteId(null);
-      } else {
-        const respons = await addFovouriteCat(id);
-        setFavouriteId(respons.id);
-      }
-      setStatus("fulfilled");
-    } catch (error) {
-      setStatus("rejected");
-    }
-  };
+  const { status, currentFavoriteIcon, onAddFavouriteCat } = useFavoriteCat(id);
+  // const [favouriteId, setFavouriteId] = useState<null | number>(null);
+  // const [status, setStatus] = useState("idle");
 
-  const currentIcon = favouriteId ? FavouriteFillIcon : FavouriteIcon;
+  // const onAddFavouriteCat = async () => {
+  //   try {
+  //     setStatus("pending");
+  //     if (favouriteId) {
+  //       await removeFavouriteCat(favouriteId);
+  //       setFavouriteId(null);
+  //     } else {
+  //       const respons = await addFovouriteCat(id);
+  //       setFavouriteId(respons.id);
+  //     }
+  //     setStatus("fulfilled");
+  //   } catch (error) {
+  //     setStatus("rejected");
+  //   }
+  // };
+
+  // const currentIcon = favouriteId ? FavouriteFillIcon : FavouriteIcon;
 
   return (
     <>
       <SC.OverlayGalleryItem>
         <ButtonIcon
-          svg={currentIcon}
+          svg={currentFavoriteIcon}
           disabled={status === "pending"}
           primary
           width={20}

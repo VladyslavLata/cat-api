@@ -1,5 +1,8 @@
 import { FC, useState } from "react";
 import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
+import { useRouter } from "next/router";
+import { useFavoriteCat } from "../../hooks/useFavoriteCat";
+import { addVoteForCat } from "../../API/catAPI";
 import Like from "../../public/like.svg";
 import Dislike from "../../public/dislike.svg";
 import Favorite from "../../public/fav.svg";
@@ -12,27 +15,44 @@ interface IProps {
 }
 
 export const VotingBtnsPanel: FC<IProps> = ({ id }) => {
-  const [favorite, setFavorite] = useState(false);
+  // const [favorite, setFavorite] = useState(false);
+  const {status, currentFavoriteIcon, onAddFavouriteCat } = useFavoriteCat(id);
+  const router = useRouter();
 
-  const CurrentFavoriteIcon = favorite ? FavoriteFill : Favorite;
 
-  const  icons = [Like, CurrentFavoriteIcon, Dislike];
+  // const CurrentFavoriteIcon = favorite ? FavoriteFill : Favorite;
 
-  const votingLike = (id:string): void => {
-    console.log(id);
+  const  icons = [Like, currentFavoriteIcon, Dislike];
+
+  const onVotingOrLike = async (id:string, index?: number) => {
+    switch (index) {
+      case 0: createVote(id, 1);
+        break;
+      case 1: onAddFavouriteCat();
+        break;
+      case 2: createVote(id, -1);
+}
   }
 
-  const votingFunctions = [votingLike]
+  const createVote = async (id: string, voteValue: number) => {
+try {
+  await addVoteForCat(id, voteValue);
+  router.push("/voting");
+} catch (error) {
+  console.log(error);
+}
+  }
 
   return (
     <SC.ListBtns>
 
-      {icons.map((icon , i) => <li key={icon}><Media greaterThanOrEqual="m">
+      {icons.map((icon , i) => <SC.WrappBtn key={icon} index={i}><Media greaterThanOrEqual="m">
           <SC.VotingButton
             svg={icon}
             width={30}
             height={30}
-            onClick={()=>votingFunctions[i](id)}
+          onClick={() => onVotingOrLike(id, i)}
+          index = {i}
           />
         </Media>
         <Media lessThan="m">
@@ -40,9 +60,10 @@ export const VotingBtnsPanel: FC<IProps> = ({ id }) => {
             svg={icon}
             width={23}
             height={23}
-            onClick={()=>votingFunctions[i](id)}
+            onClick={() => onVotingOrLike(id, i)}
+            index = {i}
           />
-        </Media></li>)}
+        </Media></SC.WrappBtn>)}
       {/* <li>
         <Media greaterThanOrEqual="m">
           <SC.VotingButton

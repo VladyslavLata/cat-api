@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { FC } from "react";
 import { GetServerSideProps } from "next";
-import { getCatGallery } from "../../API/catAPI";
+import { getCatGallery, getImgForVoting } from "../../API/catAPI";
 import { IDataCat } from "../../types/types";
 import { FavoriteCatNavigation } from "../../components/FavoriteCatNavigation/FavoriteCatNavigation";
 import { Container } from "../../components/Container/Container"; 
@@ -9,13 +9,13 @@ import { BackPagePanel } from "../../components/BackPagePanel/BackPagePanel";
 import { VotingPanel } from "../../components/VotingPanel/VotingPanel";
 
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const param = context.query;
+export const getServerSideProps: GetServerSideProps = async () => {
+  // const param = context.query;
   try {
-    const data = await getCatGallery(param);
+    const data = await getImgForVoting();
     return {
       props: {
-        catData: data.catsData[0],
+        catData: data[0],
       },
     };
   } catch (error) {

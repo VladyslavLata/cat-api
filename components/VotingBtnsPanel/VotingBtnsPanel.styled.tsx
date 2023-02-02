@@ -14,12 +14,43 @@ export const ListBtns = styled.ul`
   }
 `;
 
-export const VotingButton = styled(ButtonIcon)`
+export const WrappBtn = styled.li<{ index: number }>`
+  background-color: ${(p) => {
+    switch (p.index) {
+      case 0:
+        return p.theme.colors.bgGreen;
+      case 1:
+        return p.theme.colors.bgAccentPrimary;
+      case 2:
+        return p.theme.colors.bgYellow;
+    }
+  }};
+`;
+
+export const VotingButton = styled(ButtonIcon)<{ index: number }>`
   width: 60px;
   height: 60px;
+  color: ${(p) => p.theme.colors.bgSecondary};
+  background-color: transparent;
+  border-radius: ${(p) => p.theme.radii.none};
 
   @media (min-width: 768px) {
     width: 80px;
     height: 80px;
+  }
+
+  &:hover,
+  :focus {
+    color: ${(p) => {
+      switch (p.index) {
+        case 0:
+          return p.theme.colors.bgGreen;
+        case 1:
+          return p.theme.colors.bgAccentPrimary;
+        case 2:
+          return p.theme.colors.bgYellow;
+      }
+    }};
+    background-color: ${(p) => p.theme.colors.bgWhiteTransparent};
   }
 `;

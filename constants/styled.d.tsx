@@ -11,10 +11,14 @@ declare module "styled-components" {
       bgSecondary: string;
       bgAccentPrimary: string;
       bgAccentPrimaryTransparent: string;
+      bgWhiteTransparent: string;
       bgAccentSecondary: string;
       bgLinkVoting: string;
       bgLinkBreeds: string;
       bgGreen: string;
+     
+      bgYellow: string;
+      
       bgLinkGallery: string;
       bgBorder: string;
      

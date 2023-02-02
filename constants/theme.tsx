@@ -9,11 +9,15 @@ export const theme: DefaultTheme = {
     bgPrimary: "#F8F8F7",
     bgSecondary: '#FFFFFF',
     bgAccentPrimary: "#FF868E",
-    bgAccentPrimaryTransparent:"rgba(255, 134, 142, .6)",
+    bgAccentPrimaryTransparent: "rgba(255, 134, 142, .6)",
+    bgWhiteTransparent: "rgba(255, 255, 255, 0.7)",
     bgAccentSecondary: "#FBE0DC",
     bgLinkVoting: "#B4B7FF",
     bgLinkBreeds: "#97EAB9",
     bgGreen: "#97EAB9",
+  
+    bgYellow: "#FFD280",
+    
     bgLinkGallery: "#FFD280",
     bgBorder: "rgba(255, 255, 255, 0.6)",
  

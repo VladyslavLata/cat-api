@@ -19,5 +19,5 @@ export const ImgWrapp = styled.div`
 
 export const Img = styled(Image)`
   object-fit: cover;
-  object-position: 50% 20%;
+  object-position: 50% 30%;
 `;

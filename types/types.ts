@@ -10,7 +10,7 @@ interface img {
 
 interface INavPath {
   pathname: string;
-  query: {
+  query?: {
     page?: string;
     limit?: number;
     order?: "ASC" | "DESC" | "RANDOM";

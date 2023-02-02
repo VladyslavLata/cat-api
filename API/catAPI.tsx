@@ -28,6 +28,10 @@ export const getImgForVoting = async () => {
   return respons.data;
 };
 
+export const addVoteForCat = async (id: string, voteValue: number) => {
+  await axios.post("/votes", { image_id: id, value: voteValue });
+}
+
 export const getAllBreeds = async () => {
   const respons = await axios.get("/breeds");
   return respons.data;
