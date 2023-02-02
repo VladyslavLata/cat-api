@@ -1,7 +1,6 @@
 import axios from "axios";
 import { ParsedUrlQuery } from "querystring";
 
-
 // const CAT_API_KEY = "live_Sv4k5xsNdGpxtq6QAMZhiPDGUNlns90Li9QIs8b22IT6zFxHsGLJtC5AOuftuzuB";
 
 const CAT_API_KEY =
@@ -20,6 +19,13 @@ export const getCatGallery = async (param: ParsedUrlQuery) => {
     catsData: respons.data,
     amountCats: respons.headers["pagination-count"],
   };
+};
+
+export const getImgForVoting = async () => {
+  const respons = await axios.get("/images/search", {
+    params: { order: "RANDOM", limit: 1 },
+  });
+  return respons.data;
 };
 
 export const getAllBreeds = async () => {
@@ -52,6 +58,11 @@ export const getFavouritesCats = async () => {
 };
 
 export const uploadCatImage = async (fileCat: File) => {
-  const respons = await axios({ url: "/images/upload", method: "POST", data: { file: fileCat }, headers: {'Content-Type': 'multipart/form-data'},});
+  const respons = await axios({
+    url: "/images/upload",
+    method: "POST",
+    data: { file: fileCat },
+    headers: { "Content-Type": "multipart/form-data" },
+  });
   return respons.data;
 };

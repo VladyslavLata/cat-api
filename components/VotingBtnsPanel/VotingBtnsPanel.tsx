@@ -16,19 +16,23 @@ export const VotingBtnsPanel: FC<IProps> = ({ id }) => {
 
   const CurrentFavoriteIcon = favorite ? FavoriteFill : Favorite;
 
-  const icons = [Like, CurrentFavoriteIcon, Dislike];
+  const  icons = [Like, CurrentFavoriteIcon, Dislike];
 
+  const votingLike = (id:string): void => {
+    console.log(id);
+  }
 
+  const votingFunctions = [votingLike]
 
   return (
     <SC.ListBtns>
 
-      {icons.map(icon => <li key={icon}><Media greaterThanOrEqual="m">
+      {icons.map((icon , i) => <li key={icon}><Media greaterThanOrEqual="m">
           <SC.VotingButton
             svg={icon}
             width={30}
             height={30}
-            onClick={() => console.log("l")}
+            onClick={()=>votingFunctions[i](id)}
           />
         </Media>
         <Media lessThan="m">
@@ -36,7 +40,7 @@ export const VotingBtnsPanel: FC<IProps> = ({ id }) => {
             svg={icon}
             width={23}
             height={23}
-            onClick={() => console.log("l")}
+            onClick={()=>votingFunctions[i](id)}
           />
         </Media></li>)}
       {/* <li>
