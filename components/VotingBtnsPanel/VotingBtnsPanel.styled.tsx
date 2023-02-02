@@ -8,6 +8,11 @@ export const ListBtns = styled.ul`
   transform: translate(-50%, 50%);
   display: flex;
   gap: 3px;
+  border: ${p => p.theme.borders.l};
+  border-color: ${p=>p.theme.colors.bgSecondary};
+  border-radius: ${p => p.theme.radii.m};
+  background-color: ${p=>p.theme.colors.bgSecondary};
+  overflow: hidden;
 
   @media (min-width: 768px) {
     gap: ${(p) => p.theme.space[1]}px;
@@ -15,8 +20,7 @@ export const ListBtns = styled.ul`
 `;
 
 export const WrappBtn = styled.li<{ index: number }>`
-  background-color: ${(p) => {
-    switch (p.index) {
+  background-color: ${(p) => {switch (p.index) {
       case 0:
         return p.theme.colors.bgGreen;
       case 1:
@@ -26,6 +30,9 @@ export const WrappBtn = styled.li<{ index: number }>`
     }
   }};
 `;
+
+
+
 
 export const VotingButton = styled(ButtonIcon)<{ index: number }>`
   width: 60px;
@@ -53,4 +60,7 @@ export const VotingButton = styled(ButtonIcon)<{ index: number }>`
     }};
     background-color: ${(p) => p.theme.colors.bgWhiteTransparent};
   }
+
 `;
+
+

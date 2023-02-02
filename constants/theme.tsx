@@ -15,9 +15,7 @@ export const theme: DefaultTheme = {
     bgLinkVoting: "#B4B7FF",
     bgLinkBreeds: "#97EAB9",
     bgGreen: "#97EAB9",
-  
     bgYellow: "#FFD280",
-    
     bgLinkGallery: "#FFD280",
     bgBorder: "rgba(255, 255, 255, 0.6)",
  

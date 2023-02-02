@@ -25,5 +25,5 @@ export const useFavoriteCat = (id: string) => {
     }
   };
 
-  return {status, currentFavoriteIcon, onAddFavouriteCat}
+  return { status, currentFavoriteIcon, onAddFavouriteCat}
 }
