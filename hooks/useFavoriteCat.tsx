@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { addFovouriteCat, removeFavouriteCat } from "../API/catAPI";
 import FavouriteIcon from "../public/fav.svg";
 import FavouriteFillIcon from "../public/favColor.svg";
 
-export const useFavoriteCat = (id: string) => {
-  const [favouriteId, setFavouriteId] = useState<null | number>(null);
+export const useFavoriteCat = (id: string , idff?:number | null) => {
+  const [favouriteId, setFavouriteId] = useState<null | number>(idff ? idff : null);
   const [status, setStatus] = useState("idle");
 
   const currentFavoriteIcon = favouriteId ? FavouriteFillIcon : FavouriteIcon;
@@ -25,5 +25,9 @@ export const useFavoriteCat = (id: string) => {
     }
   };
 
-  return { status, currentFavoriteIcon, onAddFavouriteCat}
+  const resetFavouriteId = () => {
+    setFavouriteId(null);
+  }
+
+  return { status, currentFavoriteIcon, onAddFavouriteCat, resetFavouriteId}
 }

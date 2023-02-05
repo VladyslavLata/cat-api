@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, MouseEvent } from "react";
 import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
 import { useRouter } from "next/router";
 import { useFavoriteCat } from "../../hooks/useFavoriteCat";
@@ -16,8 +16,9 @@ interface IProps {
 }
 
 export const VotingBtnsPanel: FC<IProps> = ({ id }) => {
+  // const [currentImgCatFavoriteId, setCurrentImgCatFavoriteId] = useState<number | null>(null)
   // const [favorite, setFavorite] = useState(false);
-  const { status, currentFavoriteIcon, onAddFavouriteCat } = useFavoriteCat(id);
+  const { status, currentFavoriteIcon, onAddFavouriteCat, resetFavouriteId } = useFavoriteCat(id);
   const router = useRouter();
 
   // const CurrentFavoriteIcon = favorite ? FavoriteFill : Favorite;
@@ -28,13 +29,16 @@ export const VotingBtnsPanel: FC<IProps> = ({ id }) => {
   const onVotingOrLike = async (id: string, numberBtn?: number) => {
     switch (numberBtn) {
       case 1:
-        createVote(id, 1);
+       await createVote(id, 1);
+        resetFavouriteId();
         break;
       case 2:
         onAddFavouriteCat();
+        // setCurrentImgCatFavoriteId(favouriteId);
         break;
       case 3:
-        createVote(id, -1);
+      await  createVote(id, -1);
+        resetFavouriteId();
     }
   };
 
@@ -47,6 +51,17 @@ export const VotingBtnsPanel: FC<IProps> = ({ id }) => {
     }
   };
 
+  // const onHoverBtn = (e: MouseEvent) => {
+  //   e.preventDefault();
+  //   if (e.target) {
+  //     const btn = e.target as HTMLButtonElement;
+  //     btn.classList.toggle("hover-btn")
+   
+  //   }
+  // }
+
+ 
+
   return (
     <SC.ListBtns>
       {[1, 2, 3].map((num, i) => (
@@ -57,6 +72,8 @@ export const VotingBtnsPanel: FC<IProps> = ({ id }) => {
               width={30}
               height={30}
               onClick={() => onVotingOrLike(id, num)}
+              // onMouseOver={onHoverBtn}
+              // onMouseOut={onHoverBtnEnd}
               index={i}
             />
           </Media>

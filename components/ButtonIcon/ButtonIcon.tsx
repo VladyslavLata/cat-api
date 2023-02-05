@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC, MouseEvent, ReactNode } from "react";
 import * as SC from "./ButtonIcon.styled";
 
 interface IProps {
@@ -9,13 +9,15 @@ interface IProps {
   width: number,
   height: number,
   onClick: () => void,
+  // onMouseOut?: (e: MouseEvent<HTMLButtonElement>) => void,
+  // onMouseOver?: (e: MouseEvent<HTMLButtonElement>) => void,
   children?: ReactNode;
 }
 
 export const ButtonIcon: FC<IProps> = ({ svg: Svg, primary, width, height, className, disabled, onClick, children }) => {
   // const Svg = svg;
   return (
-    <SC.BtnIcon className={className} type="button" primary={primary} onClick={onClick} disabled={disabled}>
+    <SC.BtnIcon className={className} type="button" primary={primary} onClick={onClick}  disabled={disabled}>
       {children}
       <Svg width={width} height={height} fill="currentcolor" />
     </SC.BtnIcon>
