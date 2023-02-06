@@ -83,3 +83,13 @@ export interface IDataSelect {
   label: string,
   dataOptions: ISelect[],
 }
+
+export interface IVotingDataMessage {
+  catId: string,
+  value?: number,
+  favouriteCatId?: number | null,
+  date: {
+    hours: number,
+    minutes: number,
+  }
+}

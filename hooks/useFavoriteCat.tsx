@@ -3,8 +3,8 @@ import { addFovouriteCat, removeFavouriteCat } from "../API/catAPI";
 import FavouriteIcon from "../public/fav.svg";
 import FavouriteFillIcon from "../public/favColor.svg";
 
-export const useFavoriteCat = (id: string , idff?:number | null) => {
-  const [favouriteId, setFavouriteId] = useState<null | number>(idff ? idff : null);
+export const useFavoriteCat = (id: string , idFavourite?:number | null) => {
+  const [favouriteId, setFavouriteId] = useState<null | number>(idFavourite ? idFavourite : null);
   const [status, setStatus] = useState("idle");
 
   const currentFavoriteIcon = favouriteId ? FavouriteFillIcon : FavouriteIcon;
@@ -29,5 +29,5 @@ export const useFavoriteCat = (id: string , idff?:number | null) => {
     setFavouriteId(null);
   }
 
-  return { status, currentFavoriteIcon, onAddFavouriteCat, resetFavouriteId}
+  return { status, favouriteId, currentFavoriteIcon, onAddFavouriteCat, resetFavouriteId}
 }

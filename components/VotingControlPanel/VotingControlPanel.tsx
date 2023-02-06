@@ -2,23 +2,28 @@ import { FC, useState, MouseEvent } from "react";
 import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
 import { useRouter } from "next/router";
 import { useFavoriteCat } from "../../hooks/useFavoriteCat";
+import { createDate } from "../../utils/createDate";
 import { addVoteForCat } from "../../API/catAPI";
 import Like from "../../public/like.svg";
 import Dislike from "../../public/dislike.svg";
 import Favorite from "../../public/fav.svg";
 import FavoriteFill from "../../public/favColor.svg";
 import { Media } from "../../media";
-import * as SC from "./VotingBtnsPanel.styled";
-import { randomInt } from "crypto";
+import { MessagesVoting } from "../MessagesVoting/MessagesVoting";
+import { IVotingDataMessage } from "../../types/types";
+import * as SC from "./VotingControlPanel.styled";
+
 
 interface IProps {
   id: string;
 }
 
-export const VotingBtnsPanel: FC<IProps> = ({ id }) => {
+export const VotingControlPanel: FC<IProps> = ({ id }) => {
   // const [currentImgCatFavoriteId, setCurrentImgCatFavoriteId] = useState<number | null>(null)
   // const [favorite, setFavorite] = useState(false);
-  const { status, currentFavoriteIcon, onAddFavouriteCat, resetFavouriteId } = useFavoriteCat(id);
+  const { status, favouriteId, currentFavoriteIcon, onAddFavouriteCat, resetFavouriteId } = useFavoriteCat(id);
+  const [messages, setMessages] = useState<IVotingDataMessage[] | []>([]);
+  
   const router = useRouter();
 
   // const CurrentFavoriteIcon = favorite ? FavoriteFill : Favorite;
@@ -34,6 +39,7 @@ export const VotingBtnsPanel: FC<IProps> = ({ id }) => {
         break;
       case 2:
         onAddFavouriteCat();
+        setMessages(()=>[ {catId: id, favouriteCatId: favouriteId, date: createDate() } ,...messages])
         // setCurrentImgCatFavoriteId(favouriteId);
         break;
       case 3:
@@ -45,6 +51,7 @@ export const VotingBtnsPanel: FC<IProps> = ({ id }) => {
   const createVote = async (id: string, voteValue: number) => {
     try {
       await addVoteForCat(id, voteValue);
+      setMessages(()=> [{catId: id, value: voteValue, date: createDate() }, ...messages ])
       router.push("/voting");
     } catch (error) {
       console.log(error);
@@ -62,7 +69,7 @@ export const VotingBtnsPanel: FC<IProps> = ({ id }) => {
 
  
 
-  return (
+  return (<>
     <SC.ListBtns>
       {[1, 2, 3].map((num, i) => (
         <SC.WrappBtn key={num} index={i}>
@@ -89,5 +96,7 @@ export const VotingBtnsPanel: FC<IProps> = ({ id }) => {
         </SC.WrappBtn>
       ))}
     </SC.ListBtns>
+    { messages.length && <MessagesVoting messages={messages} />}
+  </>
   );
 };

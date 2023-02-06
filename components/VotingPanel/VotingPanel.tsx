@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Image from "next/image";
 import { IDataCat } from "../../types/types";
-import { VotingBtnsPanel } from "../VotingBtnsPanel/VotingBtnsPanel";
+import { VotingControlPanel } from "../VotingControlPanel/VotingControlPanel";
 import { Box } from "../Box/Box";
 import * as SC from "./VotingPanel.styled";
 
@@ -18,7 +18,7 @@ export const VotingPanel: FC<IProps> = ({ catData: {url, id} }) => {
         (min-width: 376px) 295px, (min-width: 768px) 670px
               (mai-width: 1440px) 640px" />
       </SC.ImgWrapp>
-      <VotingBtnsPanel id={id} />
+      <VotingControlPanel id={id} />
     </Box>
   )
 }
