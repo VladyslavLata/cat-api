@@ -54,6 +54,7 @@ export const theme: DefaultTheme = {
   },
   radii: {
     none: '0',
+    xs: "5px",
     s: '10px',
     m: '20px',
     // lg: '16px',

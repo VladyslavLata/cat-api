@@ -1,4 +1,4 @@
-import { FC, useState, MouseEvent } from "react";
+import { FC, useState, MouseEvent, Dispatch, SetStateAction } from "react";
 import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
 import { useRouter } from "next/router";
 import { useFavoriteCat } from "../../hooks/useFavoriteCat";
@@ -15,14 +15,17 @@ import * as SC from "./VotingControlPanel.styled";
 
 
 interface IProps {
-  id: string;
+  id: string,
+  allMessage: IVotingDataMessage[] | [],
+  updateMessages: Dispatch<SetStateAction<[] | IVotingDataMessage[]>>
+  
 }
 
-export const VotingControlPanel: FC<IProps> = ({ id }) => {
+export const VotingControlPanel: FC<IProps> = ({ id, allMessage, updateMessages  }) => {
   // const [currentImgCatFavoriteId, setCurrentImgCatFavoriteId] = useState<number | null>(null)
   // const [favorite, setFavorite] = useState(false);
   const { status, favouriteId, currentFavoriteIcon, onAddFavouriteCat, resetFavouriteId } = useFavoriteCat(id);
-  const [messages, setMessages] = useState<IVotingDataMessage[] | []>([]);
+  // const [messages, setMessages] = useState<IVotingDataMessage[] | []>([]);
   
   const router = useRouter();
 
@@ -39,7 +42,7 @@ export const VotingControlPanel: FC<IProps> = ({ id }) => {
         break;
       case 2:
         onAddFavouriteCat();
-        setMessages(()=>[ {catId: id, favouriteCatId: favouriteId, date: createDate() } ,...messages])
+        updateMessages(()=>[ {catId: id, favouriteCatId: favouriteId, date: createDate() } ,...allMessage])
         // setCurrentImgCatFavoriteId(favouriteId);
         break;
       case 3:
@@ -51,7 +54,7 @@ export const VotingControlPanel: FC<IProps> = ({ id }) => {
   const createVote = async (id: string, voteValue: number) => {
     try {
       await addVoteForCat(id, voteValue);
-      setMessages(()=> [{catId: id, value: voteValue, date: createDate() }, ...messages ])
+      updateMessages(()=> [{catId: id, value: voteValue, date: createDate() }, ...allMessage ])
       router.push("/voting");
     } catch (error) {
       console.log(error);
@@ -96,7 +99,7 @@ export const VotingControlPanel: FC<IProps> = ({ id }) => {
         </SC.WrappBtn>
       ))}
     </SC.ListBtns>
-    { messages.length && <MessagesVoting messages={messages} />}
+    {/* { messages.length && <MessagesVoting messages={messages} />} */}
   </>
   );
 };

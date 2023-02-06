@@ -56,6 +56,7 @@ declare module "styled-components" {
     };
     radii: {
       none: string;
+      xs: string;
       s: string;
       m: string;
       // lg: string;
