@@ -59,6 +59,15 @@ export interface IDataCat {
   url: string;
 }
 
+export interface IFavouriteDataCat {
+  id: number,
+  image_id: string,
+  image: {
+    id: string,
+    url: string,
+  }
+}
+
 export interface ISelect {
   value: string,
   option: string,

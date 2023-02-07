@@ -30,7 +30,7 @@ export const getImgForVoting = async () => {
 
 export const addVoteForCat = async (id: string, voteValue: number) => {
   await axios.post("/votes", { image_id: id, value: voteValue });
-}
+};
 
 export const getAllBreeds = async () => {
   const respons = await axios.get("/breeds");
@@ -56,9 +56,12 @@ export const removeFavouriteCat = async (id: number) => {
   await axios.delete(`/favourites/${id}`);
 };
 
-export const getFavouritesCats = async () => {
-  const respons = await axios.get("/favourites");
-  return respons.data;
+export const getFavouritesCats = async (param: ParsedUrlQuery) => {
+  const respons = await axios.get("/favourites", { params: param });
+  return {
+    favouriteCatsData: respons.data,
+    amountCats: respons.headers["pagination-count"],
+  };
 };
 
 export const uploadCatImage = async (fileCat: File) => {

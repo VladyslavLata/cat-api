@@ -57,7 +57,7 @@ export const dataFavoriteLink = [
     svg: Like,
   },
     {
-    link: "/favorites",
+    link: "/favourites",
     svg: Favorite,
   },
       {
