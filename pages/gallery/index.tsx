@@ -66,16 +66,16 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
     // changeSelectsValue(e.currentTarget.name, e.currentTarget.value);
   };
 
-  const changePage = (value: number) => {
-    router.push({
-      pathname: "/gallery",
-      query: { ...params, page: currentPage + value },
-    });
-  };
+  // const changePage = (value: number) => {
+  //   router.push({
+  //     pathname: "/gallery",
+  //     query: { ...params, page: currentPage + value },
+  //   });
+  // };
 
-  const amountPage = () => {
-    return Number(amountCats) / Number(params.limit) <= currentPage + 1;
-  };
+  // const amountPage = () => {
+  //   return Number(amountCats) / Number(params.limit) <= currentPage + 1;
+  // };
 
   //   const disabledRefreshBtn = () => {
   //   return catsData.length >= Number(selectsValue.limit)
@@ -122,9 +122,10 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
         <Gallery dataCats={catsData} />
         {amountCats && (
           <ButtonsChangePages
-            changePage={changePage}
-            currentPage={currentPage}
-            lastPage={amountPage()}
+            amountCats={amountCats}
+            // changePage={changePage}
+            // currentPage={currentPage}
+            // lastPage={amountPage()}
           />
         )}
         {params.order === "RANDOM" &&

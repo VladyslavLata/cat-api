@@ -1,21 +1,37 @@
 import { FC } from "react";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { Button } from "../Button/Button";
 import Arrow from "../../public/arrow.svg";
 import * as SC from "./ButtonsChangePages.styled";
 
 interface IProps {
-  changePage: (page: number) => void,
-  currentPage: number,
-  lastPage: boolean,
+  // changePage: (page: number) => void,
+  // currentPage: number,
+  // lastPage: boolean,
+  amountCats: string;
 }
 
-export const ButtonsChangePages:FC<IProps> = ({ changePage, currentPage, lastPage }) => {
-  // const { query } = useRouter();
+export const ButtonsChangePages: FC<IProps> = ({ amountCats }) => {
+  
+  const router = useRouter();
+  const { query, pathname } = router;
+  const currentPage = Number(query.page);
   // const currentPage = query.page !== "" ? Number(query.page) : "";
   // if (currentPage === "") {
   //   return;
   // }
+
+  const changePage = (value: number) => {
+    router.push({
+      pathname: pathname,
+      query: { ...query, page: currentPage + value },
+    });
+  };
+
+    const amountPage = () => {
+    return Number(amountCats) / Number(query.limit) <= currentPage + 1;
+  };
+
   return (
     <SC.Wrapp>
       <Button
@@ -29,7 +45,7 @@ export const ButtonsChangePages:FC<IProps> = ({ changePage, currentPage, lastPag
       <Button
         btn={"main"}
         onClick={() => changePage(1)}
-        disabled={lastPage}
+        disabled={amountPage()}
       >
         next
         <SC.RotateArrow />

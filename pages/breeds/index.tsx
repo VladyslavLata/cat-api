@@ -46,12 +46,12 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
  
   useUbdateStateSelectsValue(changeBreedsSelectsValue);
 
-  const changePage = (value: number) => {
-    router.push({
-      pathname: "/breeds",
-      query: { ...params, page: currentPage + value },
-    });
-  };
+  // const changePage = (value: number) => {
+  //   router.push({
+  //     pathname: "/breeds",
+  //     query: { ...params, page: currentPage + value },
+  //   });
+  // };
 
   const changeParam = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const valueParam =
@@ -65,9 +65,9 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
     // changeSelectsValue(e.currentTarget.name, e.currentTarget.value);
   };
 
-  const amountPage = () => {
-    return Number(amountCats) / Number(params.limit) <= currentPage + 1;
-  };
+  // const amountPage = () => {
+  //   return Number(amountCats) / Number(params.limit) <= currentPage + 1;
+  // };
 
   return (
     <>
@@ -97,9 +97,10 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
         </SC.OptionWrapp>
         <Gallery dataCats={catsData} />
         <ButtonsChangePages
-          changePage={changePage}
-          currentPage={currentPage}
-          lastPage={amountPage()}
+          amountCats={amountCats}
+          // changePage={changePage}
+          // currentPage={currentPage}
+          // lastPage={amountPage()}
         />
       </Container>
     </>
