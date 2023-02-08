@@ -5,6 +5,7 @@ import { IFavouriteDataCat } from "../../types/types";
 import { Message } from "../../components/Message/Message";
 import { Container } from "../../components/Container/Container";
 import { Gallery } from "../../components/Gallery/Gallery";
+import { SharedLayoutLikedPage } from "../../components/SharedLayoutLikedPage/SharedLayoutLikedPage";
 import { FavoriteCatNavigation } from "../../components/FavoriteCatNavigation/FavoriteCatNavigation";
 import { BackPagePanel } from "../../components/BackPagePanel/BackPagePanel";
 
@@ -14,12 +15,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     const data = await getFavouritesCats(param);
     // const catsData = data?.favouriteCatsData ? data.favouriteCatsData : []
-    const amountCat = data?.amountCats ? data?.amountCats : "0"
+    const amountCat = data?.amountCats ? data?.amountCats : "0";
     return {
       props: {
         favouriteCatsData: data.favouriteCatsData,
         amountCats: amountCat,
-      }
+      },
       // props: {
       //   catsData: data[0].catsData,
       //   amountCats: data[0].amountCats ? data[0].amountCats : null,
@@ -36,19 +37,23 @@ interface IProps {
   amountCats: string;
 }
 
-
 const FavouritesPage: FC<IProps> = ({ favouriteCatsData, amountCats }) => {
-  console.log(favouriteCatsData);
-  console.log(amountCats);
+  // console.log(favouriteCatsData);
+  // console.log(amountCats);
   return (
-    <>
-      <FavoriteCatNavigation />
-      <Container>
-        <BackPagePanel page="favourites"/>
-        {favouriteCatsData.length > 0 && <Gallery dataCats={favouriteCatsData} />}
-        {favouriteCatsData.length === 0 && <Message>No item found</Message> }
-      </Container>
-    </>
+    <SharedLayoutLikedPage pageName="favourites">
+      {favouriteCatsData.length > 0 && <Gallery dataCats={favouriteCatsData} />}
+      {favouriteCatsData.length === 0 && <Message>No item found</Message>}
+    </SharedLayoutLikedPage>
+    // <>
+    //   <FavoriteCatNavigation />
+    //   <SC.ContainerWrapp>
+    //     <Container>
+    //       <BackPagePanel page="favourites" />
+
+    //     </Container>
+    //   </SC.ContainerWrapp>
+    // </>
   );
 };
 
