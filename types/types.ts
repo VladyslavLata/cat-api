@@ -8,7 +8,7 @@ interface img {
   src: string;
 }
 
-interface INavPath {
+export interface INavPath {
   pathname: string;
   query?: {
     page?: string;
@@ -34,6 +34,11 @@ export interface IPath {
 
 export interface IUrl extends IPath {
   href: INavPath;
+}
+
+export interface IFavouriteLink {
+  svg: any,
+  link: INavPath,
 }
 
 export interface IBreeds {

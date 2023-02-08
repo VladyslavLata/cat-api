@@ -1,6 +1,6 @@
 import { FC } from "react";
 // import Link from "next/link";
-import { IDataCat } from "../../types/types";
+import { IDataCat, IFavouriteDataCat } from "../../types/types";
 import { Overlay } from "../Overlay/Overlay";
 import * as SC from "./GalleryItemBreeds.styled";
 

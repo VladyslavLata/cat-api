@@ -1,4 +1,4 @@
-import { INavLink } from "../types/types";
+import { INavLink, IFavouriteLink } from "../types/types";
 import bgVote from "../public/Vote.png";
 import bgBreeds from "../public/breeds.png";
 import bgGallery from "../public/gallery.png";
@@ -50,19 +50,35 @@ export const dataNavLinks: INavLink[] = [
   },
 ];
 
-
-export const dataFavoriteLink = [
+export const dataFavoriteLink: IFavouriteLink[] = [
   {
-    link: "/likes",
+    link: {
+      pathname: "/likes",
+      query: {
+        limit: 10,
+        page: "0",
+      },
+    },
     svg: Like,
   },
-    {
-    link: "/favourites",
+  {
+    link: {
+      pathname: "/favourites",
+      query: {
+        limit: 10,
+        page: "0",
+      },
+    },
     svg: Favorite,
   },
-      {
-    link: "/dislike",
+  {
+    link: {
+      pathname: "/dislike",
+      query: {
+        limit: 10,
+        page: "0",
+      },
+    },
     svg: Dislike,
-  }
-]
-
+  },
+];

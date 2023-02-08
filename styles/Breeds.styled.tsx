@@ -2,7 +2,7 @@ import styled from "styled-components";
 // import Arrow from "../public/arrow.svg";
 
 export const OptionWrapp = styled.div`
-  margin-bottom: ${(p) => p.theme.space[7]}px;
+  /* margin-bottom: ${(p) => p.theme.space[7]}px; */
   @media (min-width: 768px) {
     display: flex;
   }

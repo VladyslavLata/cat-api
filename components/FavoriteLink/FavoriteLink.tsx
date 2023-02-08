@@ -1,9 +1,10 @@
 import { FC } from "react";
 import Link from "next/link";
+import { INavPath } from "../../types/types";
 import * as SC from "./FavoriteLink.styled";
 
 interface IProps {
-  linkTo: string,
+  linkTo: INavPath,
   svg: any
 }
 

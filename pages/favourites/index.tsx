@@ -2,7 +2,9 @@ import { FC } from "react";
 import { GetServerSideProps } from "next";
 import { getFavouritesCats } from "../../API/catAPI";
 import { IFavouriteDataCat } from "../../types/types";
+import { Message } from "../../components/Message/Message";
 import { Container } from "../../components/Container/Container";
+import { Gallery } from "../../components/Gallery/Gallery";
 import { FavoriteCatNavigation } from "../../components/FavoriteCatNavigation/FavoriteCatNavigation";
 import { BackPagePanel } from "../../components/BackPagePanel/BackPagePanel";
 
@@ -11,10 +13,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const param = context.query;
   try {
     const data = await getFavouritesCats(param);
+    // const catsData = data?.favouriteCatsData ? data.favouriteCatsData : []
+    const amountCat = data?.amountCats ? data?.amountCats : "0"
     return {
       props: {
         favouriteCatsData: data.favouriteCatsData,
-        amountCats: data.amountCats,
+        amountCats: amountCat,
       }
       // props: {
       //   catsData: data[0].catsData,
@@ -40,7 +44,9 @@ const FavouritesPage: FC<IProps> = ({ favouriteCatsData, amountCats }) => {
     <>
       <FavoriteCatNavigation />
       <Container>
-        <BackPagePanel page="favourites" />
+        <BackPagePanel page="favourites"/>
+        {favouriteCatsData.length > 0 && <Gallery dataCats={favouriteCatsData} />}
+        {favouriteCatsData.length === 0 && <Message>No item found</Message> }
       </Container>
     </>
   );
