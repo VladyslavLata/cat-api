@@ -28,6 +28,14 @@ export const getImgForVoting = async () => {
   return respons.data;
 };
 
+export const getVotedCat = async (param: ParsedUrlQuery) => {
+  const respons = await axios.get("/votes", { params: param });
+  return {
+    likeCatsData: respons.data,
+    amountCats: respons.headers["pagination-count"],
+  };
+}
+
 export const addVoteForCat = async (id: string, voteValue: number) => {
   await axios.post("/votes", { image_id: id, value: voteValue });
 };

@@ -73,6 +73,10 @@ export interface IFavouriteDataCat {
   }
 }
 
+export interface ILikeDataCat extends IFavouriteDataCat {
+  value: number;
+}
+
 export interface ISelect {
   value: string,
   option: string,

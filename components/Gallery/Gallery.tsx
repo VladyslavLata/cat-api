@@ -1,13 +1,14 @@
 import { FC } from "react";
 import { useRouter } from "next/router";
-import { IDataCat, IFavouriteDataCat } from "../../types/types";
+import { IDataCat, IFavouriteDataCat, ILikeDataCat } from "../../types/types";
 import { GalleryItemBreeds } from "../GalleryItemBreeds/GalleryItemBreeds";
 import { GalleryItem } from "../GalleryItem/GalleryItem";
 import { GalleryItemFavourite } from "../GalleryItem/GalleryItemFavourite";
+import { GalleryItemLike } from "../GalleryItem/GalleryItemLike";
 import * as SC from "./Gallery.styled";
 
 type IProps = {
-  dataCats: IDataCat[] | IFavouriteDataCat[];
+  dataCats: IDataCat[] | IFavouriteDataCat[] | ILikeDataCat[];
 };
 
 export const Gallery: FC<IProps> = ({ dataCats }) => {
@@ -27,11 +28,12 @@ export const Gallery: FC<IProps> = ({ dataCats }) => {
     </SC.List>
   );
   } else {
-    const favouriteDataCats = dataCats as IFavouriteDataCat[];
+    const favouriteDataCats = dataCats as ILikeDataCat[] | IFavouriteDataCat[]  ;
      return (
     <SC.List>
       { favouriteDataCats.map((favouriteDataCat) => (
         <SC.Item key={favouriteDataCat.id}>
+          {pathname === "/likes" && <GalleryItemLike dataCat={favouriteDataCat} />}
           {pathname === "/favourites" && <GalleryItemFavourite dataCat={favouriteDataCat} />}
         </SC.Item>
       ))}

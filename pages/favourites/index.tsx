@@ -17,7 +17,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     const data = await getFavouritesCats(param);
     // const catsData = data?.favouriteCatsData ? data.favouriteCatsData : []
-    const amountCat = data?.amountCats ? data?.amountCats : "0";
+    const amountCat = data?.amountCats ? data.amountCats : "0";
+
     return {
       props: {
         favouriteCatsData: data.favouriteCatsData,
@@ -47,7 +48,7 @@ const FavouritesPage: FC<IProps> = ({ favouriteCatsData, amountCats }) => {
   const currentPage = Number(query.page);
 
   if (favouriteCatsData.length === 0 && amountCats === "0" && currentPage > 0) {
-    router.push({
+    router.replace({
       pathname: pathname,
       query: {...query, page: currentPage - 1}
   })
