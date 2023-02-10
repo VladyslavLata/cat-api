@@ -11,7 +11,7 @@ interface IProps {
 
 export const Navigation: FC<IProps> = ({ navLinks }) => {
   const { pathname } = useRouter();
-  const changeAllDefaulValueSelect = useStore((state) => state.changeAllSelectsValue)
+  // const changeAllDefaulValueSelect = useStore((state) => state.changeAllSelectsValue)
   
   const onChangeDefaultValueSelect = (path: string) => {
     if (path === "/voting") {

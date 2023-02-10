@@ -5,6 +5,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 export const CarouselWrapp = styled(Carousel)`
   position: relative;
   z-index: 1;
+  margin-top: ${p=>p.theme.space[7]}px;
 
   & li {
     width: 100%;

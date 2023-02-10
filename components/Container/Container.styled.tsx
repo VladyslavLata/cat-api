@@ -7,7 +7,7 @@ export const Container = styled.div`
   margin-right: auto;
   margin-left: auto;
   background-color: ${p => p.theme.colors.bgSecondary};
-  border-radius: ${p=>p.theme.radii.m};
+  border-radius: ${p => p.theme.radii.m};
 
   @media (min-width: 375px) {
     width: 335px;

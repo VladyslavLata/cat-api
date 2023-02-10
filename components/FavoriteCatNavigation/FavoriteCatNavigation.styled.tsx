@@ -1,4 +1,27 @@
 import styled from "styled-components";
+import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
+
+export const Wrapp = styled.div`
+  display: flex;
+
+  @media (max-width: 1439px) {
+    justify-content: space-between;
+  }
+  
+  @media (min-width: 1440px) {
+    display: block;
+  }
+`
+
+export const BtnShowMobileMenu = styled(ButtonIcon)`
+width: 60px;
+height: 60px;
+border-radius: ${p => p.theme.radii.m};
+
+ @media (min-width: 1440px) {
+    display: none;
+  }
+`
 
 export const NavWrapp = styled.ul`
   display: flex;
