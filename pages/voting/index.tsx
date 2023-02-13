@@ -5,6 +5,7 @@ import { getCatGallery, getImgForVoting } from "../../API/catAPI";
 import { IDataCat } from "../../types/types";
 import { FavoriteCatNavigation } from "../../components/FavoriteCatNavigation/FavoriteCatNavigation";
 import { Container } from "../../components/Container/Container"; 
+import { MainSharedLayoutPages } from "../../components/MainSharedLayoutPages/MainSharedLayoutPages";
 import { BackPagePanel } from "../../components/BackPagePanel/BackPagePanel";
 import { VotingPanel } from "../../components/VotingPanel/VotingPanel";
 
@@ -31,21 +32,24 @@ interface IProps {
 const Voting: FC<IProps> = ({ catData }) => {
   console.log(catData);
   return (
-    <>
-      <Head>
-        <title>Voting</title>
-        <meta
-          name="description"
-          content="Vote for your favorite cat breed"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <FavoriteCatNavigation />
-      <Container>
+    <MainSharedLayoutPages pageTitle="Voting" pageDescription="Vote for your favorite cat breed">
         <BackPagePanel page="voting" />
         <VotingPanel catData={catData}/>
-      </Container>
-    </>
+    </MainSharedLayoutPages>
+    // <>
+    //   <Head>
+    //     <title>Voting</title>
+    //     <meta
+    //       name="description"
+    //       content="Vote for your favorite cat breed"
+    //     />
+    //     <link rel="icon" href="/favicon.ico" />
+    //   </Head>
+    //   <FavoriteCatNavigation />
+    //   <Container>
+      
+    //   </Container>
+    // </>
   );
 };
 

@@ -4,12 +4,14 @@ import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { useUbdateStateSelectsValue } from "../../hooks/useUbdateStateSelectsValue";
 import { useChangeSelectsValue } from "../../hooks/useChangeSelectsValue";
+// import { useShowMobileMenu } from "../../hooks/useShowMobileMenu";
 import { Gallery } from "../../components/Gallery/Gallery";
 import { BackPagePanel } from "../../components/BackPagePanel/BackPagePanel";
 import { SelectWithDynamicParams } from "../../components/SelectWithDynamicParams/SelectWithDynamicParams";
 import { Select } from "../../components/Select/Select";
 import { IDataCat, IBreeds } from "../../types/types";
 import { selectLimit } from "../../constants/selectDatas";
+import { MainSharedLayoutPages } from "../../components/MainSharedLayoutPages/MainSharedLayoutPages";
 import { Container } from "../../components/Container/Container";
 import { ButtonsChangePages } from "../../components/ButtonsChangePages/ButtonsChangePages";
 import { FavoriteCatNavigation } from "../../components/FavoriteCatNavigation/FavoriteCatNavigation";
@@ -38,6 +40,8 @@ interface IProps {
 }
 
 const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
+// const {showMobileMenu, toggleMobileMenu} = useShowMobileMenu()
+
   const router = useRouter();
   const params = router.query;
   const currentPage = Number(params.page);
@@ -70,9 +74,10 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
   // };
 
   return (
-    <>
-      <FavoriteCatNavigation />
-      <Container>
+    // <>
+    //   <FavoriteCatNavigation onShowMobileMenu={toggleMobileMenu} />
+    //   <Container>
+    <MainSharedLayoutPages pageTitle="Breeds" pageDescription="Gallery of cats by breeds">
         <SC.OptionWrapp>
           <BackPagePanel page="breeds"/>
           <SC.SelectWrapp>
@@ -102,8 +107,9 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
           // currentPage={currentPage}
           // lastPage={amountPage()}
         />
-      </Container>
-    </>
+    {/*    </Container> */}
+    {/*  </> */}
+    </MainSharedLayoutPages >
   );
 };
 

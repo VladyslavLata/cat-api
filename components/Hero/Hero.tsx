@@ -12,10 +12,10 @@ export const Hero: FC = () => {
       <Box>
         <HiddenTitle title="Cat finder application" />
         <Text marginTheme={[0, 0, 3, 0]} fs="xxl" fw="medium" lh="heading">
-          Hi intern!
+          Hi everyone!
         </Text>
         <Text marginTheme={[0, 0, 12, 0]} lh="text" color="textSecondary">
-          Welcome to MI 2022 Front-end test
+          Welcome to my pet-project.
         </Text>
         <Text marginTheme={[0, 0, 7, 0]} lh="text" fw="medium">
           Lets start using The Cat API

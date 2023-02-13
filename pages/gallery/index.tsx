@@ -1,4 +1,5 @@
 import { FC, useState } from "react";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { getCatGallery, getCategories } from "../../API/catAPI";
@@ -11,6 +12,7 @@ import { GalleryOptionPanel } from "../../components/GalleryOptionPanel/GalleryO
 import { IDataCat, ICateory } from "../../types/types";
 import { useUbdateStateSelectsValue } from "../../hooks/useUbdateStateSelectsValue";
 import { useChangeSelectsValue } from "../../hooks/useChangeSelectsValue";
+import { useShowMobileMenu } from "../../hooks/useShowMobileMenu";
 import { dataNavLinks } from "../../constants/dataNavLinks";
 import Upload from "../../public/upload.svg";
 import * as SC from "../../styles/Gallery.styled";
@@ -39,6 +41,7 @@ interface IProps {
 
 const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
   const [showModal, setShowModal] = useState(false);
+  const { showMobileMenu, toggleMobileMenu } = useShowMobileMenu();
 
   // console.log(`catsData ${catsData}`);
   // console.log(`amountCats ${amountCats}`);
@@ -100,15 +103,22 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
 
   const toggleModal = () => {
     setShowModal(!showModal);
-  
-  }
+  };
 
   return (
     <>
-      <SC.GalleryFavoriteCatNavigation visibleModal={showModal}/>
+      <Head>
+        <title>Gallery</title>
+        <meta name="description" content="Gallery of cats" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <SC.GalleryFavoriteCatNavigation
+        visibleModal={showModal}
+        onShowMobileMenu={toggleMobileMenu}
+      />
       <SC.GalleryContainer visibleModal={showModal}>
         <SC.Wrapp>
-          <BackPagePanel page="gallery"/>
+          <BackPagePanel page="gallery" />
           <SC.UploadBtn btn={"main"} onClick={toggleModal}>
             <Upload width={16} height={16} fill={"currentColor"} />
             upload
@@ -136,7 +146,7 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
           )}
       </SC.GalleryContainer>
       <Modal show={showModal} onClose={toggleModal}>
-        <ModalUploadInterface/>
+        <ModalUploadInterface />
       </Modal>
     </>
   );

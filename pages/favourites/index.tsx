@@ -55,7 +55,7 @@ const FavouritesPage: FC<IProps> = ({ favouriteCatsData, amountCats }) => {
 }
 
   return (
-    <SharedLayoutLikedPage pageName="favourites">
+    <SharedLayoutLikedPage pageName="favourites" pageTitle="Favorites" pageDescription="Your favorite cat images">
       {favouriteCatsData.length > 0 && <Gallery dataCats={favouriteCatsData} />}
       {favouriteCatsData.length === 0 && currentPage === 0 && <Message>No item found</Message>}
       {Number(amountCats) > 10 && <ButtonsChangePages amountCats={amountCats} />}

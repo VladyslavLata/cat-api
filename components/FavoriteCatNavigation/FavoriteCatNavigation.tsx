@@ -2,7 +2,7 @@ import { FC } from "react";
 import { useRouter } from "next/router";
 import { FavoriteLink } from "../FavoriteLink/FavoriteLink";
 import { dataFavoriteLink } from "../../constants/dataNavLinks";
-import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
+// import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
 import * as SC from "./FavoriteCatNavigation.styled";
 import Stroke from "../../public/stroke.svg";
 
