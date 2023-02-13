@@ -31,10 +31,13 @@ export const MessagesVoting: FC<IProps> = ({ messages }) => {
       Icon = Favourite;
     }
 
+    const minutes = date.minutes > 9 ? date.minutes : `0${date.minutes}`;
+    const hours = date.hours > 9 ? date.hours : `0${date.hours}`;
+
     return (
       <>
         <SC.Time fs="sm">
-          {date.hours}:{date.minutes}
+          {hours}:{minutes}
         </SC.Time>
         <Text fs="sm" color="textSecondary">
           Image ID:{" "}

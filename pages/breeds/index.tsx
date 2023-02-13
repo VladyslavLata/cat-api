@@ -110,6 +110,7 @@ const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
     {/*    </Container> */}
     {/*  </> */}
     </MainSharedLayoutPages >
+  
   );
 };
 

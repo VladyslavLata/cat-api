@@ -7,6 +7,7 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../constants/theme";
 import { AppContainer } from "../components/AppContainer/AppContainer";
 import { AsideBar } from "../components/AsideBar/AsideBar";
+import { MobileMenu } from "../components/MobileMenu/MobileMenu";
 import { MediaContextProvider, Media } from "../media";
 
 const jost = Jost({
@@ -27,6 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
       <ThemeProvider theme={theme}>
         <MediaContextProvider disableDynamicMediaQueries>
+          {/* <MobileMenu displayingMobileMenu={ true} /> */}
           <AppContainer>
             <Media greaterThanOrEqual="l"><AsideBar /></Media>
             <SC.MainContent currentPage={pathname}>

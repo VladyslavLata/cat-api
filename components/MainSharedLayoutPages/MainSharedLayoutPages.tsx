@@ -3,6 +3,7 @@ import Head from "next/head";
 import { Container } from "../Container/Container.styled";
 import { FavoriteCatNavigation } from "../FavoriteCatNavigation/FavoriteCatNavigation";
 import { useShowMobileMenu } from "../../hooks/useShowMobileMenu";
+import { MobileMenu } from "../MobileMenu/MobileMenu";
 
 interface Iprops {
   pageTitle: string, 
@@ -28,6 +29,7 @@ export const MainSharedLayoutPages: FC<Iprops> = ({ pageTitle, pageDescription ,
     <Container>
     {children}
     </Container>
+    <MobileMenu displayingMobileMenu={showMobileMenu}></MobileMenu>
   </>
   )
 }
