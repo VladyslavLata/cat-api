@@ -81,3 +81,8 @@ body .carousel .control-dots {
     background: blue;
   }
 }
+
+.visibility-hidden {
+visibility: hidden;
+pointer-events: none;
+}

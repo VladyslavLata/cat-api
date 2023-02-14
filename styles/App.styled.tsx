@@ -1,10 +1,13 @@
 import styled from "styled-components";
-import { backgroundColor } from "styled-system";
+// import { backgroundColor } from "styled-system";
 
-export const MainContent = styled.main<{currentPage:string}>`
+export const MainContent = styled.main<{ currentPage: string }>`
+ /* visibility: hidden; */
+
   @media screen and (min-width: 1440px) {
     width: 1380px;
     padding-left: 700px;
+   
 
 
     ::after {
