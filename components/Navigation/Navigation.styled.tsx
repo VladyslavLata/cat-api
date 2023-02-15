@@ -37,7 +37,7 @@ export const LinkTitle = styled(Text)<IPath>`
   box-shadow: ${(p) => p.currentpath === p.path.pathname ? "none" : p.theme.shadows.boxShadow};
   transition: box-shadow 300ms cubic-bezier(0.215, 0.61, 0.355, 1),
     background-color 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
-
+visibility: visible;
  
 
     @media (min-width: 768px){
@@ -46,7 +46,9 @@ export const LinkTitle = styled(Text)<IPath>`
 `;
 
 export const Wrapp = styled.div<Pick<INavLink, "bgColor" | "img"> & IPath>`
+
   width: 100%;
+visibility: visible;
 
   @media (min-width: 768px) {
     width: 138px;
@@ -73,7 +75,9 @@ export const Wrapp = styled.div<Pick<INavLink, "bgColor" | "img"> & IPath>`
   }
 `;
 
-export const NavLink = styled(Link)<Pick<IUrl, "currentpath" | "href">>`
+export const NavLink = styled(Link) < Pick<IUrl, "currentpath" | "href"> & {visibility: boolean | undefined} >`
+visibility: ${p=>p.visibility ? "hidden" : "visible"};
+
   :hover,
   :focus {
     & ${LinkTitle} {

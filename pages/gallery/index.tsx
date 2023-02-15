@@ -41,7 +41,7 @@ interface IProps {
 
 const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
   const [showModal, setShowModal] = useState(false);
-  const { showMobileMenu, toggleMobileMenu } = useShowMobileMenu();
+  const { showMobileMenu, visibleMobileMenu } = useShowMobileMenu();
 
   // console.log(`catsData ${catsData}`);
   // console.log(`amountCats ${amountCats}`);
@@ -114,7 +114,7 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
       </Head>
       <SC.GalleryFavoriteCatNavigation
         visibleModal={showModal}
-        onShowMobileMenu={toggleMobileMenu}
+        onShowMobileMenu={visibleMobileMenu}
       />
       <SC.GalleryContainer visibleModal={showModal}>
         <SC.Wrapp>

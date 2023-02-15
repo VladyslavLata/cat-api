@@ -41,13 +41,13 @@ export const VotingButton = styled(ButtonIcon)<{ index: number }>`
   border-radius: ${(p) => p.theme.radii.none};
 
   border-top-left-radius: ${(p) =>
-    p.index === 0 ? p.theme.radii.s : p.theme.radii.none};
+    p.index === 0 ? p.theme.radii.m : p.theme.radii.none};
   border-bottom-left-radius: ${(p) =>
-    p.index === 0 ? p.theme.radii.s : p.theme.radii.none};
+    p.index === 0 ? p.theme.radii.m : p.theme.radii.none};
   border-top-right-radius: ${(p) =>
-    p.index === 2 ? p.theme.radii.s : p.theme.radii.none};
+    p.index === 2 ? p.theme.radii.m : p.theme.radii.none};
   border-bottom-right-radius: ${(p) =>
-    p.index === 2 ? p.theme.radii.s : p.theme.radii.none};
+    p.index === 2 ? p.theme.radii.m : p.theme.radii.none};
 
   @media (min-width: 768px) {
     width: 80px;

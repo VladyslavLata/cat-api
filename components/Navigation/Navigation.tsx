@@ -7,9 +7,10 @@ import * as SC from "./Navigation.styled";
 
 interface IProps {
   navLinks: INavLink[];
+  linkVisibility?: boolean;
 }
 
-export const Navigation: FC<IProps> = ({ navLinks }) => {
+export const Navigation: FC<IProps> = ({ navLinks, linkVisibility }) => {
   const { pathname } = useRouter();
   // const changeAllDefaulValueSelect = useStore((state) => state.changeAllSelectsValue)
   
@@ -29,7 +30,7 @@ export const Navigation: FC<IProps> = ({ navLinks }) => {
     <SC.List>
       {navLinks.map(({ path, bgColor, img, text }) => (
         <SC.Item key={path.pathname}>
-          <SC.NavLink href={path} currentpath={pathname}
+          <SC.NavLink href={path} visibility={linkVisibility} currentpath={pathname}
             onClick={() => onChangeDefaultValueSelect(path.pathname)}
           >
             <SC.Wrapp bgColor={bgColor} img={img} currentpath={pathname} path={path}>

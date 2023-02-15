@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { useUbdateStateSelectsValue } from "../../hooks/useUbdateStateSelectsValue";
 import { useChangeSelectsValue } from "../../hooks/useChangeSelectsValue";
-// import { useShowMobileMenu } from "../../hooks/useShowMobileMenu";
+import { useShowMobileMenu } from "../../hooks/useShowMobileMenu";
 import { Gallery } from "../../components/Gallery/Gallery";
 import { BackPagePanel } from "../../components/BackPagePanel/BackPagePanel";
 import { SelectWithDynamicParams } from "../../components/SelectWithDynamicParams/SelectWithDynamicParams";
@@ -40,7 +40,7 @@ interface IProps {
 }
 
 const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
-// const {showMobileMenu, toggleMobileMenu} = useShowMobileMenu()
+const {showMobileMenu} = useShowMobileMenu()
 
   const router = useRouter();
   const params = router.query;
