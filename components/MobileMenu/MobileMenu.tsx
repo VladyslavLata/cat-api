@@ -14,11 +14,11 @@ interface IProps {
 export const MobileMenu: FC<IProps> = ({ displayingMobileMenu, onCloseMobileMenu }) => {
   return (
     <SC.MobileMenu displaying={displayingMobileMenu}>
-      {/* <SC.BtnWrapp> */}
-        <SC.CloseBtn svg={Close} width={25} height={25} primary  onClick={onCloseMobileMenu} />
-      {/* </SC.BtnWrapp> */}
+
+        <SC.CloseBtn svg={Close} width={25} height={25} primary onClick={onCloseMobileMenu} />
+    
       <Container>
-        <Navigation navLinks={dataNavLinks} linkVisibility={!displayingMobileMenu} />
+        <Navigation navLinks={dataNavLinks} linkVisible={displayingMobileMenu} />
       </Container>
     </SC.MobileMenu>
   );

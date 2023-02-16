@@ -22,26 +22,26 @@ export const useShowMobileMenu = () => {
   const visibleMobileMenu = () => {
     const main = document.getElementById("main")!;
 
-    setShowMobileMenu(!showMobileMenu);
+    if (!showMobileMenu) {
+      setShowMobileMenu(!showMobileMenu);
 
-    setTimeout(() => {
-      main.classList.add("visibility-hidden");
-      console.log("add");
-    }, 300);
-    // } else  {
-    //   main.classList.remove("visibility-hidden");
-    //   console.log("remove");
-    // }
+      setTimeout(() => {
+        main.classList.add("visibility-hidden");
+        console.log("add");
+      }, 300);
+    }
   };
 
   const hiddenMobileMenu = () => {
     const main = document.getElementById("main")!;
 
-    setShowMobileMenu(!showMobileMenu);
+    if (showMobileMenu) {
+      setShowMobileMenu(!showMobileMenu);
 
-    main.classList.remove("visibility-hidden");
-    console.log("remove");
+      main.classList.remove("visibility-hidden");
+      console.log("remove");
+    }
   };
 
-  return { hiddenMobileMenu, visibleMobileMenu , showMobileMenu };
+  return { hiddenMobileMenu, visibleMobileMenu, showMobileMenu };
 };

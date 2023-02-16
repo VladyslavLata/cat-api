@@ -75,8 +75,8 @@ visibility: visible;
   }
 `;
 
-export const NavLink = styled(Link) < Pick<IUrl, "currentpath" | "href"> & {visibility: boolean | undefined} >`
-visibility: ${p=>p.visibility ? "hidden" : "visible"};
+export const NavLink = styled(Link) < Pick<IUrl, "currentpath" | "href"> & {linkvisible: string } >`
+visibility: ${p=>p.linkvisible === "true" ? "visible" : "hidden"};
 
   :hover,
   :focus {
