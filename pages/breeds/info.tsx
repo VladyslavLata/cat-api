@@ -30,7 +30,7 @@ interface IProps {
 }
 
 const BreedsInfo: FC<IProps> = ({ breedInfo }) => {
-const {showMobileMenu,toggleMobileMenu} = useShowMobileMenu()
+// const {showMobileMenu} = useShowMobileMenu()
 
   console.log(breedInfo);
 

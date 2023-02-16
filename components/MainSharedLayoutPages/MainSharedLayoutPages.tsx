@@ -11,17 +11,21 @@ import * as SC from "./MainSharedLayoutPages.styled";
 interface Iprops {
   pageTitle: string;
   pageDescription: string;
+  hideLayout?: boolean;
   children: ReactNode;
 }
 
 export const MainSharedLayoutPages: FC<Iprops> = ({
   pageTitle,
   pageDescription,
+  hideLayout = false,
   children,
 }) => {
   const { showMobileMenu, showContent, onVisibleMobileMenu, onHiddenMobileMenu } =
     useShowMobileMenu();
 
+  const visibleContent = hideLayout ? !hideLayout  : showContent  ;
+  
   return (
     <>
       <Head>
@@ -29,7 +33,7 @@ export const MainSharedLayoutPages: FC<Iprops> = ({
         <meta name="description" content={pageDescription} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <WrappContent showContent={showContent}>
+      <WrappContent showContent={visibleContent}>
       <FavoriteCatNavigation onShowMobileMenu={onVisibleMobileMenu} />
         <Container>{children}</Container>
       </WrappContent>

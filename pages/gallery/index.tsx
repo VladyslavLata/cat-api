@@ -12,6 +12,7 @@ import { GalleryOptionPanel } from "../../components/GalleryOptionPanel/GalleryO
 import { IDataCat, ICateory } from "../../types/types";
 import { useUbdateStateSelectsValue } from "../../hooks/useUbdateStateSelectsValue";
 import { useChangeSelectsValue } from "../../hooks/useChangeSelectsValue";
+import { MainSharedLayoutPages } from "../../components/MainSharedLayoutPages/MainSharedLayoutPages";
 import { useShowMobileMenu } from "../../hooks/useShowMobileMenu";
 import { dataNavLinks } from "../../constants/dataNavLinks";
 import Upload from "../../public/upload.svg";
@@ -41,7 +42,7 @@ interface IProps {
 
 const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
   const [showModal, setShowModal] = useState(false);
-  const { showMobileMenu, visibleMobileMenu } = useShowMobileMenu();
+  // const { showMobileMenu, visibleMobileMenu } = useShowMobileMenu();
 
   // console.log(`catsData ${catsData}`);
   // console.log(`amountCats ${amountCats}`);
@@ -112,11 +113,12 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
         <meta name="description" content="Gallery of cats" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <SC.GalleryFavoriteCatNavigation
+      {/* <SC.GalleryFavoriteCatNavigation
         visibleModal={showModal}
         onShowMobileMenu={visibleMobileMenu}
-      />
-      <SC.GalleryContainer visibleModal={showModal}>
+      /> */}
+      {/* <SC.GalleryContainer visibleModal={showModal}> */}
+      <MainSharedLayoutPages hideLayout={showModal} pageTitle="Cat gallery" pageDescription="Cat gallery">
         <SC.Wrapp>
           <BackPagePanel page="gallery" />
           <SC.UploadBtn btn={"main"} onClick={toggleModal}>
@@ -144,7 +146,8 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
               load another cats
             </SC.BtnLoadMore>
           )}
-      </SC.GalleryContainer>
+        {/* </SC.GalleryContainer> */}
+      </MainSharedLayoutPages>
       <Modal show={showModal} onClose={toggleModal}>
         <ModalUploadInterface />
       </Modal>

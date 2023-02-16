@@ -5,11 +5,11 @@ import { Container } from "../components/Container/Container";
 import { FavoriteCatNavigation } from "../components/FavoriteCatNavigation/FavoriteCatNavigation";
 
 export const GalleryFavoriteCatNavigation = styled(FavoriteCatNavigation)<{visibleModal: boolean}>`
-  visibility: ${p => p.visibleModal ? "hidden" : "visible"};
+  /* visibility: ${p => p.visibleModal ? "hidden" : "visible"}; */
 `
 
 export const GalleryContainer = styled(Container)<{visibleModal: boolean}>`
-  visibility: ${p => p.visibleModal ? "hidden" : "visible"};
+  /* visibility: ${p => p.visibleModal ? "hidden" : "visible"}; */
 `
 
 export const UploadBtn = styled(Btn)`

@@ -10,6 +10,8 @@ height: 100vh;
 transform: translateX(${p=>p.displaying ? 0 : "-101%" });
 padding: ${p=>p.theme.space[7]}px;
 background-color: red;
+background-color: transparent;
+z-index: 5;
 /* visibility: ${p=>p.displaying ? "visible" : "hidden"}; */
 pointer-events: visible;
 visibility: visible;
