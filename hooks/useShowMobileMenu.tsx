@@ -2,13 +2,14 @@ import { useState, useEffect, useCallback } from "react";
 
 export const useShowMobileMenu = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showContent, setShowContent] = useState(true);
 
-  const HIDDEN_CLASS = "visibility-hidden";
+  // const HIDDEN_CLASS = "visibility-hidden";
   // const [targetReached, setTargetReached] = useState(false);
-  const findMainElement = () => {
-    const main = document.getElementById("main")!;
-    return main;
-}
+//   const findMainElement = () => {
+//     const main = document.getElementById("main")!;
+//     return main;
+// }
 
 //   const addHiddenToMainElement = () => {
 //   findMainElement().classList.add("visibility-hidden");
@@ -31,8 +32,9 @@ console.log("qqqqqqqqqqqqq");
      
      console.log("wwwwwwwwwwwwww");
     //  const main = document.getElementById("main")!;
-     findMainElement().classList.remove(HIDDEN_CLASS);
-     setShowMobileMenu(false)
+    //  findMainElement().classList.remove(HIDDEN_CLASS);
+     setShowContent(true);
+     setShowMobileMenu(false);
    }
   //  else {
   //    console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
@@ -68,10 +70,11 @@ console.log("qqqqqqqqqqqqq");
     // const main = document.getElementById("main")!;
 
     if (!showMobileMenu) {
-      setShowMobileMenu(!showMobileMenu);
+      setShowMobileMenu(true);
 
       setTimeout(() => {
-        findMainElement().classList.add(HIDDEN_CLASS);
+        setShowContent(false);
+        // findMainElement().classList.add(HIDDEN_CLASS);
         console.log("add");
       }, 300);
     }
@@ -81,12 +84,13 @@ console.log("qqqqqqqqqqqqq");
     // const main = document.getElementById("main")!;
 
     if (showMobileMenu) {
-      setShowMobileMenu(!showMobileMenu);
+      setShowContent(true);
+      setShowMobileMenu(false);
 
-      findMainElement().classList.remove(HIDDEN_CLASS);
+      // findMainElement().classList.remove(HIDDEN_CLASS);
       console.log("remove");
     }
   };
 
-  return { onHiddenMobileMenu, onVisibleMobileMenu, showMobileMenu };
+  return { onHiddenMobileMenu, onVisibleMobileMenu, showMobileMenu, showContent };
 };

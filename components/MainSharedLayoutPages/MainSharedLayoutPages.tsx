@@ -4,7 +4,9 @@ import { Media } from "../../media";
 import { Container } from "../Container/Container.styled";
 import { FavoriteCatNavigation } from "../FavoriteCatNavigation/FavoriteCatNavigation";
 import { useShowMobileMenu } from "../../hooks/useShowMobileMenu";
+import { WrappContent } from "../WrappContent/WrappContent";
 import { MobileMenu } from "../MobileMenu/MobileMenu";
+import * as SC from "./MainSharedLayoutPages.styled";
 
 interface Iprops {
   pageTitle: string;
@@ -17,7 +19,7 @@ export const MainSharedLayoutPages: FC<Iprops> = ({
   pageDescription,
   children,
 }) => {
-  const { showMobileMenu, onVisibleMobileMenu, onHiddenMobileMenu } =
+  const { showMobileMenu, showContent, onVisibleMobileMenu, onHiddenMobileMenu } =
     useShowMobileMenu();
 
   return (
@@ -27,10 +29,10 @@ export const MainSharedLayoutPages: FC<Iprops> = ({
         <meta name="description" content={pageDescription} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
+      <WrappContent showContent={showContent}>
       <FavoriteCatNavigation onShowMobileMenu={onVisibleMobileMenu} />
         <Container>{children}</Container>
-      </div>
+      </WrappContent>
       <Media lessThan="l">
         <MobileMenu
           displayingMobileMenu={showMobileMenu}
