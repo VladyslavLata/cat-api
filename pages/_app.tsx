@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import * as SC from "../styles/App.styled";
+
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { Jost } from "@next/font/google";

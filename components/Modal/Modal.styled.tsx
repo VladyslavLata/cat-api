@@ -9,7 +9,7 @@ export const Backdrop = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: rgba(29, 29, 29, 0.6);
-
+/* visibility: hidden; */
   /* body & {
     overflow: scroll;
   } */

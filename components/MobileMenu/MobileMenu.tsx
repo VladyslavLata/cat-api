@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Container } from "../Container/Container";
 import { Navigation } from "../Navigation/Navigation";
 import { dataNavLinks } from "../../constants/dataNavLinks";
-import Close from "../../public/close.svg"; 
+import Close from "../../public/close.svg";
 import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
 import * as SC from "./MobileMenu.styled";
 
@@ -11,14 +11,25 @@ interface IProps {
   onCloseMobileMenu: () => void;
 }
 
-export const MobileMenu: FC<IProps> = ({ displayingMobileMenu, onCloseMobileMenu }) => {
+export const MobileMenu: FC<IProps> = ({
+  displayingMobileMenu,
+  onCloseMobileMenu,
+}) => {
   return (
     <SC.MobileMenu displaying={displayingMobileMenu}>
-
-        <SC.CloseBtn svg={Close} width={25} height={25} primary onClick={onCloseMobileMenu} />
-    
+      <SC.CloseBtn
+        svg={Close}
+        width={25}
+        height={25}
+        primary
+        disabled={!displayingMobileMenu}
+        onClick={onCloseMobileMenu}
+      />
       <Container>
-        <Navigation navLinks={dataNavLinks} linkVisible={displayingMobileMenu} />
+        <Navigation
+          navLinks={dataNavLinks}
+          linkVisible={displayingMobileMenu}
+        />
       </Container>
     </SC.MobileMenu>
   );

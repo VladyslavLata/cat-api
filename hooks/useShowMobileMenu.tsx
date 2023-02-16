@@ -1,8 +1,53 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export const useShowMobileMenu = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
+  const HIDDEN_CLASS = "visibility-hidden";
+  // const [targetReached, setTargetReached] = useState(false);
+  const findMainElement = () => {
+    const main = document.getElementById("main")!;
+    return main;
+}
+
+//   const addHiddenToMainElement = () => {
+//   findMainElement().classList.add("visibility-hidden");
+// }
+
+
+//     const removeHiddenToMainElement = () => {
+//   findMainElement().classList.remove("visibility-hidden");
+// } 
+
+
+  useEffect(() =>
+  {
+console.log("qqqqqqqqqqqqq");
+    
+ const updateTarget =(e: MediaQueryListEvent) =>
+  {
+   if (e.matches) {
+     console.log("ddddddddddddddddddddddddddddddddddddddddddddddddddd");
+     
+     console.log("wwwwwwwwwwwwww");
+    //  const main = document.getElementById("main")!;
+     findMainElement().classList.remove(HIDDEN_CLASS);
+     setShowMobileMenu(false)
+   }
+  //  else {
+  //    console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+  //   }
+    //  setTargetReached(true)
+    // else setTargetReached(false)
+  }
+    const media = window.matchMedia(`(min-width: ${1440}px)`)
+    media.addEventListener('change', updateTarget)
+
+    // Check on mount (callback is not called until a change occurs)
+    if (media.matches) { updateTarget }
+
+    return () => media.removeEventListener('change', updateTarget)
+  }, [])
   //   const toggleMobileMenu = () => {
 
   //  const main = document.getElementById("main")!;
@@ -19,29 +64,29 @@ export const useShowMobileMenu = () => {
   //     }
   //   }
 
-  const visibleMobileMenu = () => {
-    const main = document.getElementById("main")!;
+  const onVisibleMobileMenu = () => {
+    // const main = document.getElementById("main")!;
 
     if (!showMobileMenu) {
       setShowMobileMenu(!showMobileMenu);
 
       setTimeout(() => {
-        main.classList.add("visibility-hidden");
+        findMainElement().classList.add(HIDDEN_CLASS);
         console.log("add");
       }, 300);
     }
   };
 
-  const hiddenMobileMenu = () => {
-    const main = document.getElementById("main")!;
+  const onHiddenMobileMenu = () => {
+    // const main = document.getElementById("main")!;
 
     if (showMobileMenu) {
       setShowMobileMenu(!showMobileMenu);
 
-      main.classList.remove("visibility-hidden");
+      findMainElement().classList.remove(HIDDEN_CLASS);
       console.log("remove");
     }
   };
 
-  return { hiddenMobileMenu, visibleMobileMenu, showMobileMenu };
+  return { onHiddenMobileMenu, onVisibleMobileMenu, showMobileMenu };
 };

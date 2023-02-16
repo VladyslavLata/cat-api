@@ -5,8 +5,8 @@ export const MobileMenu = styled.div<{ displaying: boolean }>`
 position: absolute;
 top: 0;
 left: 0;
-width: 100px;
-height: 100px;
+width: 100vw;
+height: 100vh;
 transform: translateX(${p=>p.displaying ? 0 : "-101%" });
 padding: ${p=>p.theme.space[7]}px;
 background-color: red;
@@ -37,7 +37,7 @@ transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
 export const CloseBtn = styled(ButtonIcon)`
   width: 60px;
   height: 60px;
-  /* margin-left: auto; */
+  margin-left: auto;
   background-color: ${p => p.theme.colors.bgSecondary};
   border-radius: ${p => p.theme.radii.m};
  
