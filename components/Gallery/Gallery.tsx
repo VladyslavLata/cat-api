@@ -41,5 +41,4 @@ export const Gallery: FC<IProps> = ({ dataCats }) => {
   );
 }
 
- 
 };

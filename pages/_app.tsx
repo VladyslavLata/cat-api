@@ -1,6 +1,5 @@
 import "../styles/globals.css";
 import * as SC from "../styles/App.styled";
-
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { Jost } from "@next/font/google";
@@ -18,7 +17,8 @@ const jost = Jost({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
-  const {pathname} = useRouter();
+  const { pathname } = useRouter();
+
   return (
     <>
       <style jsx global>{`

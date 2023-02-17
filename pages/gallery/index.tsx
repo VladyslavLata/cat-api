@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useStore } from "../../Store/Store";
 import { GetServerSideProps } from "next";
 import { getCatGallery, getCategories } from "../../API/catAPI";
 import { BackPagePanel } from "../../components/BackPagePanel/BackPagePanel";
@@ -11,7 +12,7 @@ import { ModalUploadInterface } from "../../components/ModalUploadInterface/Moda
 import { GalleryOptionPanel } from "../../components/GalleryOptionPanel/GalleryOptionPanel";
 import { IDataCat, ICateory } from "../../types/types";
 import { useUbdateStateSelectsValue } from "../../hooks/useUbdateStateSelectsValue";
-import { useShowModal } from "../../hooks/useShowModal";
+// import { useShowModal } from "../../hooks/useShowModal";
 import { useChangeSelectsValue } from "../../hooks/useChangeSelectsValue";
 import { MainSharedLayoutPages } from "../../components/MainSharedLayoutPages/MainSharedLayoutPages";
 import { useShowMobileMenu } from "../../hooks/useShowMobileMenu";
@@ -43,15 +44,15 @@ interface IProps {
 
 const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
   // const [showModal, setShowModal] = useState(false);
-  const {showModal, showContent, onHiddenModal, onVisibleModal } = useShowModal();
+  // const {showModal, showContent, onHiddenModal, onVisibleModal } = useShowModal();
   // const { showMobileMenu, visibleMobileMenu } = useShowMobileMenu();
-
+  const {showModal, openModal, closeModal } = useStore();
   // console.log(`catsData ${catsData}`);
   // console.log(`amountCats ${amountCats}`);
 
   const router = useRouter();
   const params = router.query;
-  const currentPage = Number(params.page);
+  // const currentPage = Number(params.page);
 
   // console.log(catsData);
   // const {selectsValue} = useStore();
@@ -120,10 +121,10 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
         onShowMobileMenu={visibleMobileMenu}
       /> */}
       {/* <SC.GalleryContainer visibleModal={showModal}> */}
-      <MainSharedLayoutPages hideLayout={!showContent} pageTitle="Cat gallery" pageDescription="Cat gallery">
+      <MainSharedLayoutPages hideLayout={showModal} pageTitle="Cat gallery" pageDescription="Cat gallery">
         <SC.Wrapp>
           <BackPagePanel page="gallery" />
-          <SC.UploadBtn btn={"main"} onClick={onVisibleModal}>
+          <SC.UploadBtn btn={"main"} onClick={openModal}>
             <Upload width={16} height={16} fill={"currentColor"} />
             upload
           </SC.UploadBtn>
@@ -150,7 +151,7 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
           )}
         {/* </SC.GalleryContainer> */}
       </MainSharedLayoutPages>
-      <Modal show={showModal} onClose={onHiddenModal}>
+      <Modal show={showModal} onClose={closeModal}>
         <ModalUploadInterface />
       </Modal>
     </>

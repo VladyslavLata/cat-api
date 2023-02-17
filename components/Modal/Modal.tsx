@@ -1,5 +1,6 @@
 import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";
+import { useStore } from "../../Store/Store";
 import Close from "../../public/close.svg";
 import * as SC from "./Modal.styled";
 
@@ -11,6 +12,7 @@ interface IProps {
 
 export const Modal: React.FC<IProps> = ({ show, onClose, children }) => {
   const [isBrowser, setIsBrowser] = useState(false);
+  const {closeModal} = useStore();
 
   useEffect(() => {
     setIsBrowser(true);
@@ -24,6 +26,12 @@ export const Modal: React.FC<IProps> = ({ show, onClose, children }) => {
       document.body.style["overflowY"] = "unset";
     };
   }, [show]);
+
+  useEffect(() => {
+    return () => {
+      closeModal();
+    }
+  },[closeModal])
 
   useEffect(() => {
     const closeModalPressEsc = (e: KeyboardEvent) => {
@@ -43,7 +51,7 @@ export const Modal: React.FC<IProps> = ({ show, onClose, children }) => {
   };
 
   const modalContent = show ? (
-    <SC.Backdrop onClick={closeModalClickBackdrop} show={show}>
+    <SC.Backdrop onClick={closeModalClickBackdrop} id="modal-backdrop">
       <SC.ModalBox>
         <SC.ButtonCloseModal
           svg={Close}
@@ -53,7 +61,7 @@ export const Modal: React.FC<IProps> = ({ show, onClose, children }) => {
           onClick={onClose}
         />
         {children}
-      </SC.ModalBox>
+        </SC.ModalBox>
     </SC.Backdrop>
   ) : null;
 

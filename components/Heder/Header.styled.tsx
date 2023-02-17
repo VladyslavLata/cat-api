@@ -6,10 +6,9 @@ export const Header = styled.header`
 @media (min-width: 768px) {
   padding-left: ${p => `${p.theme.space[16]}px` };
 }
-
 `
 
-export const LogoLink = styled(Link)`
-
+export const LogoLink = styled(Link)<{showLink: boolean }>`
+visibility: ${p=>p.showLink ? "visible" : "hidden" };
 
 `
