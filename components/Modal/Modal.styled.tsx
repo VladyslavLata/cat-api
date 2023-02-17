@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
 
-export const Backdrop = styled.div`
+export const Backdrop = styled.div<{show: boolean}>`
   position: fixed;
   top: 0;
   left: 0;
@@ -9,6 +9,8 @@ export const Backdrop = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: rgba(29, 29, 29, 0.6);
+  opacity: ${p=>p.show ? 1 : 0};
+  transition: opacity 5000ms cubic-bezier(0.4, 0, 0.2, 1);
 /* visibility: hidden; */
   /* body & {
     overflow: scroll;

@@ -43,7 +43,7 @@ export const Modal: React.FC<IProps> = ({ show, onClose, children }) => {
   };
 
   const modalContent = show ? (
-    <SC.Backdrop onClick={closeModalClickBackdrop}>
+    <SC.Backdrop onClick={closeModalClickBackdrop} show={show}>
       <SC.ModalBox>
         <SC.ButtonCloseModal
           svg={Close}

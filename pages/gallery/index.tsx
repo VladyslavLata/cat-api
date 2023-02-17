@@ -11,6 +11,7 @@ import { ModalUploadInterface } from "../../components/ModalUploadInterface/Moda
 import { GalleryOptionPanel } from "../../components/GalleryOptionPanel/GalleryOptionPanel";
 import { IDataCat, ICateory } from "../../types/types";
 import { useUbdateStateSelectsValue } from "../../hooks/useUbdateStateSelectsValue";
+import { useShowModal } from "../../hooks/useShowModal";
 import { useChangeSelectsValue } from "../../hooks/useChangeSelectsValue";
 import { MainSharedLayoutPages } from "../../components/MainSharedLayoutPages/MainSharedLayoutPages";
 import { useShowMobileMenu } from "../../hooks/useShowMobileMenu";
@@ -41,7 +42,8 @@ interface IProps {
 }
 
 const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
+  const {showModal, showContent, onHiddenModal, onVisibleModal } = useShowModal();
   // const { showMobileMenu, visibleMobileMenu } = useShowMobileMenu();
 
   // console.log(`catsData ${catsData}`);
@@ -102,9 +104,9 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
     });
   };
 
-  const toggleModal = () => {
-    setShowModal(!showModal);
-  };
+  // const toggleModal = () => {
+  //   setShowModal(!showModal);
+  // };
 
   return (
     <>
@@ -118,10 +120,10 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
         onShowMobileMenu={visibleMobileMenu}
       /> */}
       {/* <SC.GalleryContainer visibleModal={showModal}> */}
-      <MainSharedLayoutPages hideLayout={showModal} pageTitle="Cat gallery" pageDescription="Cat gallery">
+      <MainSharedLayoutPages hideLayout={!showContent} pageTitle="Cat gallery" pageDescription="Cat gallery">
         <SC.Wrapp>
           <BackPagePanel page="gallery" />
-          <SC.UploadBtn btn={"main"} onClick={toggleModal}>
+          <SC.UploadBtn btn={"main"} onClick={onVisibleModal}>
             <Upload width={16} height={16} fill={"currentColor"} />
             upload
           </SC.UploadBtn>
@@ -148,7 +150,7 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
           )}
         {/* </SC.GalleryContainer> */}
       </MainSharedLayoutPages>
-      <Modal show={showModal} onClose={toggleModal}>
+      <Modal show={showModal} onClose={onHiddenModal}>
         <ModalUploadInterface />
       </Modal>
     </>
