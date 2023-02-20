@@ -1,5 +1,4 @@
 import { FC } from "react";
-// import { useStore } from "../../Store/Store";
 import { Header } from "../Heder/Header";
 import { Hero } from "../Hero/Hero";
 import * as SC from "./Aside.styled";

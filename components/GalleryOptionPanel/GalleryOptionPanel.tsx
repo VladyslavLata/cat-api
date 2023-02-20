@@ -3,7 +3,6 @@ import { Select } from "../Select/Select";
 import { SelectWithDynamicParams } from "../SelectWithDynamicParams/SelectWithDynamicParams";
 import { ICateory } from "../../types/types";
 import { dataSelects } from "../../constants/selectDatas";
-// import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
 import Update from "../../public/update.svg";
 import * as SC from "./GalleryOptionPanel.styled";
 
