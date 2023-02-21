@@ -9,5 +9,4 @@ export const WrapperText = styled.div`
   margin-top: ${(p) => p.theme.space[3]}px;
   border-radius: ${(p) => p.theme.radii.s};
   background-color: ${(p) => p.theme.colors.bgSecondary};
-
 `;

@@ -17,7 +17,6 @@ export const Select = styled.select<{ primary: boolean | undefined }>`
     border-color: ${p => p.theme.colors.bgAccentSecondary};
     cursor: pointer;
   }
-
 `
 
 export const Label = styled.label`

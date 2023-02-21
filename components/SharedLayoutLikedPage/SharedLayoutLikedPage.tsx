@@ -14,7 +14,7 @@ interface IProps {
 }
 
 export const SharedLayoutLikedPage: FC<IProps> = ({ pageName, pageTitle, pageDescription,  children }) => {
-  const {showMobileMenu, visibleMobileMenu } = useShowMobileMenu();
+  const {showMobileMenu, onVisibleMobileMenu } = useShowMobileMenu();
 
   return (
     <>
@@ -26,7 +26,7 @@ export const SharedLayoutLikedPage: FC<IProps> = ({ pageName, pageTitle, pageDes
         />
         <link rel="icon" href="/favicon.ico" />
     </Head>
-      <FavoriteCatNavigation onShowMobileMenu={visibleMobileMenu}/>
+      <FavoriteCatNavigation onShowMobileMenu={onVisibleMobileMenu}/>
       <SC.ContainerWrapp>
         <Container>
           <BackPagePanel page={pageName} />

@@ -13,32 +13,36 @@ type IProps = {
 
 export const Gallery: FC<IProps> = ({ dataCats }) => {
   const { pathname } = useRouter();
-  // console.log(pathname);
 
   if (!("image_id" in dataCats[0])) {
-    const anyoneDataCats = dataCats as IDataCat[]
-   return (
-    <SC.List>
-      { anyoneDataCats.map((anyoneDataCat) => (
-        <SC.Item key={anyoneDataCat.id}>
-          {pathname === "/breeds" && <GalleryItemBreeds dataCat={anyoneDataCat} />}
-          {pathname === "/gallery" && <GalleryItem dataCat={anyoneDataCat} />}
-        </SC.Item>
-      ))}
-    </SC.List>
-  );
+    const anyoneDataCats = dataCats as IDataCat[];
+    return (
+      <SC.List>
+        {anyoneDataCats.map((anyoneDataCat) => (
+          <SC.Item key={anyoneDataCat.id}>
+            {pathname === "/breeds" && (
+              <GalleryItemBreeds dataCat={anyoneDataCat} />
+            )}
+            {pathname === "/gallery" && <GalleryItem dataCat={anyoneDataCat} />}
+          </SC.Item>
+        ))}
+      </SC.List>
+    );
   } else {
-    const favouriteDataCats = dataCats as ILikeDataCat[] | IFavouriteDataCat[]  ;
-     return (
-    <SC.List>
-      { favouriteDataCats.map((favouriteDataCat) => (
-        <SC.Item key={favouriteDataCat.id}>
-          {pathname === "/likes" && <GalleryItemLike dataCat={favouriteDataCat} />}
-          {pathname === "/favourites" && <GalleryItemFavourite dataCat={favouriteDataCat} />}
-        </SC.Item>
-      ))}
-    </SC.List>
-  );
-}
-
+    const favouriteDataCats = dataCats as ILikeDataCat[] | IFavouriteDataCat[];
+    return (
+      <SC.List>
+        {favouriteDataCats.map((favouriteDataCat) => (
+          <SC.Item key={favouriteDataCat.id}>
+            {pathname === "/likes" && (
+              <GalleryItemLike dataCat={favouriteDataCat} />
+            )}
+            {pathname === "/favourites" && (
+              <GalleryItemFavourite dataCat={favouriteDataCat} />
+            )}
+          </SC.Item>
+        ))}
+      </SC.List>
+    );
+  }
 };

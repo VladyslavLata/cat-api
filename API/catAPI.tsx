@@ -8,10 +8,7 @@ const CAT_API_KEY =
 
 axios.defaults.baseURL = "https://api.thecatapi.com/v1";
 axios.defaults.headers.common["x-api-key"] = CAT_API_KEY;
-//  headers: {'X-Requested-With': 'XMLHttpRequest'},
-// axios.defaults.headers.post["Origin"] = null;
-// axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
-// axios.defaults.headers.post['x-api-key'] = CAT_API_KEY;
+
 
 export const getCatGallery = async (param: ParsedUrlQuery) => {
   const respons = await axios.get("/images/search", { params: param });

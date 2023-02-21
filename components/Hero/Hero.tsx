@@ -1,5 +1,4 @@
 import { FC } from "react";
-// import { useStore } from "../../Store/Store";
 import { HiddenTitle } from "../HiddenTitle/HiddenTitle";
 import { Text } from "../Text/Text";
 import { useStore } from "../../Store/Store";
@@ -10,16 +9,7 @@ import * as SC from "./Hero.styled";
 
 export const Hero: FC = () => {
   const {showModal}=useStore();
-  // const [isBrowser, setIsBrowser] = useState(false);
   console.log(`showModal hero ${showModal}`);
-  // useEffect(() => {
-  //   setIsBrowser(true);
-  // }, []);
-
-  // if (isBrowser) {
-  // const visibleModal = document.getElementById("modal-backdrop") ? true :  false ;
-  // }
-  // const {showModal } = useStore();
 
   return (
     <SC.Section>

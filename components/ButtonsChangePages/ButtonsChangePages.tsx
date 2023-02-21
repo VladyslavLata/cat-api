@@ -5,9 +5,6 @@ import Arrow from "../../public/arrow.svg";
 import * as SC from "./ButtonsChangePages.styled";
 
 interface IProps {
-  // changePage: (page: number) => void,
-  // currentPage: number,
-  // lastPage: boolean,
   amountCats: string;
 }
 
@@ -16,10 +13,6 @@ export const ButtonsChangePages: FC<IProps> = ({ amountCats }) => {
   const router = useRouter();
   const { query, pathname } = router;
   const currentPage = Number(query.page);
-  // const currentPage = query.page !== "" ? Number(query.page) : "";
-  // if (currentPage === "") {
-  //   return;
-  // }
 
   const changePage = (value: number) => {
     router.push({

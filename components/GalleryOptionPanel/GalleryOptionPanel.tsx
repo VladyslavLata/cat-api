@@ -6,7 +6,6 @@ import { dataSelects } from "../../constants/selectDatas";
 import Update from "../../public/update.svg";
 import * as SC from "./GalleryOptionPanel.styled";
 
-
 interface IProps {
   categories: ICateory[];
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -40,7 +39,7 @@ export const GalleryOptionPanel: FC<IProps> = ({ categories, onChange, onClickBt
           </SC.SelectItem>
         ))}
       </SC.SelectsList>
-     <SC.UpdateBtn
+      <SC.UpdateBtn
         svg={Update}
         primary
         width={20}

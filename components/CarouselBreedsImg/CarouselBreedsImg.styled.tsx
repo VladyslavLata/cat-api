@@ -27,15 +27,3 @@ export const CarouselWrapp = styled(Carousel)`
     object-position: 50% 20%;
   }
 `;
-
-// export const Thumb = styled.div`
-// width: 100px;
-// height: 360px;
-// border-radius: ${p => p.theme.radii.m};
-// overflow: hidden;
-
-// & img {
-//   object-fit:cover;
-
-// }
-// `;

@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { IBreeds } from "../../types/types";
 import { InfoParamBreed } from "../InfoParamBreed/InfoParamBreed";
-import { Box } from "../Box/Box";
 import * as SC from "./InfoBreedBox.styled";
 
 interface IProps {

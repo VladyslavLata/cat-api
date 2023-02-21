@@ -50,7 +50,6 @@ export const Form = styled.form<{ uploadStatus: boolean | null }>`
   }
 
   @media (min-width: 768px) {
-    /* width: 640px; */
     height: 320px;
   }
 `;
@@ -87,9 +86,6 @@ export const PreviewTextAccent = styled.span`
   color: ${(p) => p.theme.colors.textPrimary};
 `;
 
-// export const PreviewBoxBtn = styled.button`
-// width: 100%;
-// `;
 
 export const InputUpload = styled.input`
   display: none;

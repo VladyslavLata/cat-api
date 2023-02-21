@@ -8,7 +8,7 @@ export const Header = styled.header`
 }
 `
 
-export const LogoLink = styled(Link)<{showLink: boolean }>`
-visibility: ${p=>p.showLink ? "visible" : "hidden" };
+export const LogoLink = styled(Link)<{showlink: string }>`
+visibility: ${p=>p.showlink === "true"  ? "visible" : "hidden" };
 
 `

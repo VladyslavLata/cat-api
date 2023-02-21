@@ -8,9 +8,7 @@ import * as SC from "./ModalUploadInterface.styled";
 const noFileName = "No file selected";
 
 export const ModalUploadInterface: FC = () => {
-  // const [image, setImage] = useState("");
   const [fileCat, setFileCat] = useState<null | File>(null);
-  // const [fileName, setFileName] = useState(noFileName);
   const [uploadStatus, setUploadStatus] = useState<boolean | null>(null);
   const [status, setStatus] = useState("idle");
 
@@ -18,16 +16,13 @@ export const ModalUploadInterface: FC = () => {
     return document.getElementById("input-upload")! as HTMLInputElement;
   };
 
-  // console.log(fileCat);
-  // console.log(status);
-
   const onClickFormSelectImg = () => {
     input().click();
   };
 
   const submitForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.target as HTMLFormElement; 
+    const form = e.target as HTMLFormElement;
 
     if (!fileCat) {
       return;
@@ -41,14 +36,13 @@ export const ModalUploadInterface: FC = () => {
       const catUpload = await uploadCatImage(fileCat);
       console.log(catUpload);
       setFileCat(null);
-      // setFileName(noFileName);
       setStatus("fulfilled");
       setUploadStatus(true);
       form.reset();
     } catch (error) {
       setStatus("rejected");
       setUploadStatus(false);
-    } 
+    }
   };
 
   const omDragOverForm = (e: DragEvent<HTMLFormElement>) => {
@@ -62,8 +56,6 @@ export const ModalUploadInterface: FC = () => {
     console.log(file);
     if (file.length && (type === "image/png" || type === "image/jpeg")) {
       input().files = file;
-      // setFileName(`Image File Name: ${file[0].name}`);
-      // setImage(URL.createObjectURL(file[0]));
       setFileCat(file[0]);
       setUploadStatus(null);
     }
@@ -75,11 +67,9 @@ export const ModalUploadInterface: FC = () => {
     const file = target.files;
 
     if (file && file.length) {
-      // setFileName(`Image File Name: ${file[0].name}`);
-      // setImage(URL.createObjectURL(file[0]));
       setFileCat(file[0]);
       setUploadStatus(null);
-    } 
+    }
   };
 
   const imageCatURL = fileCat ? URL.createObjectURL(fileCat) : "";
@@ -107,7 +97,6 @@ export const ModalUploadInterface: FC = () => {
         onDragOver={omDragOverForm}
         onDrop={onDropImg}
         uploadStatus={uploadStatus}
-     
       >
         <SC.PreviewBox img={imageCatURL}>
           {imageCatURL === "" && (
@@ -144,7 +133,9 @@ export const ModalUploadInterface: FC = () => {
           upload photo
         </SC.UploadBtn>
       )}
-      {uploadStatus !== null && <MessageUploadImg uploadStatus={uploadStatus} />}
+      {uploadStatus !== null && (
+        <MessageUploadImg uploadStatus={uploadStatus} />
+      )}
     </SC.Wrapp>
   );
 };

@@ -23,14 +23,14 @@ export const useShowMobileMenu = () => {
 
   useEffect(() =>
   {
-console.log("qqqqqqqqqqqqq");
+console.log("qq");
     
  const updateTarget =(e: MediaQueryListEvent) =>
   {
    if (e.matches) {
-     console.log("ddddddddddddddddddddddddddddddddddddddddddddddddddd");
+     console.log("dd");
      
-     console.log("wwwwwwwwwwwwww");
+     console.log("ww");
     //  const main = document.getElementById("main")!;
     //  findMainElement().classList.remove(HIDDEN_CLASS);
      setShowContent(true);

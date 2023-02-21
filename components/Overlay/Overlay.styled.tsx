@@ -10,8 +10,6 @@ export const Overlay = styled.div`
   height: 100%;
   padding: ${(p) => p.theme.space[3]}px;
   background-color: ${(p) => p.theme.colors.bgAccentPrimaryTransparent};
-  /* border-radius: ${(p) => p.theme.radii.m};
-  overflow: hidden; */
   opacity: 0;
   z-index: 2;
   transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);

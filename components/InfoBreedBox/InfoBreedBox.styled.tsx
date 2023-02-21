@@ -1,5 +1,4 @@
 import styled from "styled-components";
-// import { Param } from "../InfoParamBreed/InfoParamBreed.styled";
 
 export const InfoBreedWrapp = styled.fieldset`
   position: relative;

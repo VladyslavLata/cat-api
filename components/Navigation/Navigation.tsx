@@ -1,8 +1,6 @@
 import { FC } from "react";
 import { useRouter } from "next/router";
-import { useStore } from "../../Store/Store";
 import { INavLink } from "../../types/types";
-import { defaultSelectsValue } from "../../constants/selectDatas";
 import * as SC from "./Navigation.styled";
 
 interface IProps {
@@ -12,17 +10,14 @@ interface IProps {
 
 export const Navigation: FC<IProps> = ({ navLinks, linkVisible = true }) => {
   const { pathname } = useRouter();
-  // const changeAllDefaulValueSelect = useStore((state) => state.changeAllSelectsValue)
   
   const onChangeDefaultValueSelect = (path: string) => {
     if (path === "/voting") {
       return
     } else
     if (path === "/breeds") {
-      // changeAllDefaulValueSelect({...defaultSelectsValue});
     } else
     if (path === "/gallery") {
-        // changeAllDefaulValueSelect({...defaultSelectsValue, order: "RANDOM"});
     }
   }
 

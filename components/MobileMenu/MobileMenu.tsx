@@ -3,7 +3,6 @@ import { Container } from "../Container/Container";
 import { Navigation } from "../Navigation/Navigation";
 import { dataNavLinks } from "../../constants/dataNavLinks";
 import Close from "../../public/close.svg";
-import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
 import * as SC from "./MobileMenu.styled";
 
 interface IProps {

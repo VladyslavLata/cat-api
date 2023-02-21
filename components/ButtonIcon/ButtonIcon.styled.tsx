@@ -8,7 +8,6 @@ export const BtnIcon = styled.button<{ primary: boolean | undefined }>`
   width: 40px;
   height: 40px;
   color: ${(p) =>p.theme.colors.bgAccentPrimary};
-    /* p.primary ? p.theme.colors.bgSecondary : p.the   me.colors.bgAccentPrimary}; */
   background-color: ${(p) =>
     p.primary ? p.theme.colors.bgSecondary : p.theme.colors.bgAccentSecondary};
   border: ${(p) => p.theme.borders.none};

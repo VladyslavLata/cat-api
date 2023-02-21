@@ -14,7 +14,7 @@ export const List = styled.ul`
 export const Item = styled.li`
   width: 100%;
 
-   @media (max-width: 767px) {
+  @media (max-width: 767px) {
       :not(:last-child) {
         margin-bottom: ${p=>p.theme.space[7]}px
       }
@@ -26,7 +26,6 @@ export const Item = styled.li`
 `;
 
 export const LinkTitle = styled(Text)<IPath>`
- 
   padding: ${(p) => `${p.theme.space[3]}px ${p.theme.space[2]}px`};
   color: ${p=> p.currentpath === p.path.pathname ? p.theme.colors.testAccentSecondary : p.theme.colors.testAccentPrimary};
   background-color: ${(p) => p.currentpath === p.path.pathname ? p.theme.colors.testAccentPrimary : p.theme.colors.bgSecondary};
@@ -36,12 +35,11 @@ export const LinkTitle = styled(Text)<IPath>`
   letter-spacing: 2px;
   box-shadow: ${(p) => p.currentpath === p.path.pathname ? "none" : p.theme.shadows.boxShadow};
   transition: box-shadow 300ms cubic-bezier(0.215, 0.61, 0.355, 1),
-    background-color 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
-visibility: visible;
- 
+  background-color 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  visibility: visible;
 
     @media (min-width: 768px){
-       margin-top: ${(p) => p.theme.space[3]}px;
+    margin-top: ${(p) => p.theme.space[3]}px;
     }
 `;
 

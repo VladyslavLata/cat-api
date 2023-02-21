@@ -6,7 +6,6 @@ justify-content: center;
 align-items: center;
 min-width: 143px;
 min-height: 40px;
-/* margin-left: ${p=>p.theme.space[3]}px; */
 padding: ${p => `${p.theme.space[0]}px ${p.theme.space[9]}px`};
 text-align: center;
 text-transform: uppercase;

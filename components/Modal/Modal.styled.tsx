@@ -9,11 +9,6 @@ export const Backdrop = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: rgba(29, 29, 29, 0.6);
-  /* transition: opacity 5000ms cubic-bezier(0.4, 0, 0.2, 1); */
-/* visibility: hidden; */
-  /* body & {
-    overflow: scroll;
-  } */
 `;
 
 export const ModalBox = styled.div`
@@ -42,14 +37,6 @@ export const ModalBox = styled.div`
   @media (min-width: 1440px) {
     transform: translateX(calc(-50% + 350px));
     width: 680px;
-    /* display: flex; */
-    /* justify-content: end; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    /* height: 90vh; */
-    /* height: 60px; */
-    /* max-height: 1400px;
-  */
   }
 `;
 

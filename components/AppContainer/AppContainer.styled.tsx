@@ -19,7 +19,6 @@ export const AppContainer = styled.div<{currentPage: string}>`
   @media (min-width: 1440px) {
     width: 1440px;
     position: relative;
-    /* display: flex; */
     background-image: url(${p => p.currentPage === "/" ? bgHome.src : "none"});
     background-repeat: no-repeat;
     background-position: top right;

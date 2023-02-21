@@ -15,26 +15,6 @@ interface IProps {
 export const GalleryItem: FC<IProps> = ({ dataCat: { url, breeds, id } }) => {
 
   const { status, currentFavoriteIcon, onAddFavouriteCat } = useFavoriteCat(id);
-  // const [favouriteId, setFavouriteId] = useState<null | number>(null);
-  // const [status, setStatus] = useState("idle");
-
-  // const onAddFavouriteCat = async () => {
-  //   try {
-  //     setStatus("pending");
-  //     if (favouriteId) {
-  //       await removeFavouriteCat(favouriteId);
-  //       setFavouriteId(null);
-  //     } else {
-  //       const respons = await addFovouriteCat(id);
-  //       setFavouriteId(respons.id);
-  //     }
-  //     setStatus("fulfilled");
-  //   } catch (error) {
-  //     setStatus("rejected");
-  //   }
-  // };
-
-  // const currentIcon = favouriteId ? FavouriteFillIcon : FavouriteIcon;
 
   return (
     <>
