@@ -29,7 +29,6 @@ export const useChangeSelectsValue = () => {
     if (url !== "/breeds") {
       return;
     }
-    // console.log(url);
     changeAllSelectsValue({
       ...selectsValue,
       limit: `${query.limit ? query.limit : "10"}`,

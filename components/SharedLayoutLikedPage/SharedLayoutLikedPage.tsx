@@ -7,32 +7,34 @@ import { BackPagePanel } from "../BackPagePanel/BackPagePanel";
 import * as SC from "./SharedLayoutLikedPage.styled";
 
 interface IProps {
-  pageName: string,
-  pageTitle: string,
-  pageDescription: string,
-  children: ReactNode,
+  pageName: string;
+  pageTitle: string;
+  pageDescription: string;
+  children: ReactNode;
 }
 
-export const SharedLayoutLikedPage: FC<IProps> = ({ pageName, pageTitle, pageDescription,  children }) => {
-  const {showMobileMenu, onVisibleMobileMenu } = useShowMobileMenu();
+export const SharedLayoutLikedPage: FC<IProps> = ({
+  pageName,
+  pageTitle,
+  pageDescription,
+  children,
+}) => {
+  const { showMobileMenu, onVisibleMobileMenu } = useShowMobileMenu();
 
   return (
     <>
-       <Head>
-      <title>{pageTitle}</title>
-        <meta
-        name="description"
-        content={pageDescription}
-        />
+      <Head>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
         <link rel="icon" href="/favicon.ico" />
-    </Head>
-      <FavoriteCatNavigation onShowMobileMenu={onVisibleMobileMenu}/>
+      </Head>
+      <FavoriteCatNavigation onShowMobileMenu={onVisibleMobileMenu} />
       <SC.ContainerWrapp>
         <Container>
           <BackPagePanel page={pageName} />
-         {children}
+          {children}
         </Container>
       </SC.ContainerWrapp>
     </>
-  )
-}
+  );
+};
