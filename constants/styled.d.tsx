@@ -11,17 +11,16 @@ declare module "styled-components" {
       bgSecondary: string;
       bgAccentPrimary: string;
       bgAccentPrimaryTransparent: string;
+      bgDarkThemePrimary: string;
+      bgDarkThemeSecondary: string;
       bgWhiteTransparent: string;
       bgAccentSecondary: string;
       bgLinkVoting: string;
       bgLinkBreeds: string;
       bgGreen: string;
-     
       bgYellow: string;
-      
       bgLinkGallery: string;
       bgBorder: string;
-     
     };
     space: number[];
     fonts: {
@@ -60,10 +59,10 @@ declare module "styled-components" {
       s: string;
       m: string;
       // lg: string;
-      // round: string;
+      round: string;
     };
     shadows: {
-    boxShadow: string;
-  }
+      boxShadow: string;
+    };
   }
 }

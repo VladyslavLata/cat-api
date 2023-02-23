@@ -8,6 +8,8 @@ export const theme: DefaultTheme = {
     testAccentSecondary: "#FFFFFF",
     bgPrimary: "#F8F8F7",
     bgSecondary: '#FFFFFF',
+    bgDarkThemePrimary: "#8C8C8C",
+    bgDarkThemeSecondary: "#1D1D1D",
     bgAccentPrimary: "#FF868E",
     bgAccentPrimaryTransparent: "rgba(255, 134, 142, .6)",
     bgWhiteTransparent: "rgba(255, 255, 255, 0.7)",
@@ -58,7 +60,7 @@ export const theme: DefaultTheme = {
     s: '10px',
     m: '20px',
     // lg: '16px',
-    // round: '50%',
+    round: '50%',
   },
   shadows: {
     boxShadow: "0 4px 4px rgba(0, 0, 0, 0.25)",
