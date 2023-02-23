@@ -6,9 +6,10 @@ import * as SC from "./Navigation.styled";
 interface IProps {
   navLinks: INavLink[];
   linkVisible: boolean;
+  className?: string;
 }
 
-export const Navigation: FC<IProps> = ({ navLinks, linkVisible = true }) => {
+export const Navigation: FC<IProps> = ({ navLinks, linkVisible = true, className }) => {
   const { pathname } = useRouter();
   
   const onChangeDefaultValueSelect = (path: string) => {
@@ -22,7 +23,7 @@ export const Navigation: FC<IProps> = ({ navLinks, linkVisible = true }) => {
   }
 
   return (
-    <SC.List>
+    <SC.List className={className}>
       {navLinks.map(({ path, bgColor, img, text }) => (
         <SC.Item key={path.pathname}>
           <SC.NavLink href={path} linkvisible={linkVisible.toString() } currentpath={pathname}

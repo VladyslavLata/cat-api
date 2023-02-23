@@ -73,7 +73,7 @@ export const dataFavoriteLink: IFavouriteLink[] = [
   },
   {
     link: {
-      pathname: "/dislike",
+      pathname: "/dislikes",
       query: {
         limit: 10,
         page: "0",

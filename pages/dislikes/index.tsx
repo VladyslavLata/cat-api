@@ -32,7 +32,7 @@ interface IProps {
   amountCats: string;
 }
 
-const Likes: FC<IProps> = ({ likeCatsData, amountCats }) => {
+const DisLikes: FC<IProps> = ({ likeCatsData, amountCats }) => {
   console.log(likeCatsData);
   console.log(amountCats);
   const router = useRouter();
@@ -42,9 +42,9 @@ const Likes: FC<IProps> = ({ likeCatsData, amountCats }) => {
 
 
   return (
-    <MainSharedLayoutPages  pageTitle="Like" pageDescription="Cat pictures you like">
+    <MainSharedLayoutPages  pageTitle="DisLikes" pageDescription="Cat pictures you dislike">
     {/* <SharedLayoutLikedPage pageName="favourites" pageTitle="Like" pageDescription="Cat pictures you like"> */}
-      <BackPagePanel page="likes"/>
+      <BackPagePanel page="dislikes"/>
       {likeCatsData.length > 0 && <Gallery dataCats={likeCatsData} />}
       {likeCatsData.length === 0 && currentPage === 0 && <Message>No item found</Message>}
       {Number(amountCats) > 10 && <ButtonsChangePages amountCats={amountCats} />}
@@ -64,4 +64,4 @@ const Likes: FC<IProps> = ({ likeCatsData, amountCats }) => {
 
 
 
-export default Likes;
+export default DisLikes;

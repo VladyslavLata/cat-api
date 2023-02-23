@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
+import { Container } from "../Container/Container.styled";
+import { Navigation } from "../Navigation/Navigation";
 
 export const MobileMenu = styled.div<{ displaying: boolean }>`
 position: absolute;
@@ -28,4 +30,11 @@ export const CloseBtn = styled(ButtonIcon)`
   background-color: ${p => p.theme.colors.bgSecondary};
   border-radius: ${p => p.theme.radii.m};
 
+`
+export const MobileMenuContainer = styled(Container)`
+  background-color: ${p => p.theme.colors.bgPrimary};
+`
+
+export const MobileMenuNavigation = styled(Navigation)`
+  justify-content: center;
 `

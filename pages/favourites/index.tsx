@@ -5,6 +5,7 @@ import { getFavouritesCats } from "../../API/catAPI";
 import { IFavouriteDataCat } from "../../types/types";
 import { Message } from "../../components/Message/Message";
 import { Container } from "../../components/Container/Container";
+import { MainSharedLayoutPages } from "../../components/MainSharedLayoutPages/MainSharedLayoutPages";
 import { Gallery } from "../../components/Gallery/Gallery";
 import { ButtonsChangePages } from "../../components/ButtonsChangePages/ButtonsChangePages";
 import { SharedLayoutLikedPage } from "../../components/SharedLayoutLikedPage/SharedLayoutLikedPage";
@@ -55,12 +56,15 @@ const FavouritesPage: FC<IProps> = ({ favouriteCatsData, amountCats }) => {
 }
 
   return (
-    <SharedLayoutLikedPage pageName="favourites" pageTitle="Favorites" pageDescription="Your favorite cat images">
+  <MainSharedLayoutPages pageTitle="Favorites" pageDescription="Your favorite cat images" >
+     {/* <SharedLayoutLikedPage pageName="favourites" pageTitle="Favorites" pageDescription="Your favorite cat images"> */}
+      <BackPagePanel page="favorites"/>
       {favouriteCatsData.length > 0 && <Gallery dataCats={favouriteCatsData} />}
       {favouriteCatsData.length === 0 && currentPage === 0 && <Message>No item found</Message>}
       {Number(amountCats) > 10 && <ButtonsChangePages amountCats={amountCats} />}
       {/* <ButtonsChangePages amountCats={amountCats}/> */}
-    </SharedLayoutLikedPage>
+    {/* </SharedLayoutLikedPage> */}
+    </MainSharedLayoutPages>
     // <>
     //   <FavoriteCatNavigation />
     //   <SC.ContainerWrapp>

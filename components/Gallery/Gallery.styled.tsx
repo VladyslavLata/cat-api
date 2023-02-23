@@ -42,4 +42,12 @@ export const Item = styled.li`
       }
     }
   }
+
+  & > svg {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+  }
 `;
+

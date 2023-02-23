@@ -40,7 +40,7 @@ interface IProps {
 }
 
 const Breeds: FC<IProps> = ({ catsData, allBreeds, amountCats }) => {
-const {showMobileMenu} = useShowMobileMenu()
+// const {showMobileMenu} = useShowMobileMenu()
 
   const router = useRouter();
   const params = router.query;

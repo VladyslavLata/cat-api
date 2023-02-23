@@ -24,12 +24,12 @@ export const MobileMenu: FC<IProps> = ({
         disabled={!displayingMobileMenu}
         onClick={onCloseMobileMenu}
       />
-      <Container>
-        <Navigation
+      <SC.MobileMenuContainer>
+        <SC.MobileMenuNavigation
           navLinks={dataNavLinks}
           linkVisible={displayingMobileMenu}
         />
-      </Container>
+      </SC.MobileMenuContainer>
     </SC.MobileMenu>
   );
 };

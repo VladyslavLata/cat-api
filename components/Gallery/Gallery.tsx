@@ -28,15 +28,28 @@ export const Gallery: FC<IProps> = ({ dataCats }) => {
         ))}
       </SC.List>
     );
+  } else if ("value" in dataCats[0]) {
+    const likesDataCats = dataCats as ILikeDataCat[];
+     return (
+      <SC.List>
+        {likesDataCats.map((likeDataCat) => (
+          <SC.Item key={likeDataCat.id}>
+            {(pathname === "/likes" || pathname === "/dislikes") && (
+              <GalleryItemLike dataCat={likeDataCat} />
+            )}
+          </SC.Item>
+        ))}
+      </SC.List>
+    );
   } else {
-    const favouriteDataCats = dataCats as ILikeDataCat[] | IFavouriteDataCat[];
+    const favouriteDataCats = dataCats as IFavouriteDataCat[];
     return (
       <SC.List>
         {favouriteDataCats.map((favouriteDataCat) => (
           <SC.Item key={favouriteDataCat.id}>
-            {pathname === "/likes" && (
+            {/* {(pathname === "/likes" || pathname === "/dislikes") && (
               <GalleryItemLike dataCat={favouriteDataCat} />
-            )}
+            )} */}
             {pathname === "/favourites" && (
               <GalleryItemFavourite dataCat={favouriteDataCat} />
             )}
