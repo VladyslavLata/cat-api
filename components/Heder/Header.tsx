@@ -11,7 +11,7 @@ export const Header: FC = () => {
       <SC.LogoLink href="/" showlink={(!showModal).toString()}>
         <Logo width={106} height={24} visibility="visible" />
       </SC.LogoLink>
-      <ToggleSwitch lightTheme={true}></ToggleSwitch>
+      <ToggleSwitch/>
     </SC.Header>
   )
 }

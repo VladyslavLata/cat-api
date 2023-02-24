@@ -2,6 +2,8 @@ import "../styles/globals.css";
 import * as SC from "../styles/App.styled";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
+
+import { useStore } from "../Store/Store";
 import { Jost } from "@next/font/google";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../constants/theme";
@@ -18,6 +20,17 @@ const jost = Jost({
 
 export default function App({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
+
+
+
+
+// later on...
+  // let d = useStore.persist.hasHydrated();
+  // const hasHydrated = useStore(state => state._hasHydrated);
+
+  // if (!d) {
+  //   return <p>Loading...</p>
+  // }
 
   return (
     <>
