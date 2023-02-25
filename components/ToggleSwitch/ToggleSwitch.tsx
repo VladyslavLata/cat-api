@@ -12,7 +12,7 @@ export const ToggleSwitch: FC = () => {
   console.log(`theme l l l ${lightTheme}`);
   return (
     <SC.Switch lightTheme={lightTheme}>
-      <SC.hiddenInput type="checkbox" onClick={toggleTheme}/>
+      <SC.hiddenInput type="checkbox" checked={!lightTheme} onChange={toggleTheme}/>
       <SC.Slider></SC.Slider>
     </SC.Switch>
   );

@@ -44,6 +44,9 @@ export const useStore = create<IStore>()(persist((set) => ({
     name: 'catAPILightTheme', 
     // storage: createJSONStorage(() => localStorage), 
     partialize: (state) => ({ lightTheme: state.lightTheme }),
+    onRehydrateStorage: (state) => {
+      console.log('hydration starts')
+    },
   }
 ));
 

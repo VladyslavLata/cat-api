@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import * as SC from "../styles/App.styled";
+import { useState,useEffect } from "react";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 
@@ -19,18 +20,12 @@ const jost = Jost({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
+  const [isMounted, setIsMounted] = useState(false);
   const { pathname } = useRouter();
 
-
-
-
-// later on...
-  // let d = useStore.persist.hasHydrated();
-  // const hasHydrated = useStore(state => state._hasHydrated);
-
-  // if (!d) {
-  //   return <p>Loading...</p>
-  // }
+useEffect(() => {
+  setIsMounted(true)
+}, [])
 
   return (
     <>
@@ -39,16 +34,16 @@ export default function App({ Component, pageProps }: AppProps) {
           font-family: ${jost.style.fontFamily};
         }
       `}</style>
-
       <ThemeProvider theme={theme}>
         <MediaContextProvider disableDynamicMediaQueries>
           {/* <MobileMenu displayingMobileMenu={ true} /> */}
+          {isMounted &&
           <AppContainer>
             <Media greaterThanOrEqual="l"><AsideBar /></Media>
             <SC.MainContent id="main" currentPage={pathname}>
               <Component {...pageProps} />
             </SC.MainContent>
-          </AppContainer>
+          </AppContainer>}
         </MediaContextProvider>
       </ThemeProvider>
     </>
