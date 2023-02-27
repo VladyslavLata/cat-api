@@ -9,14 +9,15 @@ export const Switch = styled.label<{ lightTheme: boolean }>`
   background-color: ${(p) =>
     p.lightTheme
       ? p.theme.colors.bgAccentSecondary
-      : p.theme.colors.bgDarkThemePrimary};
+    : p.theme.colors.bgDarkThemePrimary};
+  transition: background-color 200ms linear;
   cursor: pointer;
 `;
 
 export const hiddenInput = styled.input`
-  /* opacity: 0;
+  opacity: 0;
   width: 0;
-  height: 0; */
+  height: 0;
 `;
 
 export const Slider = styled.span`

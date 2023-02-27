@@ -13,7 +13,7 @@ export const Hero: FC = () => {
 
   return (
     <SC.Section>
-      <Box>
+      <div>
         <HiddenTitle title="Cat finder application" />
         <Text marginTheme={[0, 0, 3, 0]} fs="xxl" fw="medium" lh="heading">
           Hi everyone!
@@ -25,7 +25,7 @@ export const Hero: FC = () => {
           Lets start using The Cat API
         </Text>
         <Navigation navLinks={dataNavLinks} linkVisible={!showModal}  />
-      </Box>
+      </div>
     </SC.Section>
   );
 };
