@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useRouter } from "next/router";
+import { useStore } from "../../Store/Store";
 import { INavLink } from "../../types/types";
 import * as SC from "./Navigation.styled";
 
@@ -11,6 +12,7 @@ interface IProps {
 
 export const Navigation: FC<IProps> = ({ navLinks, linkVisible = true, className }) => {
   const { pathname } = useRouter();
+  const {lightTheme} = useStore()
   
   const onChangeDefaultValueSelect = (path: string) => {
     if (path === "/voting") {
@@ -36,6 +38,7 @@ export const Navigation: FC<IProps> = ({ navLinks, linkVisible = true, className
                 lh={"heading"}
                 currentpath={pathname}
                 path={path}
+                lightTheme={lightTheme}
               >
                 {text}
               </SC.LinkTitle>

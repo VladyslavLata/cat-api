@@ -1,10 +1,15 @@
-/* html,
+import { createGlobalStyle } from "styled-components";
+
+
+export const GlobalStyle = createGlobalStyle<{lightTheme: boolean}>`
+html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  background-color: #f8f8f7;
+  background-color: ${p=> p.lightTheme ? p.theme.colors.bgPrimary : p.theme.colors.bgDarkThemeSecondary};
+  transition: background-color 300ms cubic-bezier(0.4, 0 , 0.2, 1);
 }
 
 
@@ -72,7 +77,7 @@ body .carousel .control-dots {
   border-radius: 20px;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
@@ -80,9 +85,10 @@ body .carousel .control-dots {
     color: red;
     background: blue;
   }
-}
+} */
 
 .visibility-hidden {
 visibility: hidden;
 pointer-events: none;
-} */
+}
+` 

@@ -1,7 +1,7 @@
 import { FC, ReactNode } from "react";
 import Head from "next/head";
 import { Media } from "../../media";
-import { Container } from "../Container/Container.styled";
+import { Container } from "../Container/Container";
 import { FavoriteCatNavigation } from "../FavoriteCatNavigation/FavoriteCatNavigation";
 import { useShowMobileMenu } from "../../hooks/useShowMobileMenu";
 import { WrappContent } from "../WrappContent/WrappContent";

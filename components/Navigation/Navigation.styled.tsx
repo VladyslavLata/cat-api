@@ -25,17 +25,17 @@ export const Item = styled.li`
   }
 `;
 
-export const LinkTitle = styled(Text)<IPath>`
+export const LinkTitle = styled(Text)<{lightTheme: boolean} & IPath>`
   padding: ${(p) => `${p.theme.space[3]}px ${p.theme.space[2]}px`};
   color: ${p=> p.currentpath === p.path.pathname ? p.theme.colors.testAccentSecondary : p.theme.colors.testAccentPrimary};
-  background-color: ${(p) => p.currentpath === p.path.pathname ? p.theme.colors.testAccentPrimary : p.theme.colors.bgSecondary};
+  background-color: ${(p) => p.currentpath === p.path.pathname ? p.theme.colors.bgAccentPrimary : (p.lightTheme ? p.theme.colors.bgSecondary : p.theme.colors.bgDarkThemeTransparent ) };
   border-radius: ${(p) => p.theme.radii.s};
   text-transform: uppercase;
   text-align: center;
   letter-spacing: 2px;
   box-shadow: ${(p) => p.currentpath === p.path.pathname ? "none" : p.theme.shadows.boxShadow};
-  transition: box-shadow 300ms cubic-bezier(0.215, 0.61, 0.355, 1),
-  background-color 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
+  background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
   visibility: visible;
 
     @media (min-width: 768px){

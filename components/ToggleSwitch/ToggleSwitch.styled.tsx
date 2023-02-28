@@ -9,8 +9,8 @@ export const Switch = styled.label<{ lightTheme: boolean }>`
   background-color: ${(p) =>
     p.lightTheme
       ? p.theme.colors.bgAccentSecondary
-    : p.theme.colors.bgDarkThemePrimary};
-  transition: background-color 200ms linear;
+    : p.theme.colors.bgDarkThemeTransparent};
+  transition: background-color cubic-bezier(0.4, 0 , 0.2, 1) 300ms;
   cursor: pointer;
 `;
 

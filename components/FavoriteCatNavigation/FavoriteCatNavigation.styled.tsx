@@ -30,11 +30,11 @@ export const NavWrapp = styled.ul`
   margin-bottom: ${(p) => p.theme.space[3]}px;
 `;
 
-export const NavItem = styled.li<{pathName:string, linkName:string}>`
+export const NavItem = styled.li<{pathName:string, linkName:string, lightTheme: boolean}>`
   width: 60px;
   height: 60px;
   color: ${(p) => p.pathName === p.linkName ? p.theme.colors.bgSecondary :p.theme.colors.bgAccentPrimary};
-  background-color: ${(p) => p.pathName === p.linkName ? p.theme.colors.bgAccentPrimary : p.theme.colors.bgSecondary};
+  background-color: ${(p) => p.pathName === p.linkName ? p.theme.colors.bgAccentPrimary : (p.lightTheme ? p.theme.colors.bgSecondary: p.theme.colors.bgDarkThemeTransparentSecondary)};
   border-radius: ${(p) => p.theme.radii.m};
   transition:  background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 

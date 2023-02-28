@@ -1,4 +1,5 @@
 import { FC, ReactNode } from "react";
+import { useStore } from "../../Store/Store";
 import * as SC from "./Container.styled";
 
 interface IProps {
@@ -6,7 +7,9 @@ interface IProps {
   children: ReactNode,
 }
 
-export const Container: FC<IProps> = ({className , children}) => {
-  return <SC.Container className={className}>{ children}</SC.Container>
+export const Container: FC<IProps> = ({ className, children }) => {
+  const { lightTheme } = useStore();
+
+  return <SC.Container className={className} lightTheme={lightTheme}>{ children}</SC.Container>
 }
 

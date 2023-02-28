@@ -18,5 +18,6 @@ export const Text = styled.p<Pick<IProps, "center"|"marginTheme" | "fs" | "fw" |
     p.lh ? p.theme.lineHeights[`${p.lh}`] : p.theme.lineHeights.body};
   text-align: ${p=> p.center? p.center : "start"};
     color: ${(p) =>
-    p.color ? p.theme.colors[`${p.color}`] : p.theme.colors.textPrimary};
+  p.color ? p.theme.colors[`${p.color}`] : p.theme.colors.textPrimary};
+    transition: color cubic-bezier(0.4, 0 , 0.2, 1) 300ms;
 `;
