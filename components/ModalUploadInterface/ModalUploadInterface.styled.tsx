@@ -3,6 +3,8 @@ import { Button } from "../Button/Button";
 import Image from "next/image";
 import bgPreviewImg from "../../public/Vector.webp";
 import bgPreviewImgMobile from "../../public/VectorMobile.webp";
+import bgPreviewImgDarck from "../../public/bgPreviewImgDescDarck.webp";
+import bgPreviewImgDarckMobile from "../../public/bgPreviewImgMobDarck.webp";
 
 export const Wrapp = styled.div`
   width: 100%;
@@ -59,7 +61,7 @@ export const Form = styled.form<{ uploadStatus: boolean | null, lightTheme: bool
   }
 `;
 
-export const PreviewBox = styled.div<{ img: string }>`
+export const PreviewBox = styled.div<{ img: string, lightTheme:boolean }>`
   position: relative;
   display: flex;
   justify-content: center;
@@ -67,14 +69,13 @@ export const PreviewBox = styled.div<{ img: string }>`
   flex-wrap: wrap;
   width: 100%;
   height: 100%;
-  background-image: url(${(p) => p.img === "" ? bgPreviewImgMobile.src : "none"});
-
+  background-image: url(${(p) => p.img === "" ? (p.lightTheme ? bgPreviewImgMobile.src : bgPreviewImgDarckMobile.src) : "none"});
   background-repeat: no-repeat;
   background-position: center;
   border-radius: ${(p) => p.theme.radii.s};
 
   @media (min-width: 768px) {
-    background-image: url(${(p) => p.img === "" ? bgPreviewImg.src : "none"}) ;
+    background-image: url(${(p) => p.img === "" ? (p.lightTheme ? bgPreviewImg.src : bgPreviewImgDarck.src) : "none"}) ;
   }
 `;
 
@@ -88,8 +89,9 @@ export const PreviewTextWrapp = styled.div`
   }
 `;
 
-export const PreviewTextAccent = styled.span`
-  color: ${(p) => p.theme.colors.textPrimary};
+export const PreviewTextAccent = styled.span<{ lightTheme:boolean }>`
+  color: ${(p) => p.lightTheme ? p.theme.colors.textPrimary : p.theme.colors.testAccentSecondary};
+  transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 

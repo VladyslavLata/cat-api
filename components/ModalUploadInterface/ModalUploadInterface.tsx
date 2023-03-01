@@ -12,7 +12,7 @@ export const ModalUploadInterface: FC = () => {
   const [fileCat, setFileCat] = useState<null | File>(null);
   const [uploadStatus, setUploadStatus] = useState<boolean | null>(null);
   const [status, setStatus] = useState("idle");
-  const { lightTheme} = useStore();
+  const {lightTheme} = useStore();
 
   const input = () => {
     return document.getElementById("input-upload")! as HTMLInputElement;
@@ -101,12 +101,12 @@ export const ModalUploadInterface: FC = () => {
         uploadStatus={uploadStatus}
         lightTheme={lightTheme}
       >
-        <SC.PreviewBox img={imageCatURL}>
+        <SC.PreviewBox img={imageCatURL} lightTheme={lightTheme}>
           {imageCatURL === "" && (
             <SC.PreviewTextWrapp>
               <Text center="center" color="textSecondary">
-                <SC.PreviewTextAccent>Drag here</SC.PreviewTextAccent> your file
-                or <SC.PreviewTextAccent>Click here</SC.PreviewTextAccent> to
+                <SC.PreviewTextAccent lightTheme={lightTheme}>Drag here</SC.PreviewTextAccent> your file
+                or <SC.PreviewTextAccent lightTheme={lightTheme}>Click here</SC.PreviewTextAccent> to
                 upload
               </Text>
             </SC.PreviewTextWrapp>
