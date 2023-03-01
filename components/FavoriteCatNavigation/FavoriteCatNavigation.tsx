@@ -16,7 +16,7 @@ export const FavoriteCatNavigation: FC<IProps> = ({ onShowMobileMenu, className}
   const {lightTheme } = useStore();
   
   return (<SC.Wrapp>
-    <SC.BtnShowMobileMenu svg={Stroke} width={30} height={18} primary onClick={onShowMobileMenu} />
+    <SC.BtnShowMobileMenu svg={Stroke} width={30} height={18} primary lightTheme={lightTheme} onClick={onShowMobileMenu} />
     <SC.NavWrapp className={className}>
       {dataFavoriteLink.map(({link, svg}) => <SC.NavItem key={link.pathname} linkName={link.pathname} pathName={pathname} lightTheme={lightTheme}><FavoriteLink linkTo={link} svg={svg}/></SC.NavItem>)}
     </SC.NavWrapp>

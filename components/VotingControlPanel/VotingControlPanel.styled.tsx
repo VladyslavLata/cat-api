@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
 
-export const ListBtns = styled.ul`
+export const ListBtns = styled.ul<{lightTheme: boolean}>`
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -9,10 +9,11 @@ export const ListBtns = styled.ul`
   display: flex;
   gap: 3px;
   border: ${(p) => p.theme.borders.m};
-  border-color: ${(p) => p.theme.colors.bgSecondary};
+  border-color: ${(p) => p.lightTheme? p.theme.colors.bgSecondary : p.theme.colors.bgDarkThemeSecondary}; 
   border-radius: ${(p) => p.theme.radii.m};
   background-color: ${(p) => p.theme.colors.bgSecondary};
   overflow: hidden;
+  transition: border-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media (min-width: 768px) {
     gap: ${(p) => p.theme.space[1]}px;

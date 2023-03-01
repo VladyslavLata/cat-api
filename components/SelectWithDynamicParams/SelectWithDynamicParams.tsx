@@ -17,9 +17,10 @@ interface IProps {
 export const SelectWithDynamicParams: FC<IProps> = ({ optionValueDefault, optionDefault, primary, label, datas, name, onChange}) => {
   
   const store = useStore((state) => state.selectsValue);
+  const {lightTheme } = useStore();
   return (<>
     {label && <SC.Label htmlFor={name}>{label}</SC.Label>} 
-    <SC.Select id={name} primary={primary} name={name} onChange={onChange} value={store[`${name}`]} >
+    <SC.Select id={name} primary={primary} lightTheme={lightTheme} name={name} onChange={onChange} value={store[`${name}`]} >
       {optionValueDefault && optionDefault && <option key={optionValueDefault} value={optionValueDefault}>{optionDefault}</option>}
       {datas.map(data => <option key={data.id}  value={data.id}>{data.name}</option>
       )}  

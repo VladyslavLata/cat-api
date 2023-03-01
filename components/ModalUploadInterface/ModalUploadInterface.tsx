@@ -1,4 +1,5 @@
 import { DragEvent, FC, FormEvent, useState } from "react";
+import { useStore } from "../../Store/Store";
 import { Text } from "../Text/Text.styled";
 import { MessageUploadImg } from "../MessageUploadImg/MessageUploadImg";
 import { uploadCatImage } from "../../API/catAPI";
@@ -11,6 +12,7 @@ export const ModalUploadInterface: FC = () => {
   const [fileCat, setFileCat] = useState<null | File>(null);
   const [uploadStatus, setUploadStatus] = useState<boolean | null>(null);
   const [status, setStatus] = useState("idle");
+  const { lightTheme} = useStore();
 
   const input = () => {
     return document.getElementById("input-upload")! as HTMLInputElement;
@@ -78,7 +80,7 @@ export const ModalUploadInterface: FC = () => {
 
   return (
     <SC.Wrapp>
-      <SC.Title>Upload a .jpg or .png Cat Image</SC.Title>
+      <SC.Title lightTheme={lightTheme}>Upload a .jpg or .png Cat Image</SC.Title>
       <Text center="center" color="textSecondary">
         Any uploads must comply with the&nbsp;
         <SC.Linck
@@ -97,6 +99,7 @@ export const ModalUploadInterface: FC = () => {
         onDragOver={omDragOverForm}
         onDrop={onDropImg}
         uploadStatus={uploadStatus}
+        lightTheme={lightTheme}
       >
         <SC.PreviewBox img={imageCatURL}>
           {imageCatURL === "" && (
@@ -119,7 +122,7 @@ export const ModalUploadInterface: FC = () => {
           onChange={onChangeInputValue}
         />
         <Loader size={50} visible={pending} />
-      </SC.Form>
+      </SC.Form >
       <Text center="center" color="textSecondary">
         {imageName}
       </Text>

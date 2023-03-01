@@ -12,7 +12,7 @@ interface IProps {
 
 export const Modal: React.FC<IProps> = ({ show, onClose, children }) => {
   const [isBrowser, setIsBrowser] = useState(false);
-  const {closeModal} = useStore();
+  const {closeModal, lightTheme} = useStore();
 
   useEffect(() => {
     setIsBrowser(true);
@@ -52,13 +52,14 @@ export const Modal: React.FC<IProps> = ({ show, onClose, children }) => {
 
   const modalContent = show ? (
     <SC.Backdrop onClick={closeModalClickBackdrop} id="modal-backdrop">
-      <SC.ModalBox>
+      <SC.ModalBox lightTheme={lightTheme}>
         <SC.ButtonCloseModal
           svg={Close}
           width={17}
           height={17}
           primary
           onClick={onClose}
+          lightTheme={lightTheme}
         />
         {children}
         </SC.ModalBox>

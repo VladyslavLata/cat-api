@@ -12,7 +12,6 @@ import { ModalUploadInterface } from "../../components/ModalUploadInterface/Moda
 import { GalleryOptionPanel } from "../../components/GalleryOptionPanel/GalleryOptionPanel";
 import { IDataCat, ICateory } from "../../types/types";
 import { useUbdateStateSelectsValue } from "../../hooks/useUbdateStateSelectsValue";
-// import { useShowModal } from "../../hooks/useShowModal";
 import { useChangeSelectsValue } from "../../hooks/useChangeSelectsValue";
 import { MainSharedLayoutPages } from "../../components/MainSharedLayoutPages/MainSharedLayoutPages";
 import { useShowMobileMenu } from "../../hooks/useShowMobileMenu";
@@ -46,7 +45,7 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
   // const [showModal, setShowModal] = useState(false);
   // const {showModal, showContent, onHiddenModal, onVisibleModal } = useShowModal();
   // const { showMobileMenu, visibleMobileMenu } = useShowMobileMenu();
-  const {showModal, openModal, closeModal } = useStore();
+  const {showModal, openModal, closeModal, lightTheme } = useStore();
   // console.log(`catsData ${catsData}`);
   // console.log(`amountCats ${amountCats}`);
 
@@ -124,7 +123,7 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
       <MainSharedLayoutPages hideLayout={showModal} pageTitle="Cat gallery" pageDescription="Cat gallery">
         <SC.Wrapp>
           <BackPagePanel page="gallery" />
-          <SC.UploadBtn btn={"main"} onClick={openModal}>
+          <SC.UploadBtn btn={"main"} lightTheme={lightTheme} onClick={openModal}>
             <Upload width={16} height={16} fill={"currentColor"} />
             upload
           </SC.UploadBtn>
@@ -145,7 +144,7 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
         )}
         {params.order === "RANDOM" &&
           catsData.length >= Number(params.limit) && (
-            <SC.BtnLoadMore btn={"main"} onClick={reloadCats}>
+            <SC.BtnLoadMore btn={"main"} lightTheme={lightTheme} onClick={reloadCats}>
               load another cats
             </SC.BtnLoadMore>
           )}

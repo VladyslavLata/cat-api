@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useStore } from "../../Store/Store";
 import { IDataCat } from "../../types/types";
 import { Overlay } from "../Overlay/Overlay";
 import * as SC from "./GalleryItemBreeds.styled";
@@ -10,17 +11,18 @@ interface IProps {
 export const GalleryItemBreeds: FC<IProps> = ({
   dataCat: { url, breeds }
 }) => {
+  const {lightTheme} = useStore();
   const breedID = breeds[0].id;
   return (
       <SC.LinkBreedsInfo href={{
-            pathname: '/breeds/info',
+      pathname: '/breeds/info',
       query: {
         breed_ids: breedID,
         limit: "7",
       }
           }}>
       <Overlay>
-        <SC.BreedsName>{breeds[0].name}</SC.BreedsName>
+        <SC.BreedsName lightTheme={lightTheme}>{breeds[0].name}</SC.BreedsName>
       </Overlay>
       <SC.Img
         src={url}

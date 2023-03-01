@@ -19,6 +19,7 @@ export const Select: FC<IProps> = ({
   primary,
 }) => {
   const state = useStore((state) => state.selectsValue);
+  const { lightTheme } = useStore();
 
   return (
     <>
@@ -29,6 +30,7 @@ export const Select: FC<IProps> = ({
         primary={primary}
         onChange={onChange}
         value={state[`${name}`]}
+        lightTheme={lightTheme}
       >
         {selectDatas.map((selectData) => (
           <option key={selectData.value} value={selectData.value}>

@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
 
-export const OptionBox = styled.div`
+export const OptionBox = styled.div<{lightTheme:boolean}>`
   margin: ${(p) => `${p.theme.space[3]}px ${p.theme.space[0]}px `};
   padding: ${(p) => p.theme.space[3]}px;
-  background-color: ${(p) => p.theme.colors.bgPrimary};
+  background-color: ${(p) => p.lightTheme ? p.theme.colors.bgPrimary : p.theme.colors.bgDarkThemeTransparentSecondary};
   border-radius: ${(p) => p.theme.radii.m};
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media (min-width: 768px) {
     position: relative;
@@ -48,7 +49,9 @@ export const SelectItem = styled.li`
   }
 `;
 
-export const UpdateBtn = styled(ButtonIcon)`
+export const UpdateBtn = styled(ButtonIcon)<{lightTheme: boolean}>`
+background-color: ${p => p.lightTheme ? "" : p.theme.colors.bgDarkThemeAccentTransparent};
+
   @media (max-width: 767px) {
     width: 100%;
     margin-top: ${(p) => p.theme.space[3]}px;

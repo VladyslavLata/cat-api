@@ -1,5 +1,6 @@
 import { FC, useState, MouseEvent, Dispatch, SetStateAction } from "react";
 import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
+import { useStore } from "../../Store/Store";
 import { useRouter } from "next/router";
 import { useFavoriteCat } from "../../hooks/useFavoriteCat";
 import { createDate } from "../../utils/createDate";
@@ -24,6 +25,7 @@ interface IProps {
 export const VotingControlPanel: FC<IProps> = ({ id, allMessage, updateMessages  }) => {
   // const [currentImgCatFavoriteId, setCurrentImgCatFavoriteId] = useState<number | null>(null)
   // const [favorite, setFavorite] = useState(false);
+  const { lightTheme} = useStore();
   const { status, favouriteId, currentFavoriteIcon, onAddFavouriteCat, resetFavouriteId } = useFavoriteCat(id);
   // const [messages, setMessages] = useState<IVotingDataMessage[] | []>([]);
   
@@ -73,7 +75,7 @@ export const VotingControlPanel: FC<IProps> = ({ id, allMessage, updateMessages 
  
 
   return (<>
-    <SC.ListBtns>
+    <SC.ListBtns lightTheme={lightTheme}>
       {[1, 2, 3].map((num, i) => (
         <SC.WrappBtn key={num} index={i}>
           <Media greaterThanOrEqual="m">

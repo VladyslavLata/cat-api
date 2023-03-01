@@ -30,14 +30,15 @@ export const LinkBreedsInfo = styled(Link)`
 
 `;
 
-export const BreedsName = styled.p`
+export const BreedsName = styled.p<{lightTheme:boolean}>`
   width: 100%;
   padding: ${(p) => `${p.theme.space[2]}px ${p.theme.space[3]}px `};
   font-size: ${(p) => p.theme.fontSizes.sm};
   text-align: center;
   color: ${(p) => p.theme.colors.testAccentPrimary};
-  background-color: ${(p) => p.theme.colors.bgSecondary};
+  background-color: ${(p) => p.lightTheme ? p.theme.colors.bgSecondary : p.theme.colors.bgDarkThemeSecondary};
   border-radius: ${(p) => p.theme.radii.s};
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:first-letter {
     text-transform: uppercase;

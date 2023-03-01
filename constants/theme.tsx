@@ -12,6 +12,7 @@ export const theme: DefaultTheme = {
     bgDarkThemeTransparent: "rgba(255, 255, 255, .1)",
     bgDarkThemeAccentTransparent: "rgba(255, 134, 142, 0.2)",
     bgDarkThemeTransparentSecondary: "rgba(255, 255, 255, .05)",
+    bgDarkThemeModal: "#282828",
     bgDarkThemeSecondary: "#1D1D1D",
     bgAccentPrimary: "#FF868E",
     bgAccentPrimaryTransparent: "rgba(255, 134, 142, .6)",

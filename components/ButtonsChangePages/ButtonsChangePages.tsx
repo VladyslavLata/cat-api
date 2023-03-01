@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useRouter } from "next/router";
+import { useStore } from "../../Store/Store";
 import { Button } from "../Button/Button";
 import Arrow from "../../public/arrow.svg";
 import * as SC from "./ButtonsChangePages.styled";
@@ -9,7 +10,7 @@ interface IProps {
 }
 
 export const ButtonsChangePages: FC<IProps> = ({ amountCats }) => {
-  
+  const { lightTheme} = useStore();
   const router = useRouter();
   const { query, pathname } = router;
   const currentPage = Number(query.page);
@@ -27,22 +28,24 @@ export const ButtonsChangePages: FC<IProps> = ({ amountCats }) => {
 
   return (
     <SC.Wrapp>
-      <Button
+      <SC.ChangePageBtn
         btn={"main"}
         onClick={() => changePage(-1)}
         disabled={currentPage === 0}
+        lightTheme={lightTheme}
       >
         <Arrow width={16} height={16} fill={"currentColor"} />
         prev
-      </Button>
-      <Button
+      </SC.ChangePageBtn>
+      <SC.ChangePageBtn
         btn={"main"}
         onClick={() => changePage(1)}
         disabled={amountPage()}
+        lightTheme={lightTheme}
       >
         next
         <SC.RotateArrow />
-      </Button>
+      </SC.ChangePageBtn>
     </SC.Wrapp>
   );
 };

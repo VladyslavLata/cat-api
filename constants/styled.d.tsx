@@ -14,6 +14,7 @@ declare module "styled-components" {
       bgDarkThemeTransparentSecondary: string;
       bgDarkThemeAccentTransparent: string;
       bgDarkThemeTransparent: string;
+      bgDarkThemeModal: string;
       bgDarkThemePrimary: string;
       bgDarkThemeSecondary: string;
       bgWhiteTransparent: string;

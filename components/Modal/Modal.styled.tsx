@@ -11,12 +11,13 @@ export const Backdrop = styled.div`
   background-color: rgba(29, 29, 29, 0.6);
 `;
 
-export const ModalBox = styled.div`
+export const ModalBox = styled.div<{lightTheme: boolean}>`
   width: 100%;
   padding: ${(p) => p.theme.space[7]}px;
-  background-color: ${(p) => p.theme.colors.bgPrimary};
+  background-color: ${(p) => p.lightTheme ? p.theme.colors.bgPrimary : p.theme.colors.bgDarkThemeModal};
   margin-left: auto;
   overflow: auto;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
 
   @media (max-width: 767px) {
@@ -40,6 +41,7 @@ export const ModalBox = styled.div`
   }
 `;
 
-export const ButtonCloseModal = styled(ButtonIcon)`
+export const ButtonCloseModal = styled(ButtonIcon)<{lightTheme: boolean}>`
   margin-left: auto;
+  background-color: ${p=>p.lightTheme? "" : p.theme.colors.bgDarkThemeTransparentSecondary}
 `;

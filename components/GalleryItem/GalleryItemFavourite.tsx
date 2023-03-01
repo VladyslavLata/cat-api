@@ -1,4 +1,5 @@
 import { FC, useState } from "react";
+import { useStore } from "../../Store/Store";
 import { IFavouriteDataCat } from "../../types/types";
 import { useFavoriteCat } from "../../hooks/useFavoriteCat";
 import { Loader } from "../Loader/Loader";
@@ -12,6 +13,7 @@ interface IProps {
 export const GalleryItemFavourite: FC<IProps> = ({
   dataCat: { image_id, image, id },
 }) => {
+  const { lightTheme} = useStore();
   const { status, currentFavoriteIcon, onRemoveFavouriteCat } = useFavoriteCat(
     image_id,
     id
@@ -20,16 +22,17 @@ export const GalleryItemFavourite: FC<IProps> = ({
   return (
     <>
       <SC.OverlayGalleryItem>
-        <ButtonIcon
+        <SC.ToggleInFavouriteBtn
           svg={currentFavoriteIcon}
           disabled={status === "pending"}
           primary
           width={20}
           height={20}
           onClick={onRemoveFavouriteCat}
+          lightTheme={lightTheme}
         >
           <Loader size={35} visible={status === "pending"} />
-        </ButtonIcon>
+        </SC.ToggleInFavouriteBtn>
       </SC.OverlayGalleryItem>
       <SC.Img
         src={image.url}

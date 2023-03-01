@@ -12,6 +12,10 @@ export const Switch = styled.label<{ lightTheme: boolean }>`
     : p.theme.colors.bgDarkThemeTransparent};
   transition: background-color cubic-bezier(0.4, 0 , 0.2, 1) 300ms;
   cursor: pointer;
+
+  &:focus-within {  
+    outline: ${p => p.lightTheme ? `2px solid #000` : `2px solid #fff` } }
+    transition: outline 300ms cubic-bezier(0.4, 0 , 0.2, 1);
 `;
 
 export const hiddenInput = styled.input`

@@ -13,9 +13,10 @@ export const Wrapp = styled.div`
   }
 `
 
-export const BtnShowMobileMenu = styled(ButtonIcon)`
+export const BtnShowMobileMenu = styled(ButtonIcon) <{ lightTheme: boolean }>`
 width: 60px;
 height: 60px;
+background-color: ${p => p.lightTheme ? "" : p.theme.colors.bgDarkThemeAccentTransparent};
 border-radius: ${p => p.theme.radii.m};
 
  @media (min-width: 1440px) {

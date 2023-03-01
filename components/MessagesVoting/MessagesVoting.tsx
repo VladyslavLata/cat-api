@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useStore } from "../../Store/Store";
 import { IVotingDataMessage } from "../../types/types";
 import { Text } from "../Text/Text";
 import Like from "../../public/like.svg";
@@ -11,6 +12,8 @@ interface IProps {
 }
 
 export const MessagesVoting: FC<IProps> = ({ messages }) => {
+  const {lightTheme } = useStore();
+
   const createMessage = (message: IVotingDataMessage) => {
     const { catId, date } = message;
 
@@ -36,7 +39,7 @@ export const MessagesVoting: FC<IProps> = ({ messages }) => {
 
     return (
       <>
-        <SC.Time fs="sm">
+        <SC.Time fs="sm" lightTheme={lightTheme}>
           {hours}:{minutes}
         </SC.Time>
         <Text fs="sm" color="textSecondary">
@@ -58,7 +61,7 @@ export const MessagesVoting: FC<IProps> = ({ messages }) => {
   return (
     <SC.MessageList>
       {messages.map((message, i) => (
-        <SC.MessageItem key={`${message.catId}${i}`}>
+        <SC.MessageItem key={`${message.catId}${i}`} lightTheme={lightTheme}>
           {createMessage(message)}
         </SC.MessageItem>
       ))}

@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { useStore } from "../../Store/Store";
 import { Select } from "../Select/Select";
 import { SelectWithDynamicParams } from "../SelectWithDynamicParams/SelectWithDynamicParams";
 import { ICateory } from "../../types/types";
@@ -13,8 +14,9 @@ interface IProps {
 }
 
 export const GalleryOptionPanel: FC<IProps> = ({ categories, onChange, onClickBtn }) => {
+  const {lightTheme } = useStore();
   return (
-    <SC.OptionBox>
+    <SC.OptionBox lightTheme={lightTheme}>
       <SC.SelectsList>
         <SC.SelectItem>
           <SelectWithDynamicParams
@@ -44,6 +46,7 @@ export const GalleryOptionPanel: FC<IProps> = ({ categories, onChange, onClickBt
         primary
         width={20}
         height={20}
+        lightTheme={lightTheme}
         onClick={onClickBtn}
       />
     </SC.OptionBox> 
