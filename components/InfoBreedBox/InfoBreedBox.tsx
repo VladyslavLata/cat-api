@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useStore } from "../../Store/Store";
 import { IBreeds } from "../../types/types";
 import { InfoParamBreed } from "../InfoParamBreed/InfoParamBreed";
 import * as SC from "./InfoBreedBox.styled";
@@ -8,11 +9,12 @@ interface IProps {
 }
 
 export const InfoBreedBox: FC<IProps> = ({ info }) => {
+  const { lightTheme} = useStore();
   const { id, name, description, temperament, origin, life_span, weight } =
     info;
   return (
-    <SC.InfoBreedWrapp>
-      <SC.BreedName>{name}</SC.BreedName>
+    <SC.InfoBreedWrapp lightTheme={lightTheme}>
+      <SC.BreedName lightTheme={lightTheme}>{name}</SC.BreedName>
       <SC.Description>{description}</SC.Description>
       <SC.InfoBreedList>
         <SC.InfoBreedItem>

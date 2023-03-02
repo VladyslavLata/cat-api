@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useStore } from "../../Store/Store";
 import Image from "next/image";
 import { IDataCat } from "../../types/types";
 import * as SC from "./CarouselBreedsImg.styled";
@@ -8,6 +9,7 @@ interface IProps {
 }
 
 export const CarouselBreedsImg: FC<IProps> = ({ dataCats }) => {
+  const { lightTheme} = useStore();
   return (
     <SC.CarouselWrapp
       showThumbs={false}
@@ -27,12 +29,10 @@ export const CarouselBreedsImg: FC<IProps> = ({ dataCats }) => {
           );
         }
         return (
-          <li
+          <SC.Indicator
             style={{
               width: "10px",
               height: "10px",
-              backgroundColor: "#FBE0DC",
-              cursor: "pointer"
             }}
             onClick={onClickHandler}
             onKeyDown={onClickHandler}
@@ -42,6 +42,7 @@ export const CarouselBreedsImg: FC<IProps> = ({ dataCats }) => {
             tabIndex={0}
             title={`${label} ${index + 1}`}
             aria-label={`${label} ${index + 1}`}
+            lightTheme={lightTheme}
           />
         );
       }}

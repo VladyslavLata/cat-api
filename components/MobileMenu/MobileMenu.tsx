@@ -1,5 +1,7 @@
 import { FC } from "react";
+import { useStore } from "../../Store/Store"; 
 import { Container } from "../Container/Container";
+import { ToggleSwitch } from "../ToggleSwitch/ToggleSwitch";
 import { Navigation } from "../Navigation/Navigation";
 import { dataNavLinks } from "../../constants/dataNavLinks";
 import Close from "../../public/close.svg";
@@ -14,8 +16,10 @@ export const MobileMenu: FC<IProps> = ({
   displayingMobileMenu,
   onCloseMobileMenu,
 }) => {
+  const { lightTheme} = useStore();
   return (
-    <SC.MobileMenu displaying={displayingMobileMenu}>
+    <SC.MobileMenu displaying={displayingMobileMenu} lightTheme={lightTheme}>
+      <SC.SwitchTheme/>
       <SC.CloseBtn
         svg={Close}
         width={25}
@@ -23,8 +27,9 @@ export const MobileMenu: FC<IProps> = ({
         primary
         disabled={!displayingMobileMenu}
         onClick={onCloseMobileMenu}
+        lightTheme={lightTheme}
       />
-      <SC.MobileMenuContainer>
+      <SC.MobileMenuContainer lightTheme={lightTheme}>
         <SC.MobileMenuNavigation
           navLinks={dataNavLinks}
           linkVisible={displayingMobileMenu}

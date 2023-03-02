@@ -23,7 +23,7 @@ const jost = Jost({
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isMounted, setIsMounted] = useState(false);
-  const {lightTheme } = useStore();
+  const {lightTheme} = useStore();
   const { pathname } = useRouter();
 
 useEffect(() => {

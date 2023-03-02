@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 
-
 export const GlobalStyle = createGlobalStyle<{lightTheme: boolean}>`
 html,
 body {
@@ -73,8 +72,9 @@ body .carousel .control-dots {
   width: auto;
   margin: 0;
   padding: 10px;
-  background-color: #fff;
+  background-color: ${p=> p.lightTheme ? p.theme.colors.bgSecondary : p.theme.colors.bgDarkThemeModal};
   border-radius: 20px;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* @media (prefers-color-scheme: dark) {

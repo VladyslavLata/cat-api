@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import bgHome from "../../public/homeBgImg.png";
 
-export const AppContainer = styled.div<{currentPage: string}>`
+export const AppContainer = styled.div<{ currentPage: string }>`
   width: 100%;
   padding: ${(p) => p.theme.space[7]}px;
   margin-right: auto;
