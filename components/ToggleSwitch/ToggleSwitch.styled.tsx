@@ -56,21 +56,21 @@ export const IconsWrapp = styled.div<{ lightTheme: boolean}>`
   transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 `
 
-export const IconSun = styled(Sun)<{ lightTheme: boolean}>`
+export const IconSun = styled(Sun)<{ lighttheme: string}>`
   position: absolute;
   top: 50%;
   left:50%;
-  transform: ${p=>p.lightTheme ? "translate(-50%, -50%)" : "translate(-50%, -200%)"}; 
+  transform: ${p=>p.lighttheme === "true" ? "translate(-50%, -50%)" : "translate(-50%, -200%)"}; 
   width: 20px;
   height: 20px;
   fill: ${p => p.theme.colors.bgAccentPrimary};
   transition: transform 300ms linear;
 `
-export const IconMoon = styled(Moon)<{ lightTheme: boolean}>`
+export const IconMoon = styled(Moon)<{ lighttheme: string}>`
   position: absolute;
   top: 50%;
   left:50%;
-  transform: ${p=>p.lightTheme ? "translate(-50%, 100%)" : "translate(-50%, -50%)"};
+  transform: ${p=>p.lighttheme === "true" ? "translate(-50%, 100%)" : "translate(-50%, -50%)"};
   width: 20px;
   height: 20px;
   fill: ${p => p.theme.colors.bgAccentPrimary};
