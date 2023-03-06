@@ -1,8 +1,9 @@
 import { FC } from "react";
+import { NotFoundContent } from "../components/NotFoundContent/NotFoundContent";
 
 const ErrorPage:FC = () => {
   return (
-    <b>Page not found!</b>
+    <NotFoundContent/>
   )
 }
 

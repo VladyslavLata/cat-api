@@ -24,7 +24,7 @@ const jost = Jost({
 export default function App({ Component, pageProps }: AppProps) {
   const [isMounted, setIsMounted] = useState(false);
   const {lightTheme} = useStore();
-  const { pathname } = useRouter();
+  const {pathname } = useRouter();
 
 useEffect(() => {
   setIsMounted(true)
@@ -40,7 +40,6 @@ useEffect(() => {
       <ThemeProvider theme={theme}>
         <GlobalStyle lightTheme={lightTheme } />
         <MediaContextProvider disableDynamicMediaQueries>
-          {/* <MobileMenu displayingMobileMenu={ true} /> */}
           {isMounted &&
           <AppContainer>
             <Media greaterThanOrEqual="l"><AsideBar /></Media>

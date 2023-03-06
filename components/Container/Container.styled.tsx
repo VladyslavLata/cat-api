@@ -15,7 +15,7 @@ export const Container = styled.div<{lightTheme:boolean}>`
     width: 335px;
   }
 
-    @media (min-width: 768px) {
+  @media (min-width: 768px) {
     width: 708px;
     min-height: calc( 100vh - 130px);
   }

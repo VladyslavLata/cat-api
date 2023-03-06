@@ -12,7 +12,7 @@ export const AppContainer = styled.div<{ currentPage: string }>`
   }
 
   @media (min-width: 768px) {
-      padding: ${(p) => p.theme.space[9]}px;
+    padding: ${(p) => p.theme.space[9]}px;
     width: 768px;
   }
 

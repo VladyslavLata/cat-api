@@ -4,14 +4,12 @@ import { Text } from "../Text/Text";
 import { useStore } from "../../Store/Store";
 import { Navigation } from "../Navigation/Navigation";
 import { dataNavLinks } from "../../constants/dataNavLinks";
-import { Box } from "../Box/Box";
 import * as SC from "./Hero.styled";
 
 export const Hero: FC = () => {
   const {showModal, lightTheme}=useStore();
-  console.log(`showModal hero ${showModal}`);
 
- const currentTextColor = lightTheme ? "textPrimary" : "testAccentSecondary";
+  const currentTextColor = lightTheme ? "textPrimary" : "testAccentSecondary";
 
   return (
     <SC.Section>

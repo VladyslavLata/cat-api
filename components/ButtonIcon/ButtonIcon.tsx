@@ -14,7 +14,7 @@ interface IProps {
 
 export const ButtonIcon: FC<IProps> = ({ svg: Svg, primary, width, height, className, disabled, onClick, children }) => {
   return (
-    <SC.BtnIcon className={className} type="button" primary={primary} onClick={onClick}  disabled={disabled}>
+    <SC.BtnIcon className={className} type="button" primary={primary} onClick={onClick} disabled={disabled}>
       {children}
       <Svg width={width} height={height} fill="currentcolor" />
     </SC.BtnIcon>
