@@ -11,7 +11,6 @@ export const Select = styled.select<{ primary: boolean | undefined, lightTheme:b
   border: ${p => p.theme.borders.s};
   border-radius: ${p => p.theme.radii.s};
   border-color:  ${p => p.primary ? (p.lightTheme ? p.theme.colors.bgSecondary : p.theme.colors.bgDarkThemeSecondary) : (p.lightTheme ? p.theme.colors.bgPrimary : p.theme.colors.bgDarkThemeTransparentSecondary)};
-  /* border-color: ${p => p.primary ? p.theme.colors.bgSecondary : p.theme.colors.bgPrimary}; */
   transition: border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     color 300ms cubic-bezier(0.4, 0, 0.2, 1);

@@ -19,7 +19,7 @@ export const SharedLayoutLikedPage: FC<IProps> = ({
   pageDescription,
   children,
 }) => {
-  const { showMobileMenu, onVisibleMobileMenu } = useShowMobileMenu();
+  const { onVisibleMobileMenu } = useShowMobileMenu();
 
   return (
     <>

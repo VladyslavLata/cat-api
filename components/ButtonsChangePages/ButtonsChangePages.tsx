@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { useRouter } from "next/router";
 import { useStore } from "../../Store/Store";
-import { Button } from "../Button/Button";
 import Arrow from "../../public/arrow.svg";
 import * as SC from "./ButtonsChangePages.styled";
 

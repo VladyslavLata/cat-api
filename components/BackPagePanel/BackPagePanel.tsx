@@ -2,7 +2,6 @@ import { FC } from "react";
 import { useRouter } from "next/router";
 import { useStore } from "../../Store/Store";
 import { BackButtonWrapp } from "../BackButtonWrapp/BackButtonWrapp";
-import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
 import { CurrentPage } from "../CurrentPage/CurrentPage";
 import Arrow from "../../public/arrow.svg";
 import * as SC from "./BackPagePanel.styled";

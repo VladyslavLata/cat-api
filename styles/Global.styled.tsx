@@ -11,7 +11,6 @@ body {
   transition: background-color 300ms cubic-bezier(0.4, 0 , 0.2, 1);
 }
 
-
 body {
   width: 100vw;
   position: relative;
@@ -76,16 +75,6 @@ body .carousel .control-dots {
   border-radius: 20px;
   transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-/* @media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: red;
-    background: blue;
-  }
-} */
 
 .visibility-hidden {
 visibility: hidden;

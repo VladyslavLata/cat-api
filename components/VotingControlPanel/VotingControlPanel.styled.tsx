@@ -21,7 +21,6 @@ export const ListBtns = styled.ul<{lightTheme: boolean}>`
 `;
 
 export const WrappBtn = styled.li<{ index: number }>`
-  /* border-radius: 20px; */
   background-color: ${(p) => {
     switch (p.index) {
       case 0:
@@ -68,18 +67,4 @@ export const VotingButton = styled(ButtonIcon)<{ index: number }>`
     }};
     background-color: ${(p) => p.theme.colors.bgWhiteTransparent};
   }
-
-  /* &.hover-btn {
- color: ${(p) => {
-      switch (p.index) {
-        case 0:
-          return p.theme.colors.bgGreen;
-        case 1:
-          return p.theme.colors.bgAccentPrimary;
-        case 2:
-          return p.theme.colors.bgYellow;
-      }
-    }};
-    background-color: ${(p) => p.theme.colors.bgWhiteTransparent};
-  } */
 `;

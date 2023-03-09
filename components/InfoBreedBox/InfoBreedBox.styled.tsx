@@ -24,7 +24,6 @@ export const BreedName = styled.legend<{lightTheme:boolean}>`
   font-weight: ${(p) => p.theme.fontWeights.medium};
   line-height: ${(p) => p.theme.lineHeights.text};  
   background-color: transparent;
-  /* background-color: ${(p) => p.lightTheme ? p.theme.colors.bgSecondary : "transparent"}; */
   border-radius: ${p => p.theme.radii.m};
   color: ${p=> p.lightTheme ? p.theme.colors.textPrimary : p.theme.colors.testAccentSecondary};
   transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),

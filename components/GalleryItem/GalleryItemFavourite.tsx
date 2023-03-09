@@ -1,9 +1,8 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { useStore } from "../../Store/Store";
 import { IFavouriteDataCat } from "../../types/types";
 import { useFavoriteCat } from "../../hooks/useFavoriteCat";
 import { Loader } from "../Loader/Loader";
-import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
 import * as SC from "./GalleryItem.styled";
 
 interface IProps {

@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useStore } from "../../Store/Store";
@@ -14,7 +14,6 @@ import { IDataCat, ICateory } from "../../types/types";
 import { useUbdateStateSelectsValue } from "../../hooks/useUbdateStateSelectsValue";
 import { useChangeSelectsValue } from "../../hooks/useChangeSelectsValue";
 import { MainSharedLayoutPages } from "../../components/MainSharedLayoutPages/MainSharedLayoutPages";
-import { useShowMobileMenu } from "../../hooks/useShowMobileMenu";
 import { dataNavLinks } from "../../constants/dataNavLinks";
 import Upload from "../../public/upload.svg";
 import * as SC from "../../styles/Gallery.styled";
@@ -42,20 +41,10 @@ interface IProps {
 }
 
 const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
-  // const [showModal, setShowModal] = useState(false);
-  // const {showModal, showContent, onHiddenModal, onVisibleModal } = useShowModal();
-  // const { showMobileMenu, visibleMobileMenu } = useShowMobileMenu();
-  const {showModal, openModal, closeModal, lightTheme } = useStore();
-  // console.log(`catsData ${catsData}`);
-  // console.log(`amountCats ${amountCats}`);
+  const { showModal, openModal, closeModal, lightTheme } = useStore();
 
   const router = useRouter();
   const params = router.query;
-  // const currentPage = Number(params.page);
-
-  // console.log(catsData);
-  // const {selectsValue} = useStore();
-
   const { changeGallerySelectsValue } = useChangeSelectsValue();
 
   useUbdateStateSelectsValue(changeGallerySelectsValue);
@@ -68,32 +57,9 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
       pathname: "/gallery",
       query: { ...params, page: 0, [e.currentTarget.name]: valueParam },
     });
-
-    // changeSelectsValue(e.currentTarget.name, e.currentTarget.value);
   };
 
-  // const changePage = (value: number) => {
-  //   router.push({
-  //     pathname: "/gallery",
-  //     query: { ...params, page: currentPage + value },
-  //   });
-  // };
-
-  // const amountPage = () => {
-  //   return Number(amountCats) / Number(params.limit) <= currentPage + 1;
-  // };
-
-  //   const disabledRefreshBtn = () => {
-  //   return catsData.length >= Number(selectsValue.limit)
-  // }
-
   const resetSelects = () => {
-    // if (startedURL.current === router.asPath) {
-    //   router.replace(dataNavLinks[2].path);
-    // } else {
-    //   router.push(dataNavLinks[2].path);
-    // }
-
     router.push(dataNavLinks[2].path);
   };
 
@@ -104,10 +70,6 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
     });
   };
 
-  // const toggleModal = () => {
-  //   setShowModal(!showModal);
-  // };
-
   return (
     <>
       <Head>
@@ -115,15 +77,18 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
         <meta name="description" content="Gallery of cats" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <SC.GalleryFavoriteCatNavigation
-        visibleModal={showModal}
-        onShowMobileMenu={visibleMobileMenu}
-      /> */}
-      {/* <SC.GalleryContainer visibleModal={showModal}> */}
-      <MainSharedLayoutPages hideLayout={showModal} pageTitle="Cat gallery" pageDescription="Cat gallery">
+      <MainSharedLayoutPages
+        hideLayout={showModal}
+        pageTitle="Cat gallery"
+        pageDescription="Cat gallery"
+      >
         <SC.Wrapp>
           <BackPagePanel page="gallery" />
-          <SC.UploadBtn btn={"main"} lightTheme={lightTheme} onClick={openModal}>
+          <SC.UploadBtn
+            btn={"main"}
+            lightTheme={lightTheme}
+            onClick={openModal}
+          >
             <Upload width={16} height={16} fill={"currentColor"} />
             upload
           </SC.UploadBtn>
@@ -134,21 +99,17 @@ const GalleryPage: FC<IProps> = ({ catsData, amountCats, categoties }) => {
           onClickBtn={resetSelects}
         />
         <Gallery dataCats={catsData} />
-        {amountCats && (
-          <ButtonsChangePages
-            amountCats={amountCats}
-            // changePage={changePage}
-            // currentPage={currentPage}
-            // lastPage={amountPage()}
-          />
-        )}
+        {amountCats && <ButtonsChangePages amountCats={amountCats} />}
         {params.order === "RANDOM" &&
           catsData.length >= Number(params.limit) && (
-            <SC.BtnLoadMore btn={"main"} lightTheme={lightTheme} onClick={reloadCats}>
+            <SC.BtnLoadMore
+              btn={"main"}
+              lightTheme={lightTheme}
+              onClick={reloadCats}
+            >
               load another cats
             </SC.BtnLoadMore>
           )}
-        {/* </SC.GalleryContainer> */}
       </MainSharedLayoutPages>
       <Modal show={showModal} onClose={closeModal}>
         <ModalUploadInterface />

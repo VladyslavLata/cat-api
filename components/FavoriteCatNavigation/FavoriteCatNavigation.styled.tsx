@@ -19,7 +19,7 @@ height: 60px;
 background-color: ${p => p.lightTheme ? "" : p.theme.colors.bgDarkThemeAccentTransparent};
 border-radius: ${p => p.theme.radii.m};
 
- @media (min-width: 1440px) {
+  @media (min-width: 1440px) {
     display: none;
   }
 `

@@ -1,8 +1,6 @@
 import axios from "axios";
 import { ParsedUrlQuery } from "querystring";
 
-// const CAT_API_KEY = "live_Sv4k5xsNdGpxtq6QAMZhiPDGUNlns90Li9QIs8b22IT6zFxHsGLJtC5AOuftuzuB";
-
 const CAT_API_KEY =
   "live_183pPOLZ0OGHbYCapJSCCPb9hi7Z47z9fXbSEuadBnv6yVR3qwa40g5vYyDYfLoA";
 

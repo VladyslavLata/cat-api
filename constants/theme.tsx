@@ -63,7 +63,6 @@ export const theme: DefaultTheme = {
     xs: "5px",
     s: '10px',
     m: '20px',
-    // lg: '16px',
     round: '50%',
   },
   shadows: {

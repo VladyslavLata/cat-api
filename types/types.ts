@@ -37,25 +37,25 @@ export interface IUrl extends IPath {
 }
 
 export interface IFavouriteLink {
-  svg: any,
-  link: INavPath,
+  svg: any;
+  link: INavPath;
 }
 
 export interface IBreeds {
-    id: string;
-    name: string;
-    description: string;
-    temperament: string;
-    origin: string;
-    life_span: string;
-    weight: {
+  id: string;
+  name: string;
+  description: string;
+  temperament: string;
+  origin: string;
+  life_span: string;
+  weight: {
     metric: string;
   };
 }
 
 export interface ICateory {
-  id: number,
-  name: string,
+  id: number;
+  name: string;
 }
 
 export interface IDataCat {
@@ -65,12 +65,12 @@ export interface IDataCat {
 }
 
 export interface IFavouriteDataCat {
-  id: number,
-  image_id: string,
+  id: number;
+  image_id: string;
   image: {
-    id: string,
-    url: string,
-  }
+    id: string;
+    url: string;
+  };
 }
 
 export interface ILikeDataCat extends IFavouriteDataCat {
@@ -78,36 +78,30 @@ export interface ILikeDataCat extends IFavouriteDataCat {
 }
 
 export interface ISelect {
-  value: string,
-  option: string,
+  value: string;
+  option: string;
 }
 
-// export interface ICurrentPath {
-//   bgColor: "bgLinkVoting" | "bgLinkBreeds" | "bgLinkGallery",
-//   img: img,
-//   currentPath: string,
-// }
-
-export interface ISelectsValue{
-  limit: string,
-  breed_ids: string,
-  order: string,
-  mime_types: string,
-  category_ids: string | number,
+export interface ISelectsValue {
+  limit: string;
+  breed_ids: string;
+  order: string;
+  mime_types: string;
+  category_ids: string | number;
 }
 
 export interface IDataSelect {
   name: "limit" | "breed_ids" | "order" | "mime_types";
-  label: string,
-  dataOptions: ISelect[],
+  label: string;
+  dataOptions: ISelect[];
 }
 
 export interface IVotingDataMessage {
-  catId: string,
-  value?: number,
-  favouriteCatId?: number | null,
+  catId: string;
+  value?: number;
+  favouriteCatId?: number | null;
   date: {
-    hours: number,
-    minutes: number,
-  }
+    hours: number;
+    minutes: number;
+  };
 }

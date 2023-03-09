@@ -2,7 +2,6 @@ import { FC } from "react";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { MainSharedLayoutPages } from "../../components/MainSharedLayoutPages/MainSharedLayoutPages";
-import { SharedLayoutLikedPage } from "../../components/SharedLayoutLikedPage/SharedLayoutLikedPage";
 import { ButtonsChangePages } from "../../components/ButtonsChangePages/ButtonsChangePages";
 import { Gallery } from "../../components/Gallery/Gallery";
 import { BackPagePanel } from "../../components/BackPagePanel/BackPagePanel";
@@ -33,35 +32,24 @@ interface IProps {
 }
 
 const Likes: FC<IProps> = ({ likeCatsData, amountCats }) => {
-  console.log(likeCatsData);
-  console.log(amountCats);
   const router = useRouter();
-  const { query, pathname } = router;
+  const { query } = router;
   const currentPage = Number(query.page);
-
-
-
   return (
-    <MainSharedLayoutPages  pageTitle="Like" pageDescription="Cat pictures you like">
-    {/* <SharedLayoutLikedPage pageName="favourites" pageTitle="Like" pageDescription="Cat pictures you like"> */}
-      <BackPagePanel page="likes"/>
+    <MainSharedLayoutPages
+      pageTitle="Like"
+      pageDescription="Cat pictures you like"
+    >
+      <BackPagePanel page="likes" />
       {likeCatsData.length > 0 && <Gallery dataCats={likeCatsData} />}
-      {likeCatsData.length === 0 && currentPage === 0 && <Message>No item found</Message>}
-      {Number(amountCats) > 10 && <ButtonsChangePages amountCats={amountCats} />}
-    {/* </SharedLayoutLikedPage> */}
-  </MainSharedLayoutPages>
-    // <>
-    //   <FavoriteCatNavigation />
-    //   <SC.ContainerWrapp>
-    //     <Container>
-    //       <BackPagePanel page="favourites" />
-
-    //     </Container>
-    //   </SC.ContainerWrapp>
-    // </>
+      {likeCatsData.length === 0 && currentPage === 0 && (
+        <Message>No item found</Message>
+      )}
+      {Number(amountCats) > 10 && (
+        <ButtonsChangePages amountCats={amountCats} />
+      )}
+    </MainSharedLayoutPages>
   );
 };
-
-
 
 export default Likes;

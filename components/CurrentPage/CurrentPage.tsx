@@ -1,10 +1,10 @@
 import { FC } from "react";
-import * as SC from "./CurrentPage.styled"
+import * as SC from "./CurrentPage.styled";
 
 interface IProps {
-  title: string,
+  title: string;
 }
 
 export const CurrentPage: FC<IProps> = ({ title }) => {
-  return <SC.Text>{title}</SC.Text>
- }
+  return <SC.Text>{title}</SC.Text>;
+};

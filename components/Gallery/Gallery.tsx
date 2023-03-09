@@ -30,7 +30,7 @@ export const Gallery: FC<IProps> = ({ dataCats }) => {
     );
   } else if ("value" in dataCats[0]) {
     const likesDataCats = dataCats as ILikeDataCat[];
-     return (
+    return (
       <SC.List>
         {likesDataCats.map((likeDataCat) => (
           <SC.Item key={likeDataCat.id}>
@@ -47,9 +47,6 @@ export const Gallery: FC<IProps> = ({ dataCats }) => {
       <SC.List>
         {favouriteDataCats.map((favouriteDataCat) => (
           <SC.Item key={favouriteDataCat.id}>
-            {/* {(pathname === "/likes" || pathname === "/dislikes") && (
-              <GalleryItemLike dataCat={favouriteDataCat} />
-            )} */}
             {pathname === "/favourites" && (
               <GalleryItemFavourite dataCat={favouriteDataCat} />
             )}

@@ -1,5 +1,4 @@
-import { FC, useState, MouseEvent, Dispatch, SetStateAction } from "react";
-import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
+import { FC, Dispatch, SetStateAction } from "react";
 import { useStore } from "../../Store/Store";
 import { useRouter } from "next/router";
 import { useFavoriteCat } from "../../hooks/useFavoriteCat";
@@ -7,10 +6,7 @@ import { createDate } from "../../utils/createDate";
 import { addVoteForCat } from "../../API/catAPI";
 import Like from "../../public/like.svg";
 import Dislike from "../../public/dislike.svg";
-import Favorite from "../../public/fav.svg";
-import FavoriteFill from "../../public/favColor.svg";
 import { Media } from "../../media";
-import { MessagesVoting } from "../MessagesVoting/MessagesVoting";
 import { IVotingDataMessage } from "../../types/types";
 import * as SC from "./VotingControlPanel.styled";
 
@@ -23,16 +19,10 @@ interface IProps {
 }
 
 export const VotingControlPanel: FC<IProps> = ({ id, allMessage, updateMessages  }) => {
-  // const [currentImgCatFavoriteId, setCurrentImgCatFavoriteId] = useState<number | null>(null)
-  // const [favorite, setFavorite] = useState(false);
   const { lightTheme} = useStore();
-  const { status, favouriteId, currentFavoriteIcon, onAddFavouriteCat, resetFavouriteId } = useFavoriteCat(id);
-  // const [messages, setMessages] = useState<IVotingDataMessage[] | []>([]);
+  const { favouriteId, currentFavoriteIcon, onAddFavouriteCat, resetFavouriteId } = useFavoriteCat(id);
   
   const router = useRouter();
-
-  // const CurrentFavoriteIcon = favorite ? FavoriteFill : Favorite;
-  //  const Cur = true ? Favorite : FavoriteFill;
 
   const icons = [Like, currentFavoriteIcon, Dislike];
 
@@ -44,8 +34,7 @@ export const VotingControlPanel: FC<IProps> = ({ id, allMessage, updateMessages 
         break;
       case 2:
         onAddFavouriteCat();
-        updateMessages(()=>[ {catId: id, favouriteCatId: favouriteId, date: createDate() } ,...allMessage])
-        // setCurrentImgCatFavoriteId(favouriteId);
+        updateMessages(() => [{ catId: id, favouriteCatId: favouriteId, date: createDate() }, ...allMessage]);
         break;
       case 3:
       await  createVote(id, -1);
@@ -63,17 +52,6 @@ export const VotingControlPanel: FC<IProps> = ({ id, allMessage, updateMessages 
     }
   };
 
-  // const onHoverBtn = (e: MouseEvent) => {
-  //   e.preventDefault();
-  //   if (e.target) {
-  //     const btn = e.target as HTMLButtonElement;
-  //     btn.classList.toggle("hover-btn")
-   
-  //   }
-  // }
-
- 
-
   return (<>
     <SC.ListBtns lightTheme={lightTheme}>
       {[1, 2, 3].map((num, i) => (
@@ -84,8 +62,6 @@ export const VotingControlPanel: FC<IProps> = ({ id, allMessage, updateMessages 
               width={30}
               height={30}
               onClick={() => onVotingOrLike(id, num)}
-              // onMouseOver={onHoverBtn}
-              // onMouseOut={onHoverBtnEnd}
               index={i}
             />
           </Media>
@@ -101,7 +77,6 @@ export const VotingControlPanel: FC<IProps> = ({ id, allMessage, updateMessages 
         </SC.WrappBtn>
       ))}
     </SC.ListBtns>
-    {/* { messages.length && <MessagesVoting messages={messages} />} */}
   </>
   );
 };

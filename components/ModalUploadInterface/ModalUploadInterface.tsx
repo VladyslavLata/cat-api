@@ -64,7 +64,6 @@ export const ModalUploadInterface: FC = () => {
   };
 
   const onChangeInputValue = (e: FormEvent<HTMLInputElement>) => {
-    console.log(e);
     const target = e.target as HTMLInputElement;
     const file = target.files;
 

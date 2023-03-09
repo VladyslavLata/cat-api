@@ -10,7 +10,7 @@ interface IProps {
 
 export const InfoBreedBox: FC<IProps> = ({ info }) => {
   const { lightTheme} = useStore();
-  const { id, name, description, temperament, origin, life_span, weight } =
+  const { name, description, temperament, origin, life_span, weight } =
     info;
   return (
     <SC.InfoBreedWrapp lightTheme={lightTheme}>

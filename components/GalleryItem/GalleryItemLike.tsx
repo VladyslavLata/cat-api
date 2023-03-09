@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { ILikeDataCat, IFavouriteDataCat } from "../../types/types";
+import { ILikeDataCat } from "../../types/types";
 import * as SC from "./GalleryItem.styled"
 import Like from "../../public/like.svg";
 import DisLike from "../../public/dislike.svg";

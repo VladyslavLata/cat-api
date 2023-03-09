@@ -9,7 +9,6 @@ export const Wrapp = styled.div`
 
   @media screen and (min-width: 768px) {
     gap: ${p => p.theme.space[10]}px;
-    
   }
 `
 
