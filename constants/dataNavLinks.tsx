@@ -1,5 +1,5 @@
 import { INavLink, IFavouriteLink } from "../types/types";
-import bgVote from "../public/Vote.png";
+import bgVote from "../public/vote.png";
 import bgBreeds from "../public/breeds.png";
 import bgGallery from "../public/gallery.png";
 import Like from "../public/like.svg";
