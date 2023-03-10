@@ -5,7 +5,7 @@ export const MainContent = styled.main<{ currentPage: string }>`
   @media screen and (min-width: 1440px) {
     width: 1380px;
     padding-left: 700px;
-   
+    
     ::after {
       content: "";
       position: relative;

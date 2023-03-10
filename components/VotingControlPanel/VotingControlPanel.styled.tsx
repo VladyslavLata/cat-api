@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
 
-export const ListBtns = styled.ul<{lightTheme: boolean}>`
+export const ListBtns = styled.ul<{ lightTheme: boolean }>`
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -9,7 +9,10 @@ export const ListBtns = styled.ul<{lightTheme: boolean}>`
   display: flex;
   gap: 3px;
   border: ${(p) => p.theme.borders.m};
-  border-color: ${(p) => p.lightTheme? p.theme.colors.bgSecondary : p.theme.colors.bgDarkThemeSecondary}; 
+  border-color: ${(p) =>
+    p.lightTheme
+      ? p.theme.colors.bgSecondary
+      : p.theme.colors.bgDarkThemeSecondary};
   border-radius: ${(p) => p.theme.radii.m};
   background-color: ${(p) => p.theme.colors.bgSecondary};
   overflow: hidden;
@@ -30,7 +33,15 @@ export const WrappBtn = styled.li<{ index: number }>`
       case 2:
         return p.theme.colors.bgYellow;
     }
-  }};
+}};
+  border-top-left-radius: ${(p) =>
+    p.index === 0 ? p.theme.radii.m : p.theme.radii.none};
+  border-bottom-left-radius: ${(p) =>
+    p.index === 0 ? p.theme.radii.m : p.theme.radii.none};
+  border-top-right-radius: ${(p) =>
+    p.index === 2 ? p.theme.radii.m : p.theme.radii.none};
+  border-bottom-right-radius: ${(p) =>
+    p.index === 2 ? p.theme.radii.m : p.theme.radii.none};
 `;
 
 export const VotingButton = styled(ButtonIcon)<{ index: number }>`
@@ -41,30 +52,55 @@ export const VotingButton = styled(ButtonIcon)<{ index: number }>`
   border-radius: ${(p) => p.theme.radii.none};
 
   border-top-left-radius: ${(p) =>
-    p.index === 0 ? p.theme.radii.s : p.theme.radii.none};
+    p.index === 0 ? p.theme.radii.m : p.theme.radii.none};
   border-bottom-left-radius: ${(p) =>
-    p.index === 0 ? p.theme.radii.s : p.theme.radii.none};
+    p.index === 0 ? p.theme.radii.m : p.theme.radii.none};
   border-top-right-radius: ${(p) =>
-    p.index === 2 ? p.theme.radii.s : p.theme.radii.none};
+    p.index === 2 ? p.theme.radii.m : p.theme.radii.none};
   border-bottom-right-radius: ${(p) =>
-    p.index === 2 ? p.theme.radii.s : p.theme.radii.none};
+    p.index === 2 ? p.theme.radii.m : p.theme.radii.none};
 
   @media (min-width: 768px) {
     width: 80px;
     height: 80px;
   }
 
-  &:focus, :hover {
-    color: ${(p) => {
-      switch (p.index) {
-        case 0:
-          return p.theme.colors.bgGreen;
-        case 1:
-          return p.theme.colors.bgAccentPrimary;
-        case 2:
-          return p.theme.colors.bgYellow;
-      }
-    }};
-    background-color: ${(p) => p.theme.colors.bgWhiteTransparent};
+  @media (max-width: 1439px) {
+    &:hover,
+    :focus {
+      color: ${(p) => p.theme.colors.bgSecondary};
+      background-color: transparent;
+    }
+
+    &:active {
+      color: ${(p) => {
+        switch (p.index) {
+          case 0:
+            return p.theme.colors.bgGreen;
+          case 1:
+            return p.theme.colors.bgAccentPrimary;
+          case 2:
+            return p.theme.colors.bgYellow;
+        }
+      }};
+      background-color: ${(p) => p.theme.colors.bgWhiteTransparent};
+    }
+  }
+
+  @media (min-width: 1440px) {
+    &:focus,
+    :hover {
+      color: ${(p) => {
+        switch (p.index) {
+          case 0:
+            return p.theme.colors.bgGreen;
+          case 1:
+            return p.theme.colors.bgAccentPrimary;
+          case 2:
+            return p.theme.colors.bgYellow;
+        }
+      }};
+      background-color: ${(p) => p.theme.colors.bgWhiteTransparent};
+    }
   }
 `;

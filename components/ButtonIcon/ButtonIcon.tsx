@@ -1,5 +1,6 @@
-import { FC, ReactNode } from "react";
+import React, { FC, ReactNode, } from "react";
 import * as SC from "./ButtonIcon.styled";
+
 
 interface IProps {
   svg: any,
@@ -8,7 +9,7 @@ interface IProps {
   disabled?: boolean,
   width: number,
   height: number,
-  onClick: () => void,
+  onClick: (e?: React.MouseEvent<HTMLButtonElement>) => void,
   children?: ReactNode;
 }
 
